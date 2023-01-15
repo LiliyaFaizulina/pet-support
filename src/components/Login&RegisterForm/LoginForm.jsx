@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   Title,
+  ErrBox,
 } from './LoginForm.styled';
 
 import axios from 'axios';
@@ -30,7 +31,7 @@ const SignupSchema = yup.object().shape({
     .max(32, 'Too Long!')
     .required('Required'),
 
-  email: yup.string().email('Invalid email').required('Required'),
+  email: yup.string().email('Invalid email').required('Email Required'),
 });
 
 export const LoginForm = () => {
@@ -38,7 +39,6 @@ export const LoginForm = () => {
 
   return (
     <LoginFormContainer>
-      <Title>Login</Title>
       <Formik
         initialValues={{
           email: '',
@@ -53,11 +53,12 @@ export const LoginForm = () => {
       >
         {({ errors, touched }) => (
           <Form1>
+            <Title>Login</Title>
             <Input name="email" type="email" placeholder="Email" />
 
             <div>
               {errors.email && touched.email ? (
-                <div>{`Email ${errors.email}`}</div>
+                <ErrBox>{errors.email}</ErrBox>
               ) : null}
             </div>
 
@@ -65,16 +66,16 @@ export const LoginForm = () => {
 
             <div>
               {errors.password && touched.password ? (
-                <div>{`Password ${errors.password}`}</div>
+                <ErrBox>{`Password ${errors.password}`}</ErrBox>
               ) : null}
             </div>
             <Button type={'submit'}>Login</Button>
+            <div>
+              <span>Don't have an account?</span> <a href="/">Register</a>
+            </div>
           </Form1>
         )}
       </Formik>
-      <div>
-        <span>Don't have an account?</span> <a href="">Register</a>
-      </div>
     </LoginFormContainer>
   );
 };
