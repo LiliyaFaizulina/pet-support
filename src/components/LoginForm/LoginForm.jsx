@@ -73,7 +73,7 @@ export const LoginForm = () => {
         )}
       </Formik>
       <div>
-        <span>Don't have an account?</span> <a href="#">Register</a>
+        <span>Don't have an account?</span> <a href="/">Register</a>
       </div>
     </LoginFormContainer>
   );
