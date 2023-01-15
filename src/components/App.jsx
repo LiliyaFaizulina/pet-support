@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 
 import Layout from './Layout/Layout';
+import { PrivatRoute } from "./ProtectedRoutes";
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -23,7 +24,8 @@ export const App = () => {
         <Route path="news" element={<NewsPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="notices/:categoryName" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
+        
+        <Route path="user" element={<PrivatRoute path="/login"><UserPage /></PrivatRoute>} />
       </Route>
     </Routes>
   );
