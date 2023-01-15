@@ -11,7 +11,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/pet-support/">
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
@@ -23,5 +23,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
-// basename="/pet-support/"
