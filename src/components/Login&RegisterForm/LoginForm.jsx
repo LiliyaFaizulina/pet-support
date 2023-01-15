@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import {
   Form1,
-  LoginFormContainer,
+  FormContainer,
   Input,
   Button,
   Title,
@@ -38,7 +38,7 @@ export const LoginForm = () => {
   //   const dispatch = useDispatch();
 
   return (
-    <LoginFormContainer>
+    <FormContainer>
       <Formik
         initialValues={{
           email: '',
@@ -76,6 +76,6 @@ export const LoginForm = () => {
           </Form1>
         )}
       </Formik>
-    </LoginFormContainer>
+    </FormContainer>
   );
 };

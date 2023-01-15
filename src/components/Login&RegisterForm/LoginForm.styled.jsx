@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
-export const LoginFormContainer = styled.div``;
+export const FormContainer = styled.div``;
 export const Title = styled.h2`
   margin-bottom: 40px;
   margin-top: 0;
