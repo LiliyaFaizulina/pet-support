@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import {
   Form1,
   FormContainer,
@@ -72,7 +73,8 @@ export const LoginForm = () => {
             </div>
             <Button type={'submit'}>Login</Button>
             <div>
-              <span>Don't have an account?</span> <a href="/">Register</a>
+              <span>Don't have an account?</span>{' '}
+              <Link to="/register">Register</Link>
             </div>
           </Form1>
         )}

@@ -16,9 +16,7 @@ export const Form1 = styled(Form)`
   padding-top: 44px;
   padding-bottom: 40px;
   margin: 0 auto;
-  a {
-    text-decoration: none;
-  }
+
   @media (min-width: 768px) {
     width: 608px;
     margin: 0 auto;
