@@ -12,20 +12,6 @@ import {
 } from './LoginForm.styled';
 import { login } from 'redux/auth/authOperations';
 
-// import axios from 'axios';
-
-// const login = async userData => {
-//   try {
-//     const { data } = await axios.post(
-//       'http://localhost:4000/api/users/login',
-//       userData
-//     );
-//     return data;
-//   } catch (error) {
-//     return error;
-//   }
-// };
-
 const SignupSchema = yup.object().shape({
   password: yup
     .string()
@@ -49,7 +35,7 @@ export const LoginForm = () => {
         validationSchema={SignupSchema}
         onSubmit={({ email, password }, { resetForm }) => {
           dispatch(login({ email, password }));
-          // login({ email, password });
+
           resetForm();
         }}
       >
