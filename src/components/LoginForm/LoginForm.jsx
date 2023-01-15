@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import {
   Form1,
@@ -8,20 +8,21 @@ import {
   Button,
   Title,
 } from './LoginForm.styled';
+import { login } from 'redux/auth/authOperations';
 
-import axios from 'axios';
+// import axios from 'axios';
 
-const login = async userData => {
-  try {
-    const { data } = await axios.post(
-      'http://localhost:4000/api/users/login',
-      userData
-    );
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
+// const login = async userData => {
+//   try {
+//     const { data } = await axios.post(
+//       'http://localhost:4000/api/users/login',
+//       userData
+//     );
+//     return data;
+//   } catch (error) {
+//     return error;
+//   }
+// };
 
 const SignupSchema = yup.object().shape({
   password: yup
@@ -34,7 +35,7 @@ const SignupSchema = yup.object().shape({
 });
 
 export const LoginForm = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <LoginFormContainer>
@@ -46,8 +47,8 @@ export const LoginForm = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={({ email, password }, { resetForm }) => {
-          //   dispatch(login({ email, password }));
-          login({ email, password });
+          dispatch(login({ email, password }));
+          // login({ email, password });
           resetForm();
         }}
       >
