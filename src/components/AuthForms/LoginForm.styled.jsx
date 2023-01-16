@@ -1,7 +1,25 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import mobileBackground from '../../images/mobileAuthBackground.png';
+import tabletBackground from '../../images/tableAuthBackground.png';
+import desktopBackground from '../../images/desktopAuthBackground.png';
 
-export const FormContainer = styled.div``;
+export const FormContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url(${mobileBackground});
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @media (min-width: 768px) {
+    background-image: url(${tabletBackground});
+  }
+  @media (min-width: 1280px) {
+    background-image: url(${desktopBackground});
+  }
+`;
 export const Title = styled.h2`
   margin-bottom: 40px;
   margin-top: 0;
@@ -20,7 +38,7 @@ export const Form1 = styled(Form)`
   @media (min-width: 768px) {
     width: 608px;
     margin: 0 auto;
-    margin-top: 204px;
+    margin-top: 169px;
     padding: 60px 0 40px 0;
     background-color: #fff;
     border-radius: 40px;
@@ -30,7 +48,7 @@ export const Form1 = styled(Form)`
   }
   @media (min-width: 1280px) {
     width: 618px;
-    margin-top: 80px;
+    margin-top: 46px;
     padding: 60px 0 60px 0;
   }
   > div {
@@ -77,6 +95,6 @@ export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
   top: -18px;
-  left: -55px;
+  left: -200px;
   color: red;
 `;
