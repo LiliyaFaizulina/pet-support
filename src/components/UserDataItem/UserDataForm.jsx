@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useGetUserQuery, useUpdateUserAvatarMutation } from "redux/userApi";
 import UserDataItem from "./UserDataItem";
-import devaultIcon from "../../img/default-icon-user.png";
+import devaultIcon from "../../images/default-icon-user.png";
 import { userActions } from "redux/user/userSlice";
 import Loader from "components/Loader";
 import {
