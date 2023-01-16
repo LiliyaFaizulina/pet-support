@@ -22,9 +22,9 @@ instance.interceptors.response.use(
       const { data } = await instance.post('/users/refresh', { refreshToken });
       token.set(data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
-      console.log(error.config);
+      return instance(error.config);
     }
-    return instance(error.config);
+    return Promise.reject(error);
   }
 );
 
@@ -66,11 +66,71 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const getUser = createAsyncThunk(
+  'auth/getUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`/users/user`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`/users/user`, user);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addPet = createAsyncThunk(
+  'auth/addPet',
+  async (pet, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post(`/pets`, pet);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deletePet = createAsyncThunk(
+  'auth/deletePet',
+  async (id, { rejectWithValue }) => {
+    try {
+      await instance.delete(`/pets/${id}`);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const updateFavoriteStatus = createAsyncThunk(
-  'notices/updateFavoriteStatus',
+  'auth/updateFavoriteStatus',
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await instance.patch(`/notices/${id}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (avatar, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`/users/avatar`, avatar);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

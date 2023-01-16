@@ -1,18 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
 import {
   register,
   login,
   logout,
   updateFavoriteStatus,
+  getUser,
+  updateUser,
+  addPet,
+  deletePet,
+  updateAvatar,
 } from './authOperations';
-
-// const authPersistConfig = {
-//   key: 'refreshToken',
-//   storage,
-//   whitelist: ['refreshToken'],
-// };
 
 const initialState = {
   user: {
@@ -23,6 +20,7 @@ const initialState = {
     avatarURL: '',
     favoriteNotices: [],
   },
+  pets: [],
   accessToken: null,
   refreshToken: null,
   isLoading: false,
@@ -48,11 +46,21 @@ const authSlice = createSlice({
     [login.pending]: handlePending,
     [logout.pending]: handlePending,
     [updateFavoriteStatus.pending]: handlePending,
+    [getUser.pending]: handlePending,
+    [updateUser.pending]: handlePending,
+    [addPet.pending]: handlePending,
+    [deletePet.pending]: handlePending,
+    [updateAvatar.pending]: handlePending,
 
     [register.rejected]: handleRejected,
     [login.rejected]: handleRejected,
     [logout.rejected]: handleRejected,
     [updateFavoriteStatus.rejected]: handleRejected,
+    [getUser.rejected]: handleRejected,
+    [updateUser.rejected]: handleRejected,
+    [addPet.rejected]: handleRejected,
+    [deletePet.rejected]: handleRejected,
+    [updateAvatar.rejected]: handleRejected,
 
     [register.fulfilled]: (state, { payload }) => {
       state.user.email = payload;
@@ -84,6 +92,27 @@ const authSlice = createSlice({
     },
     [updateFavoriteStatus.fulfilled]: (state, { payload }) => {
       state.user.favoriteNotices = payload.user.favoriteNotices;
+      state.isLoading = false;
+    },
+    [getUser.fulfilled]: (state, { payload }) => {
+      state.user = payload.user;
+      state.pets = payload.pets;
+      state.isLoading = false;
+    },
+    [updateUser.fulfilled]: (state, { payload }) => {
+      state.user = payload;
+      state.isLoading = false;
+    },
+    [addPet.fulfilled]: (state, { payload }) => {
+      state.pets.push(payload.newPet);
+      state.isLoading = false;
+    },
+    [deletePet.fulfilled]: (state, { payload }) => {
+      state.pets = state.pets.filter(({ _id }) => _id !== payload);
+      state.isLoading = false;
+    },
+    [updateAvatar.fulfilled]: (state, { payload }) => {
+      state.user.avatarURL = payload;
       state.isLoading = false;
     },
   },
