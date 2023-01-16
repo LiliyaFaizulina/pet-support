@@ -18,12 +18,11 @@ instance.interceptors.response.use(
   res => res,
   async error => {
     if (error.response.status === 401) {
-      const token = localStorage.getItem('refreshToken');
-      const {
-        data: { accessToken, refreshToken },
-      } = await instance.post('/users/refresh', { refreshToken: token });
-      token.set(accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      const refreshToken = localStorage.getItem('refreshToken');
+      const { data } = await instance.post('/users/refresh', { refreshToken });
+      token.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      console.log(error.config);
     }
     return instance(error.config);
   }
@@ -47,6 +46,7 @@ export const login = createAsyncThunk(
     try {
       const { data } = await instance.post('/users/login', userData);
       token.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -60,6 +60,18 @@ export const logout = createAsyncThunk(
     try {
       await instance.delete('/users/logout');
       token.unset();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateFavoriteStatus = createAsyncThunk(
+  'notices/updateFavoriteStatus',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch(`/notices/${id}`);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

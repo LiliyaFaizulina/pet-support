@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,15 +8,17 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { authPersistedReducer } from './auth/authSlice';
+import { authReducer } from './auth/authSlice';
 import { friendsReducer } from './friends/friendsSlice';
 import { newsReducer } from './news/newsSlice';
+import { noticesReducer } from './notices/noticesSlice';
 
 export const store = configureStore({
   reducer: {
-    auth: authPersistedReducer,
+    auth: authReducer,
     friends: friendsReducer,
     news: newsReducer,
+    notices: noticesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -26,5 +27,3 @@ export const store = configureStore({
       },
     }),
 });
-
-export const persistor = persistStore(store);
