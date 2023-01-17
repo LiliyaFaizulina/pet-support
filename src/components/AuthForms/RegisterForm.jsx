@@ -13,21 +13,48 @@ import {
   Title,
   ErrBox,
   BackButton,
+  PhoneInput,
 } from './LoginForm.styled';
+
+const phoneNumberMask = [
+  '+',
+  '3',
+  '8',
+  '(',
+  /[0-9]/,
+  /\d/,
+  /\d/,
+
+  ')',
+
+  /\d/,
+  /\d/,
+  /\d/,
+
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+];
 
 const RegisterSchema = object().shape({
   password: string()
     .min(7, 'Too Short!')
     .max(32, 'Too Long!')
-    .required('Password is Required'),
+    .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords do not match'),
-
-  email: string().email('Invalid email').required('Email is Required'),
-  name: string().min(2).required('Name is Required'),
-  phone: string().required('Phone is Required'),
-  city: string().required('City is Required'),
+  email: string().email('Invalid email').required('Email is required'),
+  name: string().min(2, 'Too Short!').required('Name is required'),
+  phone: string()
+    .min(15, 'Too Short!')
+    .matches(
+      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+      'bad phone number'
+    )
+    .required('Phone is required'),
+  city: string().required('City is required'),
 });
 
 export const RegisterForm = () => {
@@ -70,7 +97,7 @@ export const RegisterForm = () => {
     (formik.errors.password && formik.touched.password) ||
     (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
     formik.values.email === '' ||
-    formik.values.password === ''
+    formik.values.confirmPassword === ''
       ? true
       : false;
 
@@ -134,7 +161,7 @@ export const RegisterForm = () => {
             </>
           )}
           {isShown && (
-            <Button type={'button'} onClick={showForm} disabled={isValid}>
+            <Button type="button" onClick={showForm} disabled={isValid}>
               Next
             </Button>
           )}
@@ -174,29 +201,32 @@ export const RegisterForm = () => {
           )}
           {!isShown && (
             <>
-              <Input
-                name="phone"
+              <PhoneInput
+                mask={phoneNumberMask}
+                id="phone"
                 type="phone"
                 placeholder="Mobile phone"
                 onChange={formik.handleChange}
                 value={formik.values.phone}
                 onBlur={formik.handleBlur}
+                name="phone"
               />
+
               <div>
                 {formik.errors.phone && formik.touched.phone ? (
-                  <ErrBox>{`${formik.errors.phone}`}</ErrBox>
+                  <ErrBox>{formik.errors.phone}</ErrBox>
                 ) : null}
               </div>
             </>
           )}
-          {!isShown && <Button type={'submit'}>Register</Button>}
+          {!isShown && <Button type="submit">Register</Button>}
           {!isShown && (
-            <BackButton type={'button'} onClick={hideForm}>
+            <BackButton type="button" onClick={hideForm}>
               Back
             </BackButton>
           )}
           <div>
-            <span>Don't have an account?</span> <Link to="/login">Login</Link>
+            <span>Already have an account?</span> <Link to="/login">Login</Link>
           </div>
         </Form1>
       </Formik>

@@ -1,4 +1,4 @@
-import { object, string, ref } from 'yup';
+import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const SignupSchema = object().shape({
   password: string()
     .min(7, 'Too Short!')
     .max(32, 'Too Long!')
-    .required('Required'),
+    .required('Password is required'),
 
   email: string().email('Invalid email').required('Email Required'),
 });
@@ -53,10 +53,10 @@ export const LoginForm = () => {
 
             <div>
               {errors.password && touched.password ? (
-                <ErrBox>{`Password ${errors.password}`}</ErrBox>
+                <ErrBox>{errors.password}</ErrBox>
               ) : null}
             </div>
-            <Button type={'submit'}>Login</Button>
+            <Button type="submit">Login</Button>
             <div>
               <span>Don't have an account?</span>{' '}
               <Link to="/register">Register</Link>

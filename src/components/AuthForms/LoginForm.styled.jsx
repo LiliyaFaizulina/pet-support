@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import MaskedInput from 'react-text-mask';
 import mobileBackground from '../../images/mobileAuthBackground.png';
 import tabletBackground from '../../images/tableAuthBackground.png';
 import desktopBackground from '../../images/desktopAuthBackground.png';
@@ -57,6 +58,26 @@ export const Form1 = styled(Form)`
 `;
 
 export const Input = styled(Field)`
+  width: 264px;
+  padding: 11px 0 12px 14px;
+  background: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 16px;
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+  @media (min-width: 768px) {
+    width: 414px;
+    padding: 14px 0 13px 32px;
+    font-size: 18px;
+  }
+  @media (min-width: 1280px) {
+    width: 424px;
+  }
+`;
+export const PhoneInput = styled(MaskedInput)`
   width: 264px;
   padding: 11px 0 12px 14px;
   background: #fdf7f2;
