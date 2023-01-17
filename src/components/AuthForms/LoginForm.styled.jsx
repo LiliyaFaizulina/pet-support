@@ -91,10 +91,25 @@ export const Button = styled.button`
     font-size: 20px;
   }
 `;
+export const BackButton = styled.button`
+  width: 100%;
+  padding: 11px 0 12px 14px;
+  text-align: center;
+  color: #000;
+  background: #fff;
+  border: 1px solid #f59256;
+  border-radius: 40px;
+  margin: -26px 0 40px 0;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    width: 458px;
+    font-size: 20px;
+  }
+`;
 export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
   top: -18px;
-  left: -200px;
+  left: -55px;
   color: red;
 `;
