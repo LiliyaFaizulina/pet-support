@@ -1,10 +1,12 @@
-import BurgerNavIcon from '../../images/header/burger.svg';
-import { BurgerNavBtnImg } from './BurgerNavBtn.styled';
+import { GiHamburgerMenu } from 'react-icons/gi';
+// import { BurgerNavBtnImg } from './BurgerNavBtn.styled';
 
 export const BurgerNavBtn = () => {
   return (
     <>
-      <BurgerNavBtnImg src={BurgerNavIcon} alt="petly" />
+      <button type="button">
+        <GiHamburgerMenu />
+      </button>
     </>
   );
 };

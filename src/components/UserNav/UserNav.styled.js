@@ -4,16 +4,13 @@ import styled from 'styled-components';
 export const UserNavLink = styled(Link)`
   text-decoration: none;
   margin-left: auto;
-`;
 
-export const UserNavBtn = styled.button`
-  cursor: pointer;
   pointer-events: initial;
   width: 164px;
   height: 44px;
   background: #f59256;
   border-radius: 40px;
-  font-family: 'Manrope';
+  font-family: ${p => p.theme.fonts.mainFamily};
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -25,7 +22,7 @@ export const UserNavBtn = styled.button`
   align-items: center;
   letter-spacing: 0.04em;
 
-  color: #ffffff;
+  color: ${p => p.theme.colors.secondaryBackground};
 `;
 
 export const UserNavBtnIcon = styled.img`
