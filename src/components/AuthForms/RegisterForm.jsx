@@ -46,15 +46,17 @@ const RegisterSchema = object().shape({
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords do not match'),
   email: string().email('Invalid email').required('Email is required'),
-  name: string().min(2, 'Too Short!').required('Name is required'),
+  name: string().min(2, 'min 2 symbols').required('Name is required'),
   phone: string()
-    .min(15, 'Too Short!')
+    .min(13, 'Too Short!')
     .matches(
-      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/,
       'bad phone number'
     )
     .required('Phone is required'),
-  city: string().required('City is required'),
+  city: string()
+    .matches(/^(\w+(,)\s*)+\w+$/, 'Error. Example: Brovary, Kyiv')
+    .required('City is required'),
 });
 
 export const RegisterForm = () => {
@@ -108,16 +110,16 @@ export const RegisterForm = () => {
           <Title>Register</Title>
           {isShown && (
             <>
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-                onBlur={formik.handleBlur}
-              />
-
               <div>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  onBlur={formik.handleBlur}
+                />
+
                 {formik.errors.email || formik.touched.email ? (
                   <ErrBox>{formik.errors.email}</ErrBox>
                 ) : null}
@@ -127,15 +129,16 @@ export const RegisterForm = () => {
 
           {isShown && (
             <>
-              <Input
-                name="password"
-                type="password"
-                placeholder="Password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                onBlur={formik.handleBlur}
-              />
               <div>
+                <Input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
+                />
+
                 {formik.errors.password && formik.touched.password ? (
                   <ErrBox>{formik.errors.password}</ErrBox>
                 ) : null}
@@ -144,15 +147,16 @@ export const RegisterForm = () => {
           )}
           {isShown && (
             <>
-              <Input
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm Password"
-                onChange={formik.handleChange}
-                value={formik.values.confirmPassword}
-                onBlur={formik.handleBlur}
-              />
               <div>
+                <Input
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                  onChange={formik.handleChange}
+                  value={formik.values.confirmPassword}
+                  onBlur={formik.handleBlur}
+                />
+
                 {formik.errors.confirmPassword &&
                 formik.touched.confirmPassword ? (
                   <ErrBox>{formik.errors.confirmPassword}</ErrBox>
@@ -167,15 +171,16 @@ export const RegisterForm = () => {
           )}
           {!isShown && (
             <>
-              <Input
-                name="name"
-                type="text"
-                placeholder="Name"
-                onChange={formik.handleChange}
-                value={formik.values.name}
-                onBlur={formik.handleBlur}
-              />
               <div>
+                <Input
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+                  onBlur={formik.handleBlur}
+                />
+
                 {formik.errors.name && formik.touched.name ? (
                   <ErrBox>{formik.errors.name}</ErrBox>
                 ) : null}
@@ -184,15 +189,16 @@ export const RegisterForm = () => {
           )}
           {!isShown && (
             <>
-              <Input
-                name="city"
-                type="text"
-                placeholder="City, region"
-                onChange={formik.handleChange}
-                value={formik.values.city}
-                onBlur={formik.handleBlur}
-              />
               <div>
+                <Input
+                  name="city"
+                  type="text"
+                  placeholder="City, region"
+                  onChange={formik.handleChange}
+                  value={formik.values.city}
+                  onBlur={formik.handleBlur}
+                />
+
                 {formik.errors.city && formik.touched.city ? (
                   <ErrBox>{formik.errors.city}</ErrBox>
                 ) : null}
@@ -201,18 +207,18 @@ export const RegisterForm = () => {
           )}
           {!isShown && (
             <>
-              <PhoneInput
-                mask={phoneNumberMask}
-                id="phone"
-                type="phone"
-                placeholder="Mobile phone"
-                onChange={formik.handleChange}
-                value={formik.values.phone}
-                onBlur={formik.handleBlur}
-                name="phone"
-              />
-
               <div>
+                <PhoneInput
+                  mask={phoneNumberMask}
+                  id="phone"
+                  type="phone"
+                  placeholder="Mobile phone"
+                  onChange={formik.handleChange}
+                  value={formik.values.phone}
+                  onBlur={formik.handleBlur}
+                  name="phone"
+                />
+
                 {formik.errors.phone && formik.touched.phone ? (
                   <ErrBox>{formik.errors.phone}</ErrBox>
                 ) : null}

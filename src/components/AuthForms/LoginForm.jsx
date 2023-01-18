@@ -41,17 +41,16 @@ export const LoginForm = () => {
         {({ errors, touched }) => (
           <Form1>
             <Title>Login</Title>
-            <Input name="email" type="email" placeholder="Email" />
-
             <div>
+              <Input name="email" type="email" placeholder="Email" />
+
               {errors.email && touched.email ? (
                 <ErrBox>{errors.email}</ErrBox>
               ) : null}
             </div>
-
-            <Input name="password" type="password" placeholder="Password" />
-
             <div>
+              <Input name="password" type="password" placeholder="Password" />
+
               {errors.password && touched.password ? (
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
