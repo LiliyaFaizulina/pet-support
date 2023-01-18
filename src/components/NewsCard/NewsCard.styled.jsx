@@ -94,8 +94,10 @@ export const Link = styled.a`
 
   color: ${p => p.theme.colors.accent};
 
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
+  &:hover,
+  &:focus {
+    scale: 1.1;
+
+    color: #ff634e;
   }
 `;
