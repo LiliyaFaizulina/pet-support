@@ -33,6 +33,8 @@ export const register = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/users/register', userData);
+      token.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
