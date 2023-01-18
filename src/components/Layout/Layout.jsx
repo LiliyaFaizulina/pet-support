@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import { Header } from '../Header/Header';
 
 const Layout = () => {
   return (
     <>
-      <div>Тут буде heder з навігацією</div>
+      <Header />
       <Suspense fallback={<div>loading...</div>}>
         <Outlet />
       </Suspense>
