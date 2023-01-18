@@ -1,4 +1,4 @@
-import { Wrapper, Title, Form, Input, List } from './NewsPage.styled';
+import { Wrapper, Title, List } from './NewsPage.styled';
 import { SearchField } from 'components/SearchField/SearchField';
 import { NewsCard } from 'components/NewsCard/NewsCard';
 
@@ -19,19 +19,23 @@ const NewsPage = () => {
 
   const allNews = useSelector(selectNews);
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
-  const sortNewsByDate = allNews => {
-    const newNewsArray = [...allNews].map(news => {
-      return { ...news, changeDate: Date.parse(news.date) || 0 };
-    });
-    return newNewsArray.sort((a, b) => b.changeDate - a.changeDate);
-  };
+  let error = useSelector(selectError);
 
   const filteredNews = (allNews, filterText) =>
     allNews.filter(news =>
       news.title.toLowerCase().includes(filterText.toLowerCase())
     );
+
+  const renderCard = newsArray => {
+    const newsCards = newsArray.map(news => (
+      <NewsCard news={news} key={news._id} />
+    ));
+    if (newsCards.length > 0) {
+      return newsCards;
+    } else {
+      return <Title>We have no news for you</Title>;
+    }
+  };
 
   useEffect(() => {
     dispatch(getNews());
@@ -50,16 +54,10 @@ const NewsPage = () => {
       {isLoading && <p>Loading...</p>}
       {!isLoading && (
         <List>
-          {allNews.length > 0 &&
-            !filterText &&
-            sortNewsByDate(allNews).map(news => (
-              <NewsCard news={news} key={news._id} />
-            ))}
-          {allNews.length > 0 &&
+          {allNews && !filterText && renderCard(allNews)}
+          {allNews &&
             filterText &&
-            filteredNews(sortNewsByDate(allNews), filterText).map(news => (
-              <NewsCard news={news} key={news._id} />
-            ))}
+            renderCard(filteredNews(allNews, filterText))}
         </List>
       )}
     </Wrapper>
