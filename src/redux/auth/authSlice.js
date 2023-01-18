@@ -62,8 +62,14 @@ const authSlice = createSlice({
     [deletePet.rejected]: handleRejected,
     [updateAvatar.rejected]: handleRejected,
 
-    [register.fulfilled]: (state, { payload }) => {
-      state.user.email = payload;
+    [register.fulfilled]: (
+      state,
+      { payload: { user, accessToken, refreshToken } }
+    ) => {
+      state.accessToken = accessToken;
+      state.refreshToken = refreshToken;
+      state.user = user;
+      state.isAuth = true;
       state.isLoading = false;
     },
     [login.fulfilled]: (
