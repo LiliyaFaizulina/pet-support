@@ -33,6 +33,8 @@ export const register = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/users/register', userData);
+      token.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -58,8 +60,9 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await instance.delete('/users/logout');
+      await instance.get('/users/logout');
       token.unset();
+      localStorage.removeItem('refreshToken');
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -69,6 +72,10 @@ export const logout = createAsyncThunk(
 export const getUser = createAsyncThunk(
   'auth/getUser',
   async (_, { rejectWithValue }) => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      return rejectWithValue();
+    }
     try {
       const { data } = await instance.get(`/users/user`);
       return data;

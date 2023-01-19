@@ -22,7 +22,6 @@ const initialState = {
   },
   pets: [],
   accessToken: null,
-  refreshToken: null,
   isLoading: false,
   isAuth: false,
   error: null,
@@ -62,23 +61,20 @@ const authSlice = createSlice({
     [deletePet.rejected]: handleRejected,
     [updateAvatar.rejected]: handleRejected,
 
-    [register.fulfilled]: (state, { payload }) => {
-      state.user.email = payload;
+    [register.fulfilled]: (state, { payload: { user, accessToken } }) => {
+      state.accessToken = accessToken;
+      state.user = user;
+      state.isAuth = true;
       state.isLoading = false;
     },
-    [login.fulfilled]: (
-      state,
-      { payload: { user, accessToken, refreshToken } }
-    ) => {
+    [login.fulfilled]: (state, { payload: { user, accessToken } }) => {
       state.accessToken = accessToken;
-      state.refreshToken = refreshToken;
       state.user = user;
       state.isAuth = true;
       state.isLoading = false;
     },
     [logout.fulfilled]: state => {
       state.accessToken = null;
-      state.refreshToken = null;
       state.user = {
         name: '',
         email: '',
@@ -97,6 +93,7 @@ const authSlice = createSlice({
     [getUser.fulfilled]: (state, { payload }) => {
       state.user = payload.user;
       state.pets = payload.pets;
+      state.isAuth = true;
       state.isLoading = false;
     },
     [updateUser.fulfilled]: (state, { payload }) => {

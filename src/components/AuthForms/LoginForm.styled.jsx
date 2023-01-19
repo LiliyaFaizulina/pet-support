@@ -130,7 +130,12 @@ export const BackButton = styled.button`
 export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
-  top: -18px;
-  left: -55px;
+  bottom: 2px;
+  left: 15px;
   color: red;
+  font-size: 14px;
+  font-style: italic;
+  @media (min-width: 768px) {
+    left: 33px;
+  }
 `;

@@ -60,3 +60,24 @@ export const SearchButton = styled.button`
     scale: 1.4;
   }
 `;
+
+export const RemoveButton = styled.button`
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+
+  position: absolute;
+  right: 15.5px;
+  bottom: 10.25px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    right: calc(50% - 290.5px);
+  }
+
+  &:hover,
+  &:focus {
+    scale: 1.4;
+  }
+`;

@@ -1,5 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
+import { PrivateRoute } from 'HOCs/PrivateRoute';
+import { PublicRoute } from 'HOCs/PublicRoute';
 
 import Layout from './Layout/Layout';
 
@@ -17,14 +19,57 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="friends" element={<OurFriendsPage />} />
+        <Route
+          index
+          element={
+            <PublicRoute>
+              <HomePage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute restricted>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute restricted>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="news"
+          element={
+            <PublicRoute>
+              <NewsPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="friends"
+          element={
+            <PublicRoute>
+              <OurFriendsPage />
+            </PublicRoute>
+          }
+        />
         <Route path="notices/:categoryName" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
+        <Route
+          path="user"
+          element={
+            <PrivateRoute>
+              <UserPage />
+            </PrivateRoute>
+          }
+        />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
