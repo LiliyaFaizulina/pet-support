@@ -60,7 +60,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await instance.delete('/users/logout');
+      await instance.get('/users/logout');
       token.unset();
     } catch (error) {
       return rejectWithValue(error.message);
