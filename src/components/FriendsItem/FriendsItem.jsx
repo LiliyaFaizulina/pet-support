@@ -32,10 +32,9 @@ export const FriendsItem = ({
       return { day: week[index], ...day };
     });
 
-    // console.log(workDays === null);
-      // console.log(!!workDays); 
-      // console.log(workDays[0].isOpen === undefined );
-      // console.log(workDays[0]);
+  // console.log(!!workDays);
+  // console.log(workDays[0].isOpen === undefined );
+  // console.log(workDays[0]);
   return (
     <SponsorItem>
       <SponsorLink href={siteUrl} target="_blank">
@@ -62,7 +61,7 @@ export const FriendsItem = ({
             ) : (
               <>
                 {' '}
-                {workDays[0].isOpen ? (
+                {workDays[0]?.isOpen ? (
                   <>
                     <Text>Time:</Text>
                     <Time>
@@ -74,7 +73,7 @@ export const FriendsItem = ({
                     <Text>Time:</Text>
                     <Time>Closed</Time>
                   </>
-                )} 
+                )}
                 {isVisible || <TimeTable shedule={newWorkDays} />}
               </>
             )}
