@@ -62,6 +62,7 @@ export const logout = createAsyncThunk(
     try {
       await instance.get('/users/logout');
       token.unset();
+      localStorage.removeItem('refreshToken');
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -71,6 +72,10 @@ export const logout = createAsyncThunk(
 export const getUser = createAsyncThunk(
   'auth/getUser',
   async (_, { rejectWithValue }) => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      return rejectWithValue();
+    }
     try {
       const { data } = await instance.get(`/users/user`);
       return data;

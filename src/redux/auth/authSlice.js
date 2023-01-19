@@ -13,6 +13,7 @@ import {
 
 const initialState = {
   user: {
+    _id: '',
     name: '',
     email: '',
     city: '',
@@ -75,8 +76,8 @@ const authSlice = createSlice({
     },
     [logout.fulfilled]: state => {
       state.accessToken = null;
-      state.refreshToken = null;
       state.user = {
+        _id: '',
         name: '',
         email: '',
         city: '',
@@ -94,6 +95,7 @@ const authSlice = createSlice({
     [getUser.fulfilled]: (state, { payload }) => {
       state.user = payload.user;
       state.pets = payload.pets;
+      state.isAuth = true;
       state.isLoading = false;
     },
     [updateUser.fulfilled]: (state, { payload }) => {
