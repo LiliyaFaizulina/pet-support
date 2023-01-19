@@ -114,15 +114,12 @@ export const SponsorItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 12px;
   padding: 12px;
-  background-color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.secondaryBackground};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    margin-right: 32px;
-    margin-bottom: 32px;
     padding: 16px;
     border-radius: 40px;
   }
