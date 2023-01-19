@@ -25,4 +25,6 @@ const friendsSlice = createSlice({
   },
 });
 
+export const { newItems } = friendsSlice.actions;
+
 export const friendsReducer = friendsSlice.reducer;
