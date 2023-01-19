@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { useGetUserQuery } from 'redux/userApi';
 import AddPetBtn from 'components/AddPetBtn';
-
+import { selectIsLoading } from '../../redux/auth/authSelectors';
 import {
   TitlePet,
   BoxBtn,
@@ -10,16 +10,12 @@ import {
   TitleBtn,
 } from './PetsData.styled';
 import PetsList from '../PetsList/PetsList';
-// import { userActions } from 'redux/user/userSlice';
 
 const screenSize = window.innerWidth;
 
 const PetsData = () => {
-  // const { data = [], isLoading } = useGetUserQuery();
-  const data = []; //////////////////////////////////////////////
-  const isLoading = false; //////////////////////////////////////////////
-  const dispatch = useDispatch();
-  // const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
+  const isLoading = useSelector(selectIsLoading);
+
   return (
     <>
       <BoxPet>
@@ -48,7 +44,7 @@ const PetsData = () => {
             </>
           )}
         </BoxTitlePet>
-        <PetsList data={data} isLoading={isLoading} />
+        <PetsList isLoading={isLoading} />
       </BoxPet>
     </>
   );

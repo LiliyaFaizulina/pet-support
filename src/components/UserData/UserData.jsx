@@ -1,10 +1,5 @@
 import UserDataForm from 'components/UserDataItem/UserDataForm';
-import {
-  TitleUser,
-  TitleBtn,
-  BoxTitleUser,
-  BoxBtnTablet,
-} from './UserData.styled';
+import { TitleUser, BoxTitleUser, BoxBtnTablet } from './UserData.styled';
 
 export const UserData = () => {
   return (
