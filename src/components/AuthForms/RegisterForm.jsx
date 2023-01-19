@@ -44,7 +44,7 @@ const RegisterSchema = object().shape({
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
-    .oneOf([ref('password')], 'Passwords do not match'),
+    .oneOf([ref('password')], 'Passwords does not match'),
   email: string().email('Invalid email').required('Email is required'),
   name: string().min(2, 'min 2 symbols').required('Name is required'),
   phone: string()

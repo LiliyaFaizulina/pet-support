@@ -1,19 +1,21 @@
 import { Input, Form, SearchButton, RemoveButton } from './SearchField.styled';
-import { FaSearch } from 'react-icons/fa';
-import { FaTimesCircle } from 'react-icons/fa';
+import { FaSearch, FaTimesCircle } from 'react-icons/fa';
+
 
 import { useState } from 'react';
 
-export const SearchField = ({ onSubmit }) => {
+export const SearchField = ({ onSubmit, onChange, setFilterText }) => {
   const [isFielld, setIsFielld] = useState();
 
   const fieldTheForm = evt => {
     setIsFielld(evt.currentTarget.query.value);
+    onChange(evt);
   };
 
   const onClickByRemove = e => {
     e.currentTarget.reset();
     setIsFielld(null);
+    setFilterText('')
   };
 
   return (
@@ -22,7 +24,7 @@ export const SearchField = ({ onSubmit }) => {
       onChange={e => fieldTheForm(e)}
       onClick={e => onClickByRemove(e)}
     >
-      <Input type="text" name="query" />
+      <Input type="text" name="query" placeholder='Search'/>
       {!isFielld && (
         <SearchButton type="submit" aria-label="Search icon">
           <FaSearch />

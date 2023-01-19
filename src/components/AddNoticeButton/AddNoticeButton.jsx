@@ -1,3 +1,7 @@
-export const AddNoticeButton = () => {
-  return <button type="button">Add pet</button>;
+export const AddNoticeButton = ({ openModalBtn }) => {
+  return (
+    <button type="button" onClick={() => openModalBtn(true)}>
+      Add pet
+    </button>
+  );
 };
