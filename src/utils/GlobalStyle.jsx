@@ -84,3 +84,18 @@ export const Container = styled.div`
     width: 1280px;
   }
 `;
+
+export const Section = styled.section`
+  min-height: 97vh;
+  padding-top: 42px;
+  padding-bottom: 100px;
+
+  color: ${p => p.theme.colors.heading};
+
+  @media screen and (min-width: 768px) {
+    padding-top: 88px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 60px;
+  }
+`;

@@ -1,5 +1,6 @@
 import { FriendsItem } from 'components/FriendsItem/FriendsItem';
-import { List, Title } from './FriendsList.styled';
+import { List } from './FriendsList.styled';
+import { Title } from 'pages/NewsPage/NewsPage.styled';
 
 const FriendsList = ({ friends }) => {
   return (

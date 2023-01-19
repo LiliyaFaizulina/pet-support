@@ -13,6 +13,7 @@ import {
 
 const initialState = {
   user: {
+    _id: '',
     name: '',
     email: '',
     city: '',
@@ -76,6 +77,7 @@ const authSlice = createSlice({
     [logout.fulfilled]: state => {
       state.accessToken = null;
       state.user = {
+        _id: '',
         name: '',
         email: '',
         city: '',

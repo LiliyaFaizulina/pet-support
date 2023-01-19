@@ -1,4 +1,5 @@
 export const selectEmail = state => state.auth.user.email;
+export const selectUsersId = state => state.auth.user._id;
 export const selectFavoriteNoticesIds = state =>
   state.auth.user.favoriteNotices;
 export const selectIsLoading = state => state.auth.selectIsLoading;
