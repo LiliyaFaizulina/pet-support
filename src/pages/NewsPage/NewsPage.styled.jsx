@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  min-height: 97vh;
-
   padding: 26px 20px 100px 20px;
   margin: 0;
   font-family: ${p => p.theme.fonts.mainFamily};
 
-  background: ${p => p.theme.colors.mainBackground};
-
-  color: ${p => p.theme.colors.heading};
+   color: ${p => p.theme.colors.heading};
 
   @media screen and (min-width: 768px) {
     padding: 62px 32px 100px 32px;
@@ -48,3 +44,4 @@ export const List = styled.ul`
     grid-template-columns: 395px 395px 395px;
   }
 `;
+
