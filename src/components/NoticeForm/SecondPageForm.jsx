@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
 
 function SecondPageForm({ formData, setFormData, image, handleFileChange }) {
   return (
