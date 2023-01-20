@@ -5,11 +5,14 @@ import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
+import { Backdrop } from 'components/Backdrop/Backdrop';
+import { NoticeForm } from 'components/NoticeForm/NoticeForm';
 import { selectNoticesByCategory } from 'redux/notices/noticesSelectors';
 import { getNoticesByCategory } from 'redux/notices/noticesOperations';
+import { Container } from 'utils/GlobalStyle';
 
 const NoticesPage = () => {
-  const [currentCategory, setCurrentCategory] = useState('sell');
+  const [openModal, setOpenModal] = useState(false);
   const notices = useSelector(selectNoticesByCategory);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
@@ -18,18 +21,18 @@ const NoticesPage = () => {
     dispatch(getNoticesByCategory(categoryName));
   }, [dispatch, categoryName]);
 
-  const changeCurrentCategory = e => setCurrentCategory(e.target.textContent);
-
   return (
-    <>
+    <Container>
       <NoticesSearch />
-      <NoticesCategoriesNav changeCurrentCategory={changeCurrentCategory} />
-      <NoticesCategoriesList
-        notices={notices}
-        currentCategory={currentCategory}
-      />
-      <AddNoticeButton />
-    </>
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList notices={notices} />
+      <AddNoticeButton openModalBtn={setOpenModal} />
+      {openModal && (
+        <Backdrop closeModalBtn={setOpenModal}>
+          <NoticeForm closeModalBtn={setOpenModal} />
+        </Backdrop>
+      )}
+    </Container>
   );
 };
 

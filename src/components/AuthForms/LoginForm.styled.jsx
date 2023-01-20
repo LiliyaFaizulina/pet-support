@@ -107,6 +107,10 @@ export const Button = styled.button`
   border-radius: 40px;
   margin: 24px 0 40px 0;
   cursor: pointer;
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
   @media (min-width: 768px) {
     width: 458px;
     font-size: 20px;
@@ -130,7 +134,7 @@ export const BackButton = styled.button`
 export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
-  bottom: 2px;
+  bottom: 0px;
   left: 15px;
   color: red;
   font-size: 14px;
