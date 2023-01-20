@@ -6,9 +6,8 @@ import tabletBackground from '../../images/tableAuthBackground.png';
 import desktopBackground from '../../images/desktopAuthBackground.png';
 
 export const FormContainer = styled.div`
-  position: fixed;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 82px);
   background-image: url(${mobileBackground});
   background-position: bottom;
   background-repeat: no-repeat;
@@ -16,9 +15,12 @@ export const FormContainer = styled.div`
 
   @media (min-width: 768px) {
     background-image: url(${tabletBackground});
+    padding-top: 184px;
+    height: calc(100vh - 88px);
   }
   @media (min-width: 1280px) {
     background-image: url(${desktopBackground});
+    padding-top: 50px;
   }
 `;
 export const Title = styled.h2`
@@ -39,7 +41,6 @@ export const Form1 = styled(Form)`
   @media (min-width: 768px) {
     width: 608px;
     margin: 0 auto;
-    margin-top: 169px;
     padding: 60px 0 40px 0;
     background-color: #fff;
     border-radius: 40px;
@@ -49,7 +50,6 @@ export const Form1 = styled(Form)`
   }
   @media (min-width: 1280px) {
     width: 618px;
-    margin-top: 46px;
     padding: 60px 0 60px 0;
   }
   > div {
@@ -106,10 +106,43 @@ export const Button = styled.button`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin: 24px 0 40px 0;
+  transform: scale(1);
+  transition: transform 0.5s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
   :disabled {
     opacity: 0.5;
     cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
   }
   @media (min-width: 768px) {
     width: 458px;
@@ -126,6 +159,32 @@ export const BackButton = styled.button`
   border-radius: 40px;
   margin: -26px 0 40px 0;
   cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.5s;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );
+    transition: all 650ms;
+  }
   @media (min-width: 768px) {
     width: 458px;
     font-size: 20px;
