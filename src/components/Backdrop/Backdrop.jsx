@@ -4,16 +4,16 @@ import { Overlay } from './Backdrop.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Backdrop({ closeModalBtn, children }) {
+export function Backdrop({ closeModal, children }) {
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
-      closeModalBtn(false);
+      closeModal();
     }
   };
 
   const handleBackdropDown = e => {
     if (e.currentTarget === e.target) {
-      closeModalBtn(false);
+      closeModal();
     }
   };
 

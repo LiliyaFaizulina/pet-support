@@ -1,7 +1,7 @@
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = ({ notices }) => {
+export const NoticesCategoriesList = ({ notices, openNoticeModal }) => {
   return (
     <List>
       {notices.map(
@@ -31,6 +31,7 @@ export const NoticesCategoriesList = ({ notices }) => {
             category={category}
             favorite={favorite}
             owner={owner}
+            openNoticeModal={openNoticeModal}
           />
         )
       )}

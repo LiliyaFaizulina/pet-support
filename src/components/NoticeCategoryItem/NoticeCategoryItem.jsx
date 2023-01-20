@@ -32,6 +32,7 @@ export const NoticeCategoryItem = ({
   price,
   category,
   owner,
+  openNoticeModal,
 }) => {
   const favoriteNotices = useSelector(selectFavoriteNoticesIds);
   const dispatch = useDispatch();
@@ -112,7 +113,9 @@ export const NoticeCategoryItem = ({
         </List>
 
         <ButtonsDiv>
-          <ButtonMore type="button">Learn more</ButtonMore>
+          <ButtonMore type="button" onClick={() => openNoticeModal(id)}>
+            Learn more
+          </ButtonMore>
           {/* <ButtonDelete type="button">
             Delete <IoTrashSharp />
           </ButtonDelete> */}

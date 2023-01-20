@@ -4,6 +4,7 @@ import { getNotice } from 'redux/notices/noticesOperations';
 import { selectCurrentNotice } from 'redux/notices/noticesSelectors';
 import { transformCategoryName } from 'helpers/transformCategoryName';
 import { transformDate } from 'helpers/transformDate';
+import { Modal } from 'components/NoticeForm/NoticeForm.styled';
 
 export const NoticeModal = ({ id, closeModal }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const NoticeModal = ({ id, closeModal }) => {
 
   return (
     notice && (
-      <div>
+      <Modal>
         <button type="button" onClick={closeModal}>
           x
         </button>
@@ -35,7 +36,7 @@ export const NoticeModal = ({ id, closeModal }) => {
         </ul>
         <a href={`tel:${notice.owner.phone}`}>Contact</a>
         <button type="button">Add to </button>
-      </div>
+      </Modal>
     )
   );
 };

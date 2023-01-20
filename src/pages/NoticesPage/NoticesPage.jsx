@@ -10,12 +10,25 @@ import { NoticeForm } from 'components/NoticeForm/NoticeForm';
 import { selectNoticesByCategory } from 'redux/notices/noticesSelectors';
 import { getNoticesByCategory } from 'redux/notices/noticesOperations';
 import { Container } from 'utils/GlobalStyle';
+import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 
 const NoticesPage = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [noticeToShow, setNoticeToShow] = useState('');
+
   const notices = useSelector(selectNoticesByCategory);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
+
+  const closeModal = () => {
+    setOpenModal(false);
+    setNoticeToShow('');
+  };
+
+  const openNoticeModal = id => {
+    setNoticeToShow(id);
+    setOpenModal(true);
+  };
 
   useEffect(() => {
     dispatch(getNoticesByCategory(categoryName));
@@ -25,11 +38,18 @@ const NoticesPage = () => {
     <Container>
       <NoticesSearch />
       <NoticesCategoriesNav />
-      <NoticesCategoriesList notices={notices} />
+      <NoticesCategoriesList
+        notices={notices}
+        openNoticeModal={openNoticeModal}
+      />
       <AddNoticeButton openModalBtn={setOpenModal} />
       {openModal && (
-        <Backdrop closeModalBtn={setOpenModal}>
-          <NoticeForm closeModalBtn={setOpenModal} />
+        <Backdrop closeModal={closeModal}>
+          {Boolean(noticeToShow) ? (
+            <NoticeModal closeModal={closeModal} id={noticeToShow} />
+          ) : (
+            <NoticeForm closeModalBtn={setOpenModal} />
+          )}
         </Backdrop>
       )}
     </Container>
