@@ -29,7 +29,9 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (notice, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post(`/notices`, notice);
+      const { data } = await instance.post(`/notices/notice`, notice, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
