@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const UserNavLink = styled(Link)`
+  display: flex;
   text-decoration: none;
-  margin-left: auto;
-
   pointer-events: initial;
   width: 164px;
   height: 44px;
@@ -23,9 +22,13 @@ export const UserNavLink = styled(Link)`
   letter-spacing: 0.04em;
 
   color: ${p => p.theme.colors.secondaryBackground};
+
+  @media (min-width: 1280px) {
+    margin-left: auto;
+  }
 `;
 
-export const UserNavBtnIcon = styled.img`
+export const UserNavIcon = styled.img`
   width: 28px;
   height: 28px;
   margin-right: 12px;
