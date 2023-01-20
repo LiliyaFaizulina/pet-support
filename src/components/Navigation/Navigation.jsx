@@ -1,21 +1,35 @@
+import { useState } from 'react';
 import { useMedia } from 'react-use';
 import { Nav } from 'components/Nav/Nav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserNav } from 'components/UserNav/UserNav';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from 'redux/auth/authSelectors';
-import { BurgerNavBtn } from 'components/BurgerNav/BurgerNavBtn';
+import { BurgerNavOpenBtn } from 'components/BurgerNav/BurgerNavOpenBtn';
+import { BurgerNav } from 'components/BurgerNav/BurgerNav';
 
 export const Navigation = () => {
+  const [isBurgerNavOpen, setIsBurgerNavOpen] = useState(false);
   const isAuth = useSelector(selectIsAuth);
-  const isDesctop = useMedia('(min-width: 1280px)');
+  const isDesktop = useMedia('(min-width: 1280px)');
   const isMobile = useMedia('(max-width: 767px)');
+  console.log(isDesktop);
+  const open = () => {
+    setIsBurgerNavOpen(true);
+  };
+
+  const close = () => {
+    setIsBurgerNavOpen(false);
+  };
+
   return (
     <>
-      {isDesctop && <Nav />}
+      {isDesktop && <Nav />}
       {!isMobile && isAuth && <UserNav />}
       {!isMobile && !isAuth && <AuthNav />}
-      {!isDesctop && <BurgerNavBtn />}
+      {!isDesktop && <BurgerNavOpenBtn onClick={open} />}
+
+      {isBurgerNavOpen && <BurgerNav close={close} />}
     </>
   );
 };
