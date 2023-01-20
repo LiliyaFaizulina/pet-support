@@ -1,38 +1,33 @@
-import { Input, Form, SearchButton, RemoveButton } from './SearchField.styled';
-import { FaSearch, FaTimesCircle } from 'react-icons/fa';
-
-
 import { useState } from 'react';
+import { Input, Form, SearchButton, RemoveButton } from './SearchField.styled';
+import { BiSearchAlt2 } from 'react-icons/bi';
+import { MdOutlineCancel } from 'react-icons/md';
 
 export const SearchField = ({ onSubmit, onChange, setFilterText }) => {
   const [isFielld, setIsFielld] = useState();
 
-  const fieldTheForm = evt => {
-    setIsFielld(evt.currentTarget.query.value);
-    onChange(evt);
+  const fieldTheForm = e => {
+    setIsFielld(e.currentTarget.query.value);
+    onChange(e);
   };
 
   const onClickByRemove = e => {
     e.currentTarget.reset();
     setIsFielld(null);
-    setFilterText('')
+    setFilterText('');
   };
 
   return (
-    <Form
-      onSubmit={onSubmit}
-      onChange={e => fieldTheForm(e)}
-      onClick={e => onClickByRemove(e)}
-    >
-      <Input type="text" name="query" placeholder='Search'/>
+    <Form onSubmit={onSubmit} onChange={fieldTheForm} onClick={onClickByRemove}>
+      <Input type="text" name="query" placeholder="Search" />
       {!isFielld && (
         <SearchButton type="submit" aria-label="Search icon">
-          <FaSearch />
+          <BiSearchAlt2 />
         </SearchButton>
       )}
       {isFielld && (
         <RemoveButton type="button" aria-label="Remove icon">
-          <FaTimesCircle />
+          <MdOutlineCancel />
         </RemoveButton>
       )}
     </Form>

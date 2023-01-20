@@ -1,7 +1,15 @@
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import { List } from './NoticesCategoriesList.styled';
+import { ErrorText, List } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = ({ notices, deleteOwnNotice, openNoticeModal }) => {
+export const NoticesCategoriesList = ({
+  notices,
+  deleteOwnNotice,
+  openNoticeModal,
+}) => {
+  if (!notices.length) {
+    return <ErrorText>No notices for your request</ErrorText>;
+  }
+
   return (
     <List>
       {notices.map(
