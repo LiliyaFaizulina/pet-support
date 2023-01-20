@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TfiClose } from 'react-icons/tfi';
 import { AiFillHeart } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import { getNotice } from 'redux/notices/noticesOperations';
+import { updateFavoriteStatus } from 'redux/auth/authOperations';
 import { selectCurrentNotice } from 'redux/notices/noticesSelectors';
 import { transformCategoryName } from 'helpers/transformCategoryName';
 import { transformDate } from 'helpers/transformDate';
@@ -20,10 +22,29 @@ import {
   FlexContainer,
   BtnContainer,
 } from './NoticeModal.styled';
+import {
+  selectFavoriteNoticesIds,
+  selectIsAuth,
+} from 'redux/auth/authSelectors';
+import { useState } from 'react';
 
 export const NoticeModal = ({ id, closeModal }) => {
   const dispatch = useDispatch();
   const notice = useSelector(selectCurrentNotice);
+  const isAuth = useSelector(selectIsAuth);
+  const favoriteList = useSelector(selectFavoriteNoticesIds);
+  const [isFavorite, setIsFavorite] = useState(() => {
+    return favoriteList.includes(id);
+  });
+
+  const toggleFavorite = () => {
+    if (!isAuth) {
+      toast.info('You should be logged in to add to favorites');
+      return;
+    }
+    dispatch(updateFavoriteStatus(id));
+    setIsFavorite(!isFavorite);
+  };
 
   useEffect(() => {
     dispatch(getNotice(id));
@@ -77,8 +98,12 @@ export const NoticeModal = ({ id, closeModal }) => {
         </Comment>
         <BtnContainer>
           <ContactLink href={`tel:${notice.owner.phone}`}>Contact</ContactLink>
-          <ToggleFavoriteBtn type="button">
-            Add to <AiFillHeart />
+          <ToggleFavoriteBtn
+            type="button"
+            isFavorite={isFavorite}
+            onClick={toggleFavorite}
+          >
+            {isFavorite ? 'Remove at' : 'Add to'} <AiFillHeart />
           </ToggleFavoriteBtn>
         </BtnContainer>
       </Card>
