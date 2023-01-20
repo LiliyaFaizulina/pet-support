@@ -1,12 +1,7 @@
 import React from 'react';
-import FileUploader from './FileUploader';
+import { Formik } from 'formik';
 
-function SecondPageForm({
-  formData,
-  setFormData,
-  FileUploaded,
-  setSelectedFile,
-}) {
+function SecondPageForm({ formData, setFormData, image, handleFileChange }) {
   return (
     <>
       <form>
@@ -17,20 +12,28 @@ function SecondPageForm({
           <div>
             <input
               type="radio"
-              id="sexChoice1"
+              id="male"
               name="sex"
-              value={formData.male}
+              value="male"
+              checked={formData.sex === 'male'}
+              onChange={event => {
+                setFormData({ ...formData, sex: event.target.value });
+              }}
             />
-            <label htmlFor="sexChoice1">Male</label>
+            <label htmlFor="male">Male</label>
           </div>
           <div>
             <input
               type="radio"
-              id="sexChoice2"
+              id="female"
               name="sex"
-              value={formData.female}
+              value="female"
+              checked={formData.sex === 'female'}
+              onChange={event => {
+                setFormData({ ...formData, sex: event.target.value });
+              }}
             />
-            <label htmlFor="sexChoice2">Female</label>
+            <label htmlFor="female">Female</label>
           </div>
         </div>
         <div>
@@ -48,40 +51,36 @@ function SecondPageForm({
             required
           />
         </div>
-        <div>
-          <label>
-            Price<span>*</span>:
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.price}
-            onChange={event =>
-              setFormData({ ...formData, price: event.target.value })
-            }
-            placeholder="Type name pet"
-            required
-          />
-        </div>
+        {formData.category === 'sell' && (
+          <div>
+            <label>
+              Price<span>*</span>:
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.price}
+              onChange={event =>
+                setFormData({ ...formData, price: event.target.value })
+              }
+              placeholder="Type name pet"
+              required
+            />
+          </div>
+        )}
         <div>
           <label>Load the pet’s image:</label>
-          {/* <input type="file" defaultValue={formData.img} name="image" /> */}
-          <FileUploader
-            onFileSelectSuccess={file => setSelectedFile(file)}
-            onFileSelectError={({ error }) => {
-              alert(error);
-              return;
-            }}
-          />
+          <input type="file" onChange={handleFileChange} />
+          <img src={image} alt="Pet" />
         </div>
         <div>
           <label>Comments</label>
           <textarea
             type="text"
             name="comment"
-            value={formData.comment}
+            value={formData.comments}
             onChange={event =>
-              setFormData({ ...formData, comment: event.target.value })
+              setFormData({ ...formData, comments: event.target.value })
             }
             placeholder="Type comment"
           />

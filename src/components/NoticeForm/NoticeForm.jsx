@@ -11,22 +11,24 @@ export const NoticeForm = ({ closeModalBtn }) => {
   const [formData, setFormData] = useState({
     title: '',
     name: '',
-    dateOfBirth: '',
+    birthdate: '',
     breed: '',
-    male: false,
-    female: false,
+    sex: '',
     location: '',
     price: '',
-    comment: '',
+    comments: '',
+    category: '',
   });
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [file, setFile] = useState();
+  function handleFileChange(e) {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
 
   const submitForm = () => {
-    const formDataToSend = new FormData();
-    formDataToSend.append('data', formData);
-    formDataToSend.append('img', selectedFile);
-    console.log(formDataToSend);
-    dispatch(addNotice(formDataToSend));
+    const dataToSend = JSON.parse(JSON.stringify(formData));
+    dataToSend.file = file;
+    console.log(dataToSend);
+    dispatch(addNotice(dataToSend));
   };
 
   const BtnTitles = ['Next', 'Done'];
@@ -39,8 +41,8 @@ export const NoticeForm = ({ closeModalBtn }) => {
         <SecondPageForm
           formData={formData}
           setFormData={setFormData}
-          selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
+          handleFileChange={handleFileChange}
+          image={file}
         />
       );
     }
