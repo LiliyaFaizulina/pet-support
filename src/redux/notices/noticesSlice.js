@@ -39,7 +39,7 @@ const noticesSlice = createSlice({
       state.isLoading = false;
     },
     [addNotice.fulfilled]: (state, { payload }) => {
-      state.notices.push(payload);
+      state.notices.push(payload.notice);
       state.isLoading = false;
     },
     [deleteNotice.fulfilled]: (state, { payload }) => {

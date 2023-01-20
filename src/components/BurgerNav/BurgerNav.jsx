@@ -5,17 +5,23 @@ import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
+import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
+import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 
-export const BurgerNav = () => {
+export const BurgerNav = ({ close }) => {
   const isAuth = useSelector(selectIsAuth);
   const isMobile = useMedia('(max-width: 767px)');
   return (
-    <>
-      <Logo />
-      <button type="button">x</button>
-      {isMobile && isAuth && <UserNav />}
-      {isMobile && !isAuth && <AuthNav />}
+    <BurgerNavMenu>
+      <LogoMenu>
+        <Logo />
+        <BurgerNavCloseBtn onClick={close} />
+      </LogoMenu>
+      <UserAuthMenu>
+        {isMobile && isAuth && <UserNav />}
+        {isMobile && !isAuth && <AuthNav />}
+      </UserAuthMenu>
       <Nav />
-    </>
+    </BurgerNavMenu>
   );
 };

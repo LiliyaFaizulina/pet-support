@@ -19,7 +19,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-scroll-to-top": "^3.0.0",
-    "react-spinners": "^0.13.7",
+    "react-spinners": "^0.13.8",
     "react-text-mask": "^5.5.0",
     "react-toastify": "8",
     "react-use": "^17.4.0",

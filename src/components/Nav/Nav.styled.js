@@ -3,19 +3,42 @@ import styled from 'styled-components';
 
 export const NaviList = styled.ul`
   display: flex;
-  gap: 80px;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  @media (min-width: 768px) {
+    gap: 60px;
+  }
+
+  @media (min-width: 1280px) {
+    flex-direction: row;
+    gap: 80px;
+    margin-bottom: 0;
+  }
 `;
 
 export const NaviLink = styled(NavLink)`
+  display: flex;
   text-decoration: none;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 1.35;
+  font-size: 32px;
+  line-height: 1.38;
   letter-spacing: 0.04em;
-  color: rgba(0, 0, 0, 1);
+  color: ${p => p.theme.colors.navText};
+
+  @media (min-width: 768px) {
+    font-size: 48px;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 1.35;
+  }
 
   &.active {
-    color: rgba(245, 146, 86, 1);
+    color: ${p => p.theme.colors.accent};
     font-weight: 700;
+    text-decoration-line: underline;
   }
 `;
