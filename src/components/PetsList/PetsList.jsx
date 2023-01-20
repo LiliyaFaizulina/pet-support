@@ -1,20 +1,35 @@
-import PetsListItem from "components/PetsListItem";
-import Loader from "components/Loader";
-import { BoxNotFoundPet } from "./PetsList.styled";
+import PetsListItem from 'components/PetsListItem';
+import { Loader } from 'components/Loader';
+import { useSelector } from 'react-redux';
+import { selectPets } from 'redux/auth/authSelectors';
+import { BoxNotFoundPet } from './PetsList.styled';
 
-const PetsList = ({ data, isLoading }) => {
+const PetsList = ({ isLoading }) => {
+  const pets = useSelector(selectPets);
+
   return (
     <>
       {isLoading ? (
         <BoxNotFoundPet>
           <Loader />
         </BoxNotFoundPet>
-      ) : data?.data?.result?.pets?.length === 0 ? (
+      ) : pets?.length === 0 ? (
         <BoxNotFoundPet>Pet not found</BoxNotFoundPet>
       ) : (
-        data.data.result.pets.map(({ _id, name, data, breed, comments, birthday, avatar }) => (
-          <PetsListItem key={_id} name={name} data={data} breed={breed} comment={comments} id={_id} birthday={birthday} avatar={avatar} />
-        ))
+        pets?.map(
+          ({ _id, name, data, breed, comments, birthday, petAvatar }) => (
+            <PetsListItem
+              key={_id}
+              name={name}
+              data={data}
+              breed={breed}
+              comment={comments}
+              id={_id}
+              birthday={birthday}
+              petAvatar={petAvatar}
+            />
+          )
+        )
       )}
     </>
   );

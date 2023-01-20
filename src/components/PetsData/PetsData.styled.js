@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "components/Button";
+import styled from 'styled-components';
+import Button from 'components/Button';
 
 export const BoxPet = styled.section`
   width: 100%;
@@ -34,9 +34,6 @@ export const TitlePet = styled.h2`
 export const BoxBtn = styled.div`
   display: inline-flex;
   align-items: center;
-  @media ${p => p.theme.media.tablet} {
-    display: none;
-  }
   @media ${p => p.theme.media.desktop} {
     display: inline-flex;
   }

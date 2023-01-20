@@ -1,11 +1,20 @@
-import { useState } from "react";
-import { useUpdateUserMutation } from "redux/userApi";
-import { EditTextBtn, EditTextBtnIcon, IconCheck, UserDataInput, ErrorText } from "./UserDataItem.styled";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { updateUser } from 'redux/auth/authOperations';
+import {
+  EditTextBtn,
+  EditTextBtnIcon,
+  IconCheck,
+  UserDataInput,
+  ErrorText,
+} from './UserDataItem.styled';
 
 const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
   const [active, setActive] = useState(false);
-  const [inputeValue, setInputeValue] = useState(defaultValue ?? "");
-  const [editUserInfo] = useUpdateUserMutation();
+  const [inputeValue, setInputeValue] = useState(defaultValue ?? '');
+
+  const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(true);
 
   const onInputeChange = e => {
@@ -28,7 +37,9 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
         [name]: inputeValue,
       };
       setIsValid(true);
-      editUserInfo({ name, data });
+
+      dispatch(updateUser(data));
+
       return;
     }
     setIsValid(true);
@@ -37,8 +48,17 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
 
   return (
     <>
-      <UserDataInput disabled={!active} onChange={onInputeChange} name={name} type={type} pattern={pattern} value={inputeValue} />
-      <EditTextBtn onClick={handleClick}>{active ? <IconCheck /> : <EditTextBtnIcon />}</EditTextBtn>
+      <UserDataInput
+        disabled={!active}
+        onChange={onInputeChange}
+        name={name}
+        type={type}
+        pattern={pattern}
+        value={inputeValue}
+      />
+      <EditTextBtn onClick={handleClick}>
+        {active ? <IconCheck /> : <EditTextBtnIcon />}
+      </EditTextBtn>
       {!isValid && <ErrorText>{errorText}</ErrorText>}
     </>
   );

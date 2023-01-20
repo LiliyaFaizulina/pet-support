@@ -1,17 +1,21 @@
-import { useDispatch } from "react-redux";
-import { useGetUserQuery } from "redux/userApi";
-import AddPetBtn from "components/AddPetBtn";
-
-import { TitlePet, BoxBtn, BoxTitlePet, BoxPet, TitleBtn } from "./PetsData.styled";
-import PetsList from "components/PetsList";
-import { userActions } from "redux/user/userSlice";
+import { useSelector } from 'react-redux';
+// import { useGetUserQuery } from 'redux/userApi';
+import AddPetBtn from 'components/AddPetBtn';
+import { selectIsLoading } from '../../redux/auth/authSelectors';
+import {
+  TitlePet,
+  BoxBtn,
+  BoxTitlePet,
+  BoxPet,
+  TitleBtn,
+} from './PetsData.styled';
+import PetsList from '../PetsList/PetsList';
 
 const screenSize = window.innerWidth;
 
 const PetsData = () => {
-  const { data = [], isLoading } = useGetUserQuery();
-  const dispatch = useDispatch();
-  const handleModalOpen = () => dispatch(userActions.changeModalAddPets());
+  const isLoading = useSelector(selectIsLoading);
+
   return (
     <>
       <BoxPet>
@@ -21,7 +25,10 @@ const PetsData = () => {
             <>
               <BoxBtn>
                 <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn disabled={isLoading ? true : false} onClick={handleModalOpen} />
+                <AddPetBtn
+                  disabled={isLoading ? true : false}
+                  // onClick={handleModalOpen}
+                />
               </BoxBtn>
             </>
           )}
@@ -29,12 +36,15 @@ const PetsData = () => {
             <>
               <BoxBtn>
                 <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn disabled={isLoading ? true : false} onClick={handleModalOpen} />
+                <AddPetBtn
+                  disabled={isLoading ? true : false}
+                  // onClick={handleModalOpen}
+                />
               </BoxBtn>
             </>
           )}
         </BoxTitlePet>
-        <PetsList data={data} isLoading={isLoading} />
+        <PetsList isLoading={isLoading} />
       </BoxPet>
     </>
   );
