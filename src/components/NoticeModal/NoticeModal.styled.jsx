@@ -52,10 +52,10 @@ export const CloseBtn = styled.button`
     width: 44px;
     height: 44px;
   }
-  transition: box-shadow ${p => p.theme.transition};
+  transition: transform ${p => p.theme.transition};
   &:hover,
   &:focus {
-    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.75);
+    transform: scale(1.05);
   }
 `;
 
@@ -123,6 +123,7 @@ export const NoticeInfoItem = styled.li`
     left: 118px;
     top: 0px;
     font-weight: 500;
+    white-space: nowrap;
   }
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -165,7 +166,7 @@ export const ContactLink = styled.a`
   transition: box-shadow ${p => p.theme.transition};
   &:hover,
   &:focus {
-    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 1px 1px ${p => p.theme.colors.hoverBtn};
   }
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
@@ -173,12 +174,15 @@ export const ContactLink = styled.a`
   }
 `;
 
+const chooseColor = ({ isFavorite, theme }) =>
+  isFavorite ? theme.colors.hoverBtn : theme.colors.accent;
+
 export const ToggleFavoriteBtn = styled.button`
   cursor: pointer;
   background-color: ${p => p.theme.colors.secondaryBackground};
-  border: 2px solid ${p => p.theme.colors.accent};
+  border: 2px solid ${chooseColor};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
-  color: ${p => p.theme.colors.accent};
+  color: ${chooseColor};
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -192,7 +196,7 @@ export const ToggleFavoriteBtn = styled.button`
   transition: box-shadow ${p => p.theme.transition};
   &:hover,
   &:focus {
-    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 1px 1px ${p => p.theme.colors.accent};
   }
   @media screen and (min-width: 768px) {
     width: 160px;
