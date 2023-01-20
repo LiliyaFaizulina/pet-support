@@ -11,9 +11,9 @@ export const UserBlock = styled.div`
   min-height: 537px;
   padding: 20px 12px 20px 16px;
 
-  border-radius: ${p => p.theme.radii.cardPet};
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
-  background-color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.secondaryBackground};
   @media ${p => p.theme.media.tablet} {
     position: relative;
 
@@ -23,7 +23,7 @@ export const UserBlock = styled.div`
     min-height: 311px;
     padding: 24px 40px 24px 32px;
 
-    border-radius: 0 ${p => p.theme.radii.cardPet} ${p => p.theme.radii.cardPet} 0;
+    border-radius: 0 ${p => p.theme.radii.mainBorderRadius} ${p => p.theme.radii.mainBorderRadius} 0;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;
@@ -166,7 +166,7 @@ export const EditTextBtn = styled.button`
   height: 20px;
   border-radius: ${p => p.theme.radii.round};
   border: none;
-  background-color: ${p => p.theme.colors.background};
+  background-color: ${p => p.theme.colors.mainBackground};
   margin-left: auto;
   cursor: pointer;
   :hover svg,
@@ -214,10 +214,10 @@ export const UserDataInput = styled.input`
   width: 159px;
   height: 24px;
 
-  background-color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.background)};
+  background-color: ${p => (p.disabled ? p.theme.colors.secondaryBackground : p.theme.colors.mainBackground)};
   border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
   border-color: ${p => p.theme.colors.inputModal};
-  color: ${p => p.theme.colors.primaryText};
+  color: ${p => p.theme.colors.heading};
   border-radius: 40px;
 
   font-size: ${p => p.theme.fontSizes.xs};

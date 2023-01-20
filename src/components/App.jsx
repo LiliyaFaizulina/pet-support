@@ -4,7 +4,6 @@ import { PrivateRoute } from 'HOCs/PrivateRoute';
 import { PublicRoute } from 'HOCs/PublicRoute';
 
 import Layout from './Layout/Layout';
-import { PrivatRoute } from "./ProtectedRoutes";
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));

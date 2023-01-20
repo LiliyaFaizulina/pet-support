@@ -8,9 +8,9 @@ export const BoxNotFoundPet = styled.div`
   padding: 20px;
   height: 200px;
 
-  border-radius: ${p => p.theme.radii.cardPet};
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
-  background-color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.secondaryBackground};
 
   font-size: ${p => p.theme.fontSizes.ml};
 

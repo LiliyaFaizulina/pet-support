@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-// import { useDeletePetMutation } from 'redux/userApi';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsLoading } from 'redux/auth/authSelectors';
+import { selectIsLoading, selectError } from 'redux/auth/authSelectors';
 import { deletePet } from 'redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,11 +17,14 @@ import {
 } from './PetsListItem.styled';
 const PetsListItem = ({ id, name, birthday, breed, comment, petAvatar }) => {
   const isDeleting = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-  isDeleting && toast.success(`😿 ${name} was removed`);
   const dispatch = useDispatch();
-  const removePet = id => {
+  const removePet = async id => {
     dispatch(deletePet(id));
+    (await error)
+      ? toast.warning(`😿 ${name} was not removed`)
+      : toast.success(`😿 ${name} was removed`);
   };
 
   return (
