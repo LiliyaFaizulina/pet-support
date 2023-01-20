@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Form = styled.form`
   position: relative;
 
-  padding-top: 28px;
+  margin-top: 28px;
   text-align: center;
 
   outline: 0ch;
   @media screen and (min-width: 768px) {
-    padding-top: 40px;
+    margin-top: 40px;
   }
 `;
 

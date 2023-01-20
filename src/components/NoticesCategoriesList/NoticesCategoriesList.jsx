@@ -1,8 +1,9 @@
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import { List } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = ({ notices, currentCategory }) => {
+export const NoticesCategoriesList = ({ notices }) => {
   return (
-    <ul>
+    <List>
       {notices.map(
         ({
           _id,
@@ -19,6 +20,7 @@ export const NoticesCategoriesList = ({ notices, currentCategory }) => {
         }) => (
           <NoticeCategoryItem
             key={_id}
+            id={_id}
             image={image}
             title={title}
             petName={petName}
@@ -29,10 +31,9 @@ export const NoticesCategoriesList = ({ notices, currentCategory }) => {
             category={category}
             favorite={favorite}
             owner={owner}
-            currentCategory={currentCategory}
           />
         )
       )}
-    </ul>
+    </List>
   );
 };
