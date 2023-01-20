@@ -55,7 +55,9 @@ export const LoginForm = () => {
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
             </div>
+
             <Button type="submit">Login</Button>
+
             <div>
               <span>Don't have an account?</span>{' '}
               <Link to="/register">Register</Link>
