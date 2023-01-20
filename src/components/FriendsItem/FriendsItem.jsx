@@ -12,12 +12,13 @@ import {
   List,
 } from './FriendsItem.styled';
 import { TimeTable } from './TimeTable';
+import defaultFriendImage from '../../images/defaultFriendImage.jpg';
 
 export const FriendsItem = ({
   title,
   siteUrl,
   mapUrl,
-  imageUrl,
+  imageUrl = defaultFriendImage,
   adress,
   workDays,
   phone,
@@ -32,16 +33,13 @@ export const FriendsItem = ({
       return { day: week[index], ...day };
     });
 
-  // console.log(!!workDays);
-  // console.log(workDays[0].isOpen === undefined );
-  // console.log(workDays[0]);
   return (
     <SponsorItem>
       <SponsorLink href={siteUrl} target="_blank">
         {title}
       </SponsorLink>
       <FriendCard>
-        <Img src={imageUrl} alt={title} />
+        <Img src={imageUrl ?? defaultFriendImage} alt={title} />
         <List>
           <TextWrapper
             onClick={() => {
