@@ -1,34 +1,34 @@
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from 'redux/auth/authSelectors';
+import { List, Item, LinkNav } from './NoticesCategoriesNav.styled';
 
-export const NoticesCategoriesNav = ({ changeCurrentCategory }) => {
+export const NoticesCategoriesNav = () => {
+  const isAuth = useSelector(selectIsAuth);
+
   return (
-    <ul>
-      <li>
-        <NavLink to="/notices/sell" onClick={changeCurrentCategory} end>
+    <List>
+      <Item>
+        <LinkNav to="/notices/lost-found">lost/found</LinkNav>
+      </Item>
+      <Item>
+        <LinkNav to="/notices/for-free">in good hands</LinkNav>
+      </Item>
+      <Item>
+        <LinkNav to="/notices/sell" end>
           sell
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/notices/lost-found" onClick={changeCurrentCategory}>
-          lost/found
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/notices/for-free" onClick={changeCurrentCategory}>
-          in good hands
-        </NavLink>
-      </li>
+        </LinkNav>
+      </Item>
 
-      <li>
-        <NavLink to="/notices/favorite" onClick={changeCurrentCategory}>
-          favorite ads
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/notices/own" onClick={changeCurrentCategory}>
-          my ads
-        </NavLink>
-      </li>
-    </ul>
+      {isAuth && (
+        <>
+          <Item>
+            <LinkNav to="/notices/favorite">favorite ads</LinkNav>
+          </Item>
+          <Item>
+            <LinkNav to="/notices/own">my ads</LinkNav>
+          </Item>
+        </>
+      )}
+    </List>
   );
 };

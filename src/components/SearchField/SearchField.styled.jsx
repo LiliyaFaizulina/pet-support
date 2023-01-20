@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Form = styled.form`
   position: relative;
 
-  padding-top: 28px;
+  margin-top: 28px;
   text-align: center;
 
+  outline: 0ch;
   @media screen and (min-width: 768px) {
-    padding-top: 40px;
+    margin-top: 40px;
   }
 `;
 
@@ -50,14 +51,26 @@ export const SearchButton = styled.button`
   right: 15.5px;
   bottom: 10.25px;
 
+  cursor: auto;
+
   @media screen and (min-width: 768px) {
     font-size: 18px;
     right: calc(50% - 290.5px);
   }
 
-  &:hover,
-  &:focus {
-    scale: 1.4;
+  animation-name: sunrise;
+  animation-duration: 0.15s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+
+  @keyframes sunrise {
+    0% {
+      transform: translateY(12px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -69,15 +82,35 @@ export const RemoveButton = styled.button`
 
   position: absolute;
   right: 15.5px;
-  bottom: 10.25px;
+  bottom: 9.25px;
+
+  &:hover,
+  &:focus {
+    scale: 1.4;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 18px;
     right: calc(50% - 290.5px);
   }
 
-  &:hover,
-  &:focus {
-    scale: 1.4;
+  transition-property: background-color, transform;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
+  transition-delay: 0ms;
+
+  animation-name: sunrise;
+  animation-duration: 0.15s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+
+  @keyframes sunrise {
+    0% {
+      transform: translateY(12px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 `;

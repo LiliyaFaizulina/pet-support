@@ -1,4 +1,28 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+// import { IoTrashSharp } from 'react-icons/io5';
+import { selectFavoriteNoticesIds } from 'redux/auth/authSelectors';
+import { updateFavoriteStatus } from 'redux/auth/authOperations';
+import {
+  // ButtonDelete,
+  ButtonsDiv,
+  ButtonMore,
+  Img,
+  Item,
+  List,
+  ListItem,
+  Span,
+  Title,
+  TitleWrapper,
+  Wrapper,
+  Category,
+  LikeButton,
+} from './NoticeCategoryItem.styled';
+import { useParams } from 'react-router-dom';
+
 export const NoticeCategoryItem = ({
+  id,
   image,
   title,
   petName,
@@ -7,10 +31,15 @@ export const NoticeCategoryItem = ({
   dateOfBirth,
   price,
   category,
-  favorite,
   owner,
-  currentCategory,
+  openNoticeModal,
 }) => {
+  const favoriteNotices = useSelector(selectFavoriteNoticesIds);
+  const dispatch = useDispatch();
+  const { categoryName } = useParams();
+
+  useEffect(() => {}, [favoriteNotices]);
+
   const numbers = [
     'zero',
     'one',
@@ -34,67 +63,69 @@ export const NoticeCategoryItem = ({
     'nineteen',
     'twenty',
   ];
+
   const currentDate = new Date();
   const birthDate = new Date(dateOfBirth);
-  const birthDateCurrentYear = new Date(
-    currentDate.getFullYear(),
-    birthDate.getMonth(),
-    birthDate.getDate()
-  );
-
-  let age = currentDate.getFullYear() - birthDate.getFullYear();
-  let months = currentDate.getMonth() + 1 - (birthDate.getMonth() + 1);
+  const msInYear = 31536000000;
+  const msInMonth = 2628000000;
+  const age = currentDate - birthDate;
   let ageMessage;
 
-  if (currentDate < birthDateCurrentYear) {
-    age -= 1;
+  if (age > msInYear) {
+    const years = Math.floor(age / msInYear);
+    ageMessage =
+      years === 1 ? `${numbers[years]} year` : `${numbers[years]} years`;
+  } else {
+    const months = Math.floor(age / msInMonth);
+    ageMessage =
+      months === 1 ? `${numbers[months]} month` : `${numbers[months]} months`;
   }
 
-  if (age === 0) {
-    if (months === 1) {
-      ageMessage = `${numbers[months]} month`;
-    } else {
-      ageMessage = `${numbers[months]} months`;
-    }
-  } else if (age === 1) {
-    ageMessage = `${numbers[age]} year`;
-  } else {
-    ageMessage = `${numbers[age]} years`;
-  }
+  const toggleFavorite = () => {
+    dispatch(updateFavoriteStatus(id));
+  };
 
   return (
-    <li>
-      <img src={image} alt={petName} />
+    <Item>
+      <Img src={image} alt={petName} />
 
-      <div>
-        <h2>{title}</h2>
+      <Wrapper>
+        <TitleWrapper>
+          <Title>{title}</Title>
+        </TitleWrapper>
 
-        <ul>
-          <li>
-            Breed: <span>{breed}</span>
-          </li>
-          <li>
-            Place: <span>{place}</span>
-          </li>
-          <li>
-            Age: <span>{dateOfBirth ? ageMessage : 'no information'}</span>
-          </li>
+        <List>
+          <ListItem>
+            Breed: <Span>{breed}</Span>
+          </ListItem>
+          <ListItem>
+            Place: <Span>{place}</Span>
+          </ListItem>
+          <ListItem>
+            Age: <Span>{dateOfBirth ? ageMessage : 'no information'}</Span>
+          </ListItem>
 
           {category === 'sell' && (
-            <li>
-              Price: <span>{price}</span>
-            </li>
+            <ListItem>
+              Price: <Span>{price}$</Span>
+            </ListItem>
           )}
-        </ul>
-      </div>
+        </List>
 
-      <div>
-        <button type="button">Learn more</button>
-        {/* <button type="button">Delete</button> */}
-      </div>
+        <ButtonsDiv>
+          <ButtonMore type="button" onClick={() => openNoticeModal(id)}>
+            Learn more
+          </ButtonMore>
+          {/* <ButtonDelete type="button">
+            Delete <IoTrashSharp />
+          </ButtonDelete> */}
+        </ButtonsDiv>
+      </Wrapper>
 
-      <p>{currentCategory}</p>
-      <button type="button" aria-label="Like icon"></button>
-    </li>
+      <Category>{categoryName}</Category>
+      <LikeButton type="button" aria-label="Like icon" onClick={toggleFavorite}>
+        {favoriteNotices.includes(id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
+      </LikeButton>
+    </Item>
   );
 };
