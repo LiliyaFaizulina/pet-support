@@ -88,7 +88,7 @@ const NoticesPage = () => {
           {Boolean(noticeToShow) ? (
             <NoticeModal closeModal={closeModal} id={noticeToShow} />
           ) : (
-            <NoticeForm closeModalBtn={setOpenModal} />
+            <NoticeForm closeModal={closeModal} />
           )}
         </Backdrop>
       )}
