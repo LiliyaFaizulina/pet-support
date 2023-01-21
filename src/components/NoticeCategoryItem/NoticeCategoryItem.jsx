@@ -81,8 +81,13 @@ export const NoticeCategoryItem = ({
 
   if (age > msInYear) {
     const years = Math.floor(age / msInYear);
-    ageMessage =
-      years === 1 ? `${numbers[years]} year` : `${numbers[years]} years`;
+
+    if (years > numbers.length - 1) {
+      ageMessage = 'respectable age';
+    } else {
+      ageMessage =
+        years === 1 ? `${numbers[years]} year` : `${numbers[years]} years`;
+    }
   } else {
     const months = Math.floor(age / msInMonth);
     ageMessage =
