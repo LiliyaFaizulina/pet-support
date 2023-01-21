@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { IoTrashSharp } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 import {
   selectFavoriteNoticesIds,
   selectIsAuth,
@@ -23,7 +24,6 @@ import {
   Category,
   LikeButton,
 } from './NoticeCategoryItem.styled';
-import { useParams } from 'react-router-dom';
 import { transformCategoryName } from 'helpers/transformCategoryName';
 
 export const NoticeCategoryItem = ({
@@ -44,11 +44,10 @@ export const NoticeCategoryItem = ({
   const favoriteNotices = useSelector(selectFavoriteNoticesIds);
   const userId = useSelector(selectUsersId);
   const dispatch = useDispatch();
-  const { categoryName } = useParams();
 
   useEffect(() => {}, [favoriteNotices]);
 
-  const fullcategoryName = transformCategoryName(categoryName);
+  const сategoryName = transformCategoryName(category);
   const numbers = [
     'zero',
     'one',
@@ -91,9 +90,12 @@ export const NoticeCategoryItem = ({
   }
 
   const toggleFavorite = () => {
-    if (isAuth) {
-      dispatch(updateFavoriteStatus(id));
+    if (!isAuth) {
+      toast.info('You should be logged in to add to favorites');
+      return;
     }
+
+    dispatch(updateFavoriteStatus(id));
   };
 
   return (
@@ -135,7 +137,7 @@ export const NoticeCategoryItem = ({
         </ButtonsDiv>
       </Wrapper>
 
-      <Category>{fullcategoryName}</Category>
+      <Category>{сategoryName}</Category>
       <LikeButton type="button" aria-label="Like icon" onClick={toggleFavorite}>
         {favoriteNotices.includes(id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
       </LikeButton>
