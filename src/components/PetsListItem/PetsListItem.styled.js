@@ -9,9 +9,9 @@ export const PetItem = styled.div`
     }
   }
   padding: 20px;
-  border-radius: ${p => p.theme.radii.cardPet};
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
-  background-color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.secondaryBackground};
   @media ${p => p.theme.media.tablet} {
     display: flex;
     width: 704px;
@@ -70,7 +70,7 @@ export const DeleteBtm = styled.button`
 export const DelIcon = styled(HiTrash)`
   width: 20px;
   height: 20px;
-  fill: ${p => p.theme.colors.greyIcon};
+  fill: ${p => p.theme.colors.inputText};
   @media ${p => p.theme.media.tablet} {
     width: 24px;
     height: 24px;

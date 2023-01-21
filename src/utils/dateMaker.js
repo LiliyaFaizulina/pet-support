@@ -1,11 +1,11 @@
 function changedateformat(val) {
     const myArray = val.split("-");
   
-    let year = myArray[0];
-    let month = myArray[1];
-    let day = myArray[2];
+    const year = myArray[0];
+    const month = myArray[1];
+    const day = myArray[2];
   
-    let formatteddate = day + "." + month + "." + year;
+    const formatteddate = day + "." + month + "." + year;
     return formatteddate;
   }
   export default changedateformat;

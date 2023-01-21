@@ -11,7 +11,7 @@ import {
 } from './PetsData.styled';
 import PetsList from '../PetsList/PetsList';
 
-const screenSize = window.innerWidth;
+
 
 const PetsData = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -21,28 +21,10 @@ const PetsData = () => {
       <BoxPet>
         <BoxTitlePet>
           <TitlePet>My pets:</TitlePet>
-          {screenSize < 767 && (
-            <>
               <BoxBtn>
                 <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn
-                  disabled={isLoading ? true : false}
-                  // onClick={handleModalOpen}
-                />
+                <AddPetBtn/>
               </BoxBtn>
-            </>
-          )}
-          {screenSize > 1280 && (
-            <>
-              <BoxBtn>
-                <TitleBtn>Add pet</TitleBtn>
-                <AddPetBtn
-                  disabled={isLoading ? true : false}
-                  // onClick={handleModalOpen}
-                />
-              </BoxBtn>
-            </>
-          )}
         </BoxTitlePet>
         <PetsList isLoading={isLoading} />
       </BoxPet>

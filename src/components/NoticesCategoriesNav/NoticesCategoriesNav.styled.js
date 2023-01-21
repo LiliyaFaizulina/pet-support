@@ -41,7 +41,7 @@ export const LinkNav = styled(NavLink)`
 
   &.active {
     background-color: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.secondatyBtnText};
+    color: ${p => p.theme.colors.secondaryBackground};
   }
 
   @media ${p => p.theme.media.tablet} {
