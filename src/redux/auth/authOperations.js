@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 export const instance = axios.create({
   baseURL: 'http://localhost:4000/api',
@@ -34,9 +35,11 @@ export const register = createAsyncThunk(
     try {
       const { data } = await instance.post('/users/register', userData);
       token.set(data.accessToken);
+      toast.success('registration success');
       localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }
@@ -48,9 +51,12 @@ export const login = createAsyncThunk(
     try {
       const { data } = await instance.post('/users/login', userData);
       token.set(data.accessToken);
+
+      toast.success(`Welcome, ${data.user.name}!`);
       localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }
@@ -63,6 +69,7 @@ export const logout = createAsyncThunk(
       await instance.get('/users/logout');
       token.unset();
       localStorage.removeItem('refreshToken');
+      toast.success('Logout successful');
     } catch (error) {
       return rejectWithValue(error.message);
     }
