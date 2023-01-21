@@ -12,7 +12,7 @@ export const LogOut = styled.button`
 
   border: none;
   background-color: transparent;
-  color: ${p => p.theme.colors.greyText};
+  color: ${p => p.theme.colors.inputText};
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;

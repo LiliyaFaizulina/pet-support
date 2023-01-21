@@ -7,53 +7,75 @@ export const Form = styled.form`
   text-align: center;
 
   outline: 0ch;
-  @media screen and (min-width: 768px) {
+
+  @media ${p => p.theme.media.tablet} {
     margin-top: 40px;
   }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 40px;
-
-  padding: 8px 12px;
+  padding: 9px 44px 9px 12px;
 
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.375;
+  line-height: calc(22 / 16);
 
   letter-spacing: 0.04em;
 
-  color: ${p => p.theme.colors.searchText};
+  color: ${p => p.theme.colors.primaryText};
 
   border-radius: 20px;
   border: 0;
 
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
 
-  @media screen and (min-width: 768px) {
+  &::placeholder {
+    color: ${p => p.theme.colors.searchText};
+  }
+
+  &:focus {
+    outline: 2px solid ${p => p.theme.colors.accent};
+  }
+
+  @media ${p => p.theme.media.tablet} {
     width: 608px;
-    height: 44px;
+    padding: 8px 56px 9px 20px;
 
     font-size: 20px;
-  }
-  @media screen and (min-width: 1280px) {
+    line-height: calc(27 / 20);
   }
 `;
 
 export const SearchButton = styled.button`
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  display: flex;
+
   background-color: transparent;
   padding: 0;
   margin: 0;
-  font-size: 15px;
-
-  position: absolute;
-  right: 15.5px;
-  bottom: 10.25px;
 
   cursor: auto;
 
-  @media screen and (min-width: 768px) {
+  &:hover,
+  &:focus {
+    scale: 1.2;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: ${p => p.theme.colors.primaryText};
+
+    @media ${p => p.theme.media.tablet} {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media ${p => p.theme.media.tablet} {
     font-size: 18px;
     right: calc(50% - 290.5px);
   }
@@ -74,43 +96,9 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const RemoveButton = styled.button`
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  font-size: 15px;
-
-  position: absolute;
-  right: 15.5px;
-  bottom: 9.25px;
-
-  &:hover,
-  &:focus {
-    scale: 1.4;
-  }
-
-  @media screen and (min-width: 768px) {
-    font-size: 18px;
-    right: calc(50% - 290.5px);
-  }
-
+export const RemoveButton = styled(SearchButton)`
   transition-property: background-color, transform;
   transition-duration: 500ms;
   transition-timing-function: linear;
   transition-delay: 0ms;
-
-  animation-name: sunrise;
-  animation-duration: 0.15s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-
-  @keyframes sunrise {
-    0% {
-      transform: translateY(12px);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  }
 `;

@@ -1,11 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
-// import { IoTrashSharp } from 'react-icons/io5';
-import { selectFavoriteNoticesIds } from 'redux/auth/authSelectors';
+import { IoTrashSharp } from 'react-icons/io5';
+import { toast } from 'react-toastify';
+import {
+  selectFavoriteNoticesIds,
+  selectIsAuth,
+  selectUsersId,
+} from 'redux/auth/authSelectors';
 import { updateFavoriteStatus } from 'redux/auth/authOperations';
 import {
-  // ButtonDelete,
+  ButtonDelete,
   ButtonsDiv,
   ButtonMore,
   Img,
@@ -19,7 +24,7 @@ import {
   Category,
   LikeButton,
 } from './NoticeCategoryItem.styled';
-import { useParams } from 'react-router-dom';
+import { transformCategoryName } from 'helpers/transformCategoryName';
 
 export const NoticeCategoryItem = ({
   id,
@@ -32,14 +37,17 @@ export const NoticeCategoryItem = ({
   price,
   category,
   owner,
+  deleteOwnNotice,
   openNoticeModal,
 }) => {
+  const isAuth = useSelector(selectIsAuth);
   const favoriteNotices = useSelector(selectFavoriteNoticesIds);
+  const userId = useSelector(selectUsersId);
   const dispatch = useDispatch();
-  const { categoryName } = useParams();
 
   useEffect(() => {}, [favoriteNotices]);
 
+  const сategoryName = transformCategoryName(category);
   const numbers = [
     'zero',
     'one',
@@ -82,6 +90,11 @@ export const NoticeCategoryItem = ({
   }
 
   const toggleFavorite = () => {
+    if (!isAuth) {
+      toast.info('You should be logged in to add to favorites');
+      return;
+    }
+
     dispatch(updateFavoriteStatus(id));
   };
 
@@ -94,7 +107,7 @@ export const NoticeCategoryItem = ({
           <Title>{title}</Title>
         </TitleWrapper>
 
-        <List>
+        <List length={category === 'sell' ? 4 : 3}>
           <ListItem>
             Breed: <Span>{breed}</Span>
           </ListItem>
@@ -116,13 +129,15 @@ export const NoticeCategoryItem = ({
           <ButtonMore type="button" onClick={() => openNoticeModal(id)}>
             Learn more
           </ButtonMore>
-          {/* <ButtonDelete type="button">
-            Delete <IoTrashSharp />
-          </ButtonDelete> */}
+          {owner === userId && (
+            <ButtonDelete type="button" onClick={() => deleteOwnNotice(id)}>
+              Delete <IoTrashSharp />
+            </ButtonDelete>
+          )}
         </ButtonsDiv>
       </Wrapper>
 
-      <Category>{categoryName}</Category>
+      <Category>{сategoryName}</Category>
       <LikeButton type="button" aria-label="Like icon" onClick={toggleFavorite}>
         {favoriteNotices.includes(id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
       </LikeButton>
