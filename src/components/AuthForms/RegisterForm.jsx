@@ -77,7 +77,8 @@ export const RegisterForm = () => {
         password,
         phone,
         city,
-      })
+      }),
+      hideForm()
     );
 
     resetForm();
