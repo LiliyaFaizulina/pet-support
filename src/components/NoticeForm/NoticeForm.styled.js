@@ -55,7 +55,7 @@ export const Textarea = styled.textarea`
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 20px;
     margin-top: 8px;
-    
+    margin-bottom: 20px;
     &[type="text"] {
         font-weight: 400;
         font-size: 14px;
@@ -69,6 +69,7 @@ export const Textarea = styled.textarea`
     
     @media screen and (min-width: 768px){
         margin-top: 12px;
+        margin-bottom: 20px;
     }
     transition: transform 250ms ease-in-out;
     &:focus {
@@ -219,7 +220,7 @@ export const BtnWrapper = styled.div`
     display: flex;
     flex-direction: column-reverse;
     gap: 12px;
-    margin-top: 40px;
+    margin-top: 12px;
     @media screen and (min-width: 768px) {
         flex-direction: row;
         justify-content: center;
@@ -302,7 +303,7 @@ export const Icon = styled.img`
 
 export const ErrorMessage = styled.p`
     position: absolute;
-    bottom: -27px;
+    bottom: ${p => p.textAreaInput ? '8px' : '-27px'};
     left: 14px;
 
     font-size: 12px;
@@ -312,7 +313,7 @@ export const ErrorMessage = styled.p`
 
     @media screen and (min-width: 768px){
         font-size: 14px;
-        bottom: -30px;
+        bottom: ${p => p.textAreaInput ? '8px' : '-30px'};
     }
 `;
 
@@ -330,7 +331,6 @@ margin-bottom: 20px;
     font-weight: 600;
     font-size: 36px;
     line-height: 1.36;
-    margin-bottom: 40px;
 } 
 `;
 
@@ -364,6 +364,10 @@ backdrop-filter: blur(2px);
 
 svg {
     fill: currentColor;
+    @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+}
 }
 
 transition: color 250ms ease-in-out;
@@ -371,6 +375,11 @@ transition: color 250ms ease-in-out;
 &:hover, 
 &:focus {
     color: #F59256;
+}
+
+@media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
 }
 
 `;
