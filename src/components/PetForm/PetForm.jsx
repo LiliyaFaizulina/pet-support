@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { addPet } from 'redux/auth/authOperations';
+import { FormPage } from './PetForm.styled';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ export const PetForm = ({ closeModal }) => {
           <TfiClose />
         </button>
         <h3>Add pet</h3>
-        <div hidden={page === 2}>
+        <FormPage isHidden={page === 2}>
           <label>
             Name pet
             <input
@@ -119,8 +120,8 @@ export const PetForm = ({ closeModal }) => {
           >
             Next
           </button>
-        </div>
-        <div hidden={page === 1}>
+        </FormPage>
+        <FormPage isHidden={page === 1}>
           <label>
             Add photo and some comments
             <input
@@ -175,7 +176,7 @@ export const PetForm = ({ closeModal }) => {
           >
             Back
           </button>
-        </div>
+        </FormPage>
       </form>
     </div>
   );
