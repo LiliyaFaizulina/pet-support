@@ -1,7 +1,7 @@
 import { Wrapper, Title, List } from './NewsPage.styled';
 import { SearchField } from 'components/SearchField/SearchField';
 import { NewsCard } from 'components/NewsCard/NewsCard';
-import ScrollToTop from "react-scroll-to-top";
+import ScrollToTop from 'react-scroll-to-top';
 
 import { getNews } from 'redux/news/newsOperations';
 import {
@@ -47,14 +47,18 @@ const NewsPage = () => {
     setFilterText(evt.target.query.value);
   };
 
-  const onChange = evt =>{
+  const onChange = evt => {
     setFilterText(evt.currentTarget.query.value);
-  }
+  };
 
   return (
     <Wrapper>
       <Title>News</Title>
-      <SearchField onSubmit={evt => onSubmit(evt)} onChange={evt => onChange(evt)} setFilterText={()=>setFilterText()}></SearchField>
+      <SearchField
+        onSubmit={evt => onSubmit(evt)}
+        onChange={evt => onChange(evt)}
+        setFilterText={() => setFilterText()}
+      ></SearchField>
       {error && <p>Ooops... something Wrong</p>}
       {isLoading && <p>Loading...</p>}
       {!isLoading && (
@@ -65,7 +69,7 @@ const NewsPage = () => {
             renderCard(filteredNews(allNews, filterText))}
         </List>
       )}
-      <ScrollToTop smooth color="#F59256"/>
+      <ScrollToTop smooth color="#F59256" />
     </Wrapper>
   );
 };

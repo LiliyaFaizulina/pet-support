@@ -59,7 +59,7 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: ${p => (p.length === 4 ? '20px' : '50px')};
 
   font-weight: 500;
   font-size: 16px;

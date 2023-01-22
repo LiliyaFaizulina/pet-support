@@ -1,9 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { PrivateRoute } from 'HOCs/PrivateRoute';
 import { PublicRoute } from 'HOCs/PublicRoute';
 
 import Layout from './Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { getUser } from 'redux/auth/authOperations';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -16,6 +18,11 @@ const OurFriendsPage = lazy(() =>
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

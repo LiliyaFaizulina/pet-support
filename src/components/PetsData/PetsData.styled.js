@@ -22,7 +22,7 @@ export const BoxTitlePet = styled.div`
 `;
 
 export const TitlePet = styled.h2`
-  color: ${p => p.theme.colors.primaryText};
+  color: ${p => p.theme.colors.heading};
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
