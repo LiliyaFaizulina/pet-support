@@ -27,6 +27,13 @@ export const NaviLink = styled(NavLink)`
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.navText};
 
+  &.active {
+    background: ${p => p.theme.colors.mainBackground};
+    color: ${p => p.theme.colors.accent};
+    font-weight: 700;
+    text-decoration-line: underline;
+  }
+
   @media (min-width: 768px) {
     font-size: 48px;
   }
@@ -34,11 +41,5 @@ export const NaviLink = styled(NavLink)`
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 1.35;
-  }
-
-  &.active {
-    color: ${p => p.theme.colors.accent};
-    font-weight: 700;
-    text-decoration-line: underline;
   }
 `;
