@@ -13,7 +13,7 @@ export const Navigation = () => {
   const isAuth = useSelector(selectIsAuth);
   const isDesktop = useMedia('(min-width: 1280px)');
   const isMobile = useMedia('(max-width: 767px)');
-  console.log(isDesktop);
+
   const open = () => {
     setIsBurgerNavOpen(true);
   };
