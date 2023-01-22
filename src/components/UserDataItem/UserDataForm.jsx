@@ -42,13 +42,13 @@ const UserDataForm = () => {
 
   const imgAlt = result?.name;
 
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  const nameRegex = /[a-zA-Z]+/;
+  const emailRegex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const nameRegex =
+    /^[a-zA-Zа-яА-Я0-9'][a-zA-Zа-яА-Я-0-9-']+[a-zA-Zа-яА-Я0-9']?$/u;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
 
   const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/;
-  const dateRegexp = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+  const dateRegexp = /\d{4}-\d{1,2}-\d{1,2}/;
 
   const handleImage = async e => {
     setIsChangeUserAvatar(true);
@@ -64,6 +64,7 @@ const UserDataForm = () => {
       };
     }
   };
+  const maxDate = new Date().toISOString().slice(0, 10);
 
   return (
     <UserBlock>
@@ -140,9 +141,10 @@ const UserDataForm = () => {
                           <UserDataItem
                             defaultValue={result.birthday}
                             name={'birthday'}
-                            type="text"
+                            type="date"
+                            min="2020-01-01"
+                            max={maxDate}
                             pattern={dateRegexp}
-                            errorText="Error. Example: 10.10.1990"
                           />
                         </Block>
                       </BoxTitle>
