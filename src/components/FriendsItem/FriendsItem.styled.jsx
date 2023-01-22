@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SponsorLink = styled.a`
+  display: block;
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 12px;
@@ -29,6 +30,7 @@ export const FriendCard = styled.div`
 `;
 
 export const Time = styled.button`
+  font: inherit
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -57,7 +59,8 @@ export const Time = styled.button`
 `;
 
 export const Text = styled.p`
-  font-weight: 500;
+  font: inherit
+  font-weight: 600;
   font-size: 12px;
   line-height: 16px;
 
@@ -66,8 +69,8 @@ export const Text = styled.p`
     line-height: 19px;
   }
   @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 21px;
   }
 `;
 
@@ -79,6 +82,8 @@ export const TextWrapper = styled.li`
 `;
 
 export const ContactLink = styled.a`
+  text-decoration: none;
+  color: inherit;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -111,9 +116,6 @@ export const Img = styled.img`
 `;
 
 export const SponsorItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 12px;
   background-color: ${p => p.theme.colors.secondaryBackground};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
