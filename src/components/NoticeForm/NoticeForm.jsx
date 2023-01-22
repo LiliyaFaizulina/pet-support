@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/noticesOperations';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
+import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import {
   Modal,
   Form,
@@ -12,11 +13,14 @@ import {
   Label,
   Textarea,
   TextInput,
-  DateInput,
+  CategoryWrapper,
+  CategoryLabel,
   CategoryInput,
-  SexLabel,
+  SexWrapper,
+  Icon,
   SexInput,
   Button,
+  FileWrapper,
   FileInput,
   FileButton,
   FileImg,
@@ -27,7 +31,8 @@ import {
   FormCloseBtn,
   BtnWrapper,
 } from 'components/NoticeForm/NoticeForm.styled';
-import ModalCloseIcon from 'images/modal-close-icon.svg';
+import FemaleIcon from 'images/female-icon.png';
+import MaleIcon from 'images/male-icon.png';
 
 export const NoticeForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -105,7 +110,7 @@ export const NoticeForm = ({ closeModal }) => {
     <Modal>
       <Form onSubmit={handleSubmit}>
         <FormCloseBtn type="button" onClick={closeModal}>
-          <img src={ModalCloseIcon} alt="X" />
+          <TfiClose />
         </FormCloseBtn>
         <FormLabel>Add pet</FormLabel>
         <FormWrapper hidden={page === 2}>
@@ -113,35 +118,40 @@ export const NoticeForm = ({ closeModal }) => {
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
             consectetur
           </FormText>
-          <Label>
-            Sell
-            <CategoryInput
-              type="radio"
-              name="category"
-              value="sell"
-              checked={values.category === 'sell'}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label>
-            In good hands
-            <CategoryInput
-              type="radio"
-              name="category"
-              value="for-free"
-              onChange={handleChange}
-            />
-          </Label>
-          <Label>
-            Lost/found
-            <CategoryInput
-              type="radio"
-              name="category"
-              value="lost-found"
-              onChange={handleChange}
-              req
-            />
-          </Label>
+          <CategoryWrapper>
+            <CategoryLabel checkedCategory={values.category === 'sell'}>
+              Sell
+              <CategoryInput
+                hidden
+                type="radio"
+                name="category"
+                value="sell"
+                onChange={handleChange}
+              />
+            </CategoryLabel>
+            <CategoryLabel checkedCategory={values.category === 'for-free'}>
+              In good hands
+              <CategoryInput
+                hidden
+                type="radio"
+                name="category"
+                value="for-free"
+                onChange={handleChange}
+              />
+            </CategoryLabel>
+            <CategoryLabel checkedCategory={values.category === 'lost-found'}>
+              Lost/found
+              <CategoryInput
+                hidden
+                type="radio"
+                name="category"
+                value="lost-found"
+                onChange={handleChange}
+                req
+              />
+            </CategoryLabel>
+          </CategoryWrapper>
+
           <Label>
             Title of ad<Required>*</Required>
             <TextInput
@@ -170,7 +180,7 @@ export const NoticeForm = ({ closeModal }) => {
           </Label>
           <Label>
             Date of birth
-            <DateInput
+            <TextInput
               type="date"
               name="dateOfBirth"
               value={values.dateOfBirth}
@@ -216,28 +226,33 @@ export const NoticeForm = ({ closeModal }) => {
           </BtnWrapper>
         </FormWrapper>
         <FormWrapper hidden={page === 1}>
-          <SexLabel>
+          <Label labelOfSex>
             The sex<Required>*</Required>
-          </SexLabel>
-          <Label>
-            Male
-            <SexInput
-              type="radio"
-              name="sex"
-              value="male"
-              checked={values.sex === 'sell'}
-              onChange={handleChange}
-            />
           </Label>
-          <Label>
-            Female
-            <SexInput
-              type="radio"
-              name="sex"
-              value="female"
-              onChange={handleChange}
-            />
-          </Label>
+          <SexWrapper>
+            <Label checkedSex={values.sex === 'male'} sexField>
+              <Icon src={MaleIcon} alt="Male Icon"></Icon>
+              Male
+              <SexInput
+                hidden
+                type="radio"
+                name="sex"
+                value="male"
+                onChange={handleChange}
+              />
+            </Label>
+            <Label checkedSex={values.sex === 'female'} sexField>
+              <Icon src={FemaleIcon} alt="Female Icon"></Icon>
+              Female
+              <SexInput
+                hidden
+                type="radio"
+                name="sex"
+                value="female"
+                onChange={handleChange}
+              />
+            </Label>
+          </SexWrapper>
 
           <Label>
             Location<Required>*</Required>
@@ -269,40 +284,38 @@ export const NoticeForm = ({ closeModal }) => {
           )}
           <Label>
             Load the pet's image<Required>*</Required>
-            <FileInput
-              hidden
-              type="file"
-              name="image"
-              ref={inputRef}
-              accept="image/*, .jpg, .png"
-              value={values.image}
-              onChange={e => {
-                if (e.target.files[0]) {
-                  setFile(e.target.files[0]);
-                  setImageLink(URL.createObjectURL(e.target.files[0]));
-                }
-                handleChange(e);
-              }}
-            />
-            <FileButton type="button" onClick={handleClick}>
-              {values.image ? (
-                <FileImg
-                  src={imageLink}
-                  alt={values.petName}
-                  width="300px"
-                  height="300px"
-                />
-              ) : (
-                '+'
-              )}
-            </FileButton>
-            {errors.image || touched.image ? (
-              <ErrorMessage>{errors.image}</ErrorMessage>
-            ) : null}
+            <FileWrapper>
+              <FileInput
+                hidden
+                type="file"
+                name="image"
+                ref={inputRef}
+                accept="image/*, .jpg, .png"
+                value={values.image}
+                onChange={e => {
+                  if (e.target.files[0]) {
+                    setFile(e.target.files[0]);
+                    setImageLink(URL.createObjectURL(e.target.files[0]));
+                  }
+                  handleChange(e);
+                }}
+              />
+              <FileButton type="button" onClick={handleClick}>
+                {values.image ? (
+                  <FileImg src={imageLink} alt={values.petName} />
+                ) : (
+                  <TfiPlus />
+                )}
+              </FileButton>
+              {errors.image || touched.image ? (
+                <ErrorMessage>{errors.image}</ErrorMessage>
+              ) : null}
+            </FileWrapper>
           </Label>
           <Label>
             Comments
             <Textarea
+              type="text"
               name="comment"
               value={values.comment}
               placeholder="Type comments"
