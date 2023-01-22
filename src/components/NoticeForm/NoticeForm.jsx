@@ -60,7 +60,9 @@ export const NoticeForm = ({ closeModal }) => {
       .required('Title is required'),
     petName: yup
       .string('Please, enter name of the pet')
-      .required('Pet name is required'),
+      .min(2, 'Name of the pet must consist of at least 2 symbols')
+      .max(16, 'Name of the pet must contain no more than 16 symbols')
+      .required('Name of the pet is required'),
     dateOfBirth: yup.date().required('Date of birth is required'),
     breed: yup
       .string('Please, enter breed of the pet')
@@ -88,7 +90,7 @@ export const NoticeForm = ({ closeModal }) => {
       breed: '',
       sex: 'male',
       location: '',
-      price: 0,
+      price: 1,
       image: '',
       comment: '',
     },
@@ -113,7 +115,12 @@ export const NoticeForm = ({ closeModal }) => {
           <TfiClose />
         </FormCloseBtn>
         <FormLabel>Add pet</FormLabel>
-        <FormWrapper hidden={page === 2}>
+        <FormWrapper
+          hidden={page === 2}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <FormText>
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
             consectetur
@@ -166,7 +173,7 @@ export const NoticeForm = ({ closeModal }) => {
             ) : null}
           </Label>
           <Label>
-            The name of the pet
+            Name of the pet<Required>*</Required>
             <TextInput
               type="text"
               name="petName"
@@ -179,7 +186,7 @@ export const NoticeForm = ({ closeModal }) => {
             ) : null}
           </Label>
           <Label>
-            Date of birth
+            Date of birth<Required>*</Required>
             <TextInput
               type="date"
               name="dateOfBirth"
@@ -322,7 +329,7 @@ export const NoticeForm = ({ closeModal }) => {
               onChange={handleChange}
             ></Textarea>
             {errors.comment || touched.comment ? (
-              <ErrorMessage>{errors.comment}</ErrorMessage>
+              <ErrorMessage textAreaInput>{errors.comment}</ErrorMessage>
             ) : null}
           </Label>
           <BtnWrapper>
