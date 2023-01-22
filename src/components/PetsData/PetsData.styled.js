@@ -17,7 +17,7 @@ export const BoxTitlePet = styled.div`
   align-items: center;
   margin-bottom: 26px;
   @media ${p => p.theme.media.tablet} {
-    margin-bottom: 24px;
+    margin-bottom: 15px;
   }
 `;
 

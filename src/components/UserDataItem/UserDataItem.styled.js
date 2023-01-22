@@ -120,7 +120,7 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     @media ${p => p.theme.media.desktop} {
       margin-bottom: 15px;
     }
@@ -136,7 +136,7 @@ export const Title = styled.label`
   font-size: 12px;
   font-weight: ${p => p.theme.fontWeights.heading};
   @media ${p => p.theme.media.tablet} {
-    width: 107px;
+    width: 90px;
     font-size: 18px;
   }
 `;
@@ -156,6 +156,10 @@ export const Block = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  column-gap: 5px;
+  @media ${p => p.theme.media.tablet} {
+    column-gap: 15px;
+  }
 `;
 export const EditTextBtn = styled.button`
   display: flex;
@@ -167,7 +171,6 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.mainBackground};
-  margin-left: auto;
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -236,8 +239,9 @@ export const UserDataInput = styled.input`
   }
 `;
 
-export const ErrorText = styled.p`
-  margin-left: 10px;
+export const ErrorText = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   &:not(:last-of-type) {
     margin-bottom: 14px;
   }
