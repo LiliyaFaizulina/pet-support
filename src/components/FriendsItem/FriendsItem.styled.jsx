@@ -30,7 +30,7 @@ export const FriendCard = styled.div`
 `;
 
 export const Time = styled.button`
-  font: inherit
+  font: inherit;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -59,7 +59,7 @@ export const Time = styled.button`
 `;
 
 export const Text = styled.p`
-  font: inherit
+  font: inherit;
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
