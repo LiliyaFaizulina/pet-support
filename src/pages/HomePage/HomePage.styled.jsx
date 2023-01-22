@@ -55,7 +55,8 @@ export const Section = styled.section`
   }
   @media screen and (min-width: 1280px) {
     padding-top: 92px;
-    min-height: calc(100vh - 88px);
+    padding-bottom: 408px;
+    min-height: calc(100vh - 64px);
     background-image: url(${portraitDesktop}), url(${waveDesktop}),
       url(${union});
     background-size: 590px 640px, 100vw calc(100vw * 0.375), 92px 89px;

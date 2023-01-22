@@ -20,7 +20,11 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState,
   extraReducers: {
-    [getNotice.pending]: handlePending,
+    [getNotice.pending]: state => {
+      state.isLoading = true;
+      state.currentNotice = null;
+      state.error = null;
+    },
     [getNoticesByCategory.pending]: handlePending,
     [addNotice.pending]: handlePending,
     [deleteNotice.pending]: handlePending,

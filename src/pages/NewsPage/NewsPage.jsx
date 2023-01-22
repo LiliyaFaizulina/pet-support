@@ -12,6 +12,7 @@ import {
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'components/Spinner/Spinner';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const NewsPage = () => {
         setFilterText={() => setFilterText()}
       ></SearchField>
       {error && <p>Ooops... something Wrong</p>}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Spinner />}
       {!isLoading && (
         <List>
           {allNews && !filterText && renderCard(allNews)}
