@@ -1,9 +1,9 @@
-import { AddPet } from "./AddPetBtn.styled";
+import { AddPet } from './AddPetBtn.styled';
 
-const AddPetBtn = ({ disabled = false, onOpenModal: openAddPetModal, ...props }) => {
+const AddPetBtn = ({ disabled = false, openModal, ...props }) => {
   return (
     <>
-      <AddPet active disabled={disabled} onClick={openAddPetModal} {...props}>
+      <AddPet active disabled={disabled} onClick={openModal} {...props}>
         +
       </AddPet>
     </>
