@@ -16,14 +16,18 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
 
   const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(true);
-
   const onInputeChange = e => {
     setInputeValue(e.target.value);
   };
 
   const handleClick = e => {
     e.preventDefault();
+    if (name === 'birthday') {
+      let inputValue = new Date(inputeValue).toISOString().slice(0, 10);
+      setInputeValue(inputValue);
+    }
     const isValidValue = pattern.test(inputeValue);
+
     if (!isValidValue) {
       setIsValid(false);
       return;
@@ -33,6 +37,7 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
       if (inputeValue === defaultValue) {
         return;
       }
+
       const data = {
         [name]: inputeValue,
       };
@@ -52,6 +57,7 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
         disabled={!active}
         onChange={onInputeChange}
         name={name}
+        // type={name === 'birthday' ? 'date' : type}
         type={type}
         pattern={pattern}
         value={inputeValue}
