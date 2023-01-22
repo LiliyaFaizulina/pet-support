@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SponsorLink = styled.a`
+  display: block;
   margin-bottom: 12px;
   font-weight: 700;
   font-size: 12px;
@@ -115,9 +116,6 @@ export const Img = styled.img`
 `;
 
 export const SponsorItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 12px;
   background-color: ${p => p.theme.colors.secondaryBackground};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
