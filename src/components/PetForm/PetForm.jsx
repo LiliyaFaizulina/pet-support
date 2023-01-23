@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { addPet } from 'redux/auth/authOperations';
-import { FormPage } from './PetForm.styled';
+import { FormPage, FormBox, CloseBtn } from './PetForm.styled';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -26,12 +26,14 @@ export const PetForm = ({ closeModal }) => {
   const validationSchema = yup.object({
     name: yup
       .string('Please, enter name of the pet')
+      .min(2, 'too short')
+      .max(16, 'too long')
       .required('Pet name is required'),
     birthday: yup.string().required('Date of birth is required'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
-      .max(24, 'Breed must contain no more than 24 symbols'),
+      .max(16, 'Breed must contain no more than 24 symbols'),
     petAvatar: yup.string().required('Image is required'),
     comments: yup
       .string()
@@ -60,11 +62,11 @@ export const PetForm = ({ closeModal }) => {
   });
 
   return (
-    <div>
+    <FormBox>
       <form onSubmit={handleSubmit}>
-        <button type="button" onClick={closeModal}>
+        <CloseBtn type="button" onClick={closeModal}>
           <TfiClose />
-        </button>
+        </CloseBtn>
         <h3>Add pet</h3>
         <FormPage isHidden={page === 2}>
           <label>
@@ -104,7 +106,7 @@ export const PetForm = ({ closeModal }) => {
             />
             {errors.breed || touched.breed ? <p>{errors.breed}</p> : null}
           </label>
-          <button NotFillBtn type="button" onClick={closeModal}>
+          <button type="button" onClick={closeModal}>
             Cancel
           </button>
           <button
@@ -178,6 +180,6 @@ export const PetForm = ({ closeModal }) => {
           </button>
         </FormPage>
       </form>
-    </div>
+    </FormBox>
   );
 };
