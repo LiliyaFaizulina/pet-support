@@ -7,6 +7,7 @@ import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesC
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 import { Backdrop } from 'components/Backdrop/Backdrop';
 import { NoticeForm } from 'components/NoticeForm/NoticeForm';
+import { GiCat } from 'react-icons/gi';
 import {
   selectError,
   selectIsLoading,
@@ -19,6 +20,8 @@ import {
 import { Container } from 'utils/GlobalStyle';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import { selectIsAuth } from 'redux/auth/authSelectors';
+import { toast } from 'react-toastify';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -26,6 +29,7 @@ const NoticesPage = () => {
   const [noticeToShow, setNoticeToShow] = useState('');
 
   const notices = useSelector(selectNoticesByCategory);
+  const isAuth = useSelector(selectIsAuth);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
@@ -59,6 +63,16 @@ const NoticesPage = () => {
     setNoticeToShow('');
   };
 
+  const openAddNoticeModal = () => {
+    if (!isAuth) {
+      toast.info('You should be logged in to add new notice', {
+        icon: <GiCat />,
+      });
+      return;
+    }
+    setOpenModal(true);
+  };
+
   const openNoticeModal = id => {
     setNoticeToShow(id);
     setOpenModal(true);
@@ -73,7 +87,7 @@ const NoticesPage = () => {
       />
       <FlexContainer>
         <NoticesCategoriesNav />
-        <AddNoticeButton openModalBtn={setOpenModal} />
+        <AddNoticeButton openModalBtn={openAddNoticeModal} />
       </FlexContainer>
       {error && <p>Ooops... something Wrong</p>}
       {isLoading && <p>Loading...</p>}
