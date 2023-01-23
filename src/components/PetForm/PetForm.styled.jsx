@@ -9,6 +9,14 @@ export const FormBox = styled.div`
   h3 {
     text-align: center;
   }
+  label {
+    position: relative;
+    p {
+      position: absolute;
+      color: red;
+      font-size: 12px;
+    }
+  }
 `;
 export const CloseBtn = styled.div`
   position: absolute;
@@ -43,15 +51,15 @@ export const FormPage = styled.div`
   }}
   display:flex;
   flex-direction: column;
+  gap: 16px;
   input,
   textarea {
     width: 100%;
-    margin-top: 8px;
     padding: 11px 11px 12px 14px;
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
-    margin-bottom: 16px;
+    margin-top: 8px;
     &:focus,
     &:hover {
       outline: none;
@@ -74,17 +82,22 @@ export const AddButton = styled.button`
     height: 48px;
     fill: rgba(17, 17, 17, 0.6);
   }
+  img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+  }
 `;
 
 export const AcseptButton = styled.button`
   width: 100%;
-  padding: 11px 0 12px 14px;
+  padding: 7px 0 8px;
   text-align: center;
   color: #fff;
   background: #f59256;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin: 24px 0 0 0;
+
   transform: scale(1);
   transition: transform 0.5s;
   cursor: pointer;
