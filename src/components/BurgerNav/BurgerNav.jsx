@@ -7,10 +7,17 @@ import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
+import { useEffect } from 'react';
 
 export const BurgerNav = ({ close }) => {
   const isAuth = useSelector(selectIsAuth);
   const isMobile = useMedia('(max-width: 767px)');
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  });
 
   return (
     <BurgerNavMenu onClick={close}>
