@@ -43,9 +43,8 @@ const UserDataForm = () => {
   const imgAlt = result?.name;
 
   const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
-                      
-  const nameRegex =
-    /^[a-zA-Zа-яА-Я0-9'][a-zA-Zа-яА-Я-0-9-']+[a-zA-Zа-яА-Я0-9']?$/u;
+
+  const nameRegex = /^[a-zA-Zа-яА-Я]*$/;
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
 
   const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/;
