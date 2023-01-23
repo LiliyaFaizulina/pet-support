@@ -11,8 +11,8 @@ export const List = styled.ul`
   @media ${p => p.theme.media.tablet} {
     width: 75%;
     gap: 16px 12px;
-    margin-top: 40px;
-    margin-bottom: 60px;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 `;
 

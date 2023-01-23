@@ -18,6 +18,7 @@ import {
 } from 'redux/notices/noticesOperations';
 import { Container } from 'utils/GlobalStyle';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
+import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -70,18 +71,18 @@ const NoticesPage = () => {
         onChange={onSearchChange}
         setFilterText={() => setFilterText()}
       />
-      <NoticesCategoriesNav />
+      <FlexContainer>
+        <NoticesCategoriesNav />
+        <AddNoticeButton openModalBtn={setOpenModal} />
+      </FlexContainer>
       {error && <p>Ooops... something Wrong</p>}
       {isLoading && <p>Loading...</p>}
       {!isLoading && (
-        <>
-          <NoticesCategoriesList
-            notices={filterText ? filteredNotices : notices}
-            deleteOwnNotice={deleteOwnNotice}
-            openNoticeModal={openNoticeModal}
-          />
-          <AddNoticeButton openModalBtn={setOpenModal} />
-        </>
+        <NoticesCategoriesList
+          notices={filterText ? filteredNotices : notices}
+          deleteOwnNotice={deleteOwnNotice}
+          openNoticeModal={openNoticeModal}
+        />
       )}
       {openModal && (
         <Backdrop closeModal={closeModal} isOpen={openModal}>
