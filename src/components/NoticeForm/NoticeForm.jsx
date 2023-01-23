@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/noticesOperations';
@@ -20,7 +21,7 @@ import {
   Icon,
   SexInput,
   Button,
-  FileWrapper,
+  FileLabel,
   FileInput,
   FileButton,
   FileImg,
@@ -36,6 +37,7 @@ import MaleIcon from 'images/male-icon.png';
 
 export const NoticeForm = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [file, setFile] = useState(null);
   const [imageLink, setImageLink] = useState('');
@@ -104,6 +106,7 @@ export const NoticeForm = ({ closeModal }) => {
       }
       formData.set('image', file);
       dispatch(addNotice(formData));
+      navigate('/notices/own');
       closeModal();
     },
   });
@@ -115,12 +118,7 @@ export const NoticeForm = ({ closeModal }) => {
           <TfiClose />
         </FormCloseBtn>
         <FormLabel>Add pet</FormLabel>
-        <FormWrapper
-          hidden={page === 2}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <FormWrapper hidden={page === 2}>
           <FormText>
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
             consectetur
@@ -289,36 +287,35 @@ export const NoticeForm = ({ closeModal }) => {
               ) : null}
             </Label>
           )}
-          <Label>
-            Load the pet's image<Required>*</Required>
-            <FileWrapper>
-              <FileInput
-                hidden
-                type="file"
-                name="image"
-                ref={inputRef}
-                accept="image/*, .jpg, .png"
-                value={values.image}
-                onChange={e => {
-                  if (e.target.files[0]) {
-                    setFile(e.target.files[0]);
-                    setImageLink(URL.createObjectURL(e.target.files[0]));
-                  }
-                  handleChange(e);
-                }}
-              />
-              <FileButton type="button" onClick={handleClick}>
-                {values.image ? (
-                  <FileImg src={imageLink} alt={values.petName} />
-                ) : (
-                  <TfiPlus />
-                )}
-              </FileButton>
-              {errors.image || touched.image ? (
-                <ErrorMessage>{errors.image}</ErrorMessage>
-              ) : null}
-            </FileWrapper>
-          </Label>
+          <FileLabel>
+            <div>
+              Load the pet's image<Required>*</Required>
+            </div>
+            <FileInput
+              type="file"
+              name="image"
+              ref={inputRef}
+              accept="image/*, .jpg, .png"
+              value={values.image}
+              onChange={e => {
+                if (e.target.files[0]) {
+                  setFile(e.target.files[0]);
+                  setImageLink(URL.createObjectURL(e.target.files[0]));
+                }
+                handleChange(e);
+              }}
+            />
+            <FileButton type="button" onClick={handleClick}>
+              {values.image ? (
+                <FileImg src={imageLink} alt={values.petName} />
+              ) : (
+                <TfiPlus />
+              )}
+            </FileButton>
+            {errors.image || touched.image ? (
+              <ErrorMessage Input>{errors.image}</ErrorMessage>
+            ) : null}
+          </FileLabel>
           <Label>
             Comments
             <Textarea
@@ -329,7 +326,7 @@ export const NoticeForm = ({ closeModal }) => {
               onChange={handleChange}
             ></Textarea>
             {errors.comment || touched.comment ? (
-              <ErrorMessage textAreaInput>{errors.comment}</ErrorMessage>
+              <ErrorMessage Input>{errors.comment}</ErrorMessage>
             ) : null}
           </Label>
           <BtnWrapper>
