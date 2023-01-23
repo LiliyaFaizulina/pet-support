@@ -11,26 +11,18 @@ import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 export const BurgerNav = ({ close, setIsBurgerNavOpen }) => {
   const isAuth = useSelector(selectIsAuth);
   const isMobile = useMedia('(max-width: 767px)');
-  const isDesktop = useMedia('(min-width: 1280px)');
-  if (isDesktop) {
-    close();
-  }
+
   return (
-    <BurgerNavMenu
-      onClick={close}
-      // onClick={() => setIsBurgerNavOpen(false)}
-    >
+    <BurgerNavMenu onClick={close}>
       <LogoMenu>
         <Logo />
         <BurgerNavCloseBtn onClick={close} />
       </LogoMenu>
-      {/* <div onClick={e => e.stopPropagation()}> */}
       <UserAuthMenu>
-        {isMobile && isAuth && <UserNav />}
-        {isMobile && !isAuth && <AuthNav />}
+        {isMobile && isAuth && <UserNav closeBurgerMenu={close} />}
+        {isMobile && !isAuth && <AuthNav closeBurgerMenu={close} />}
       </UserAuthMenu>
       <Nav />
-      {/* </div> */}
     </BurgerNavMenu>
   );
 };

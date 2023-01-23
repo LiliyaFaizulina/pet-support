@@ -18,8 +18,13 @@ export const Navigation = () => {
     setIsBurgerNavOpen(true);
   };
 
-  const close = () => {
-    setIsBurgerNavOpen(false);
+  const close = e => {
+    if (
+      e.currentTarget.nodeName === 'A' ||
+      e.currentTarget.nodeName === 'BUTTON'
+    ) {
+      setIsBurgerNavOpen(false);
+    }
   };
 
   return (
@@ -29,7 +34,7 @@ export const Navigation = () => {
       {!isMobile && !isAuth && <AuthNav />}
       {!isDesktop && <BurgerNavOpenBtn onClick={open} />}
 
-      {isBurgerNavOpen && <BurgerNav close={close} />}
+      {isBurgerNavOpen && !isDesktop && <BurgerNav close={close} />}
     </>
   );
 };
