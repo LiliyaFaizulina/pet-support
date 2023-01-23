@@ -18,6 +18,7 @@ import {
   CategoryLabel,
   CategoryInput,
   SexWrapper,
+  SexLabel,
   Icon,
   SexInput,
   Button,
@@ -224,6 +225,123 @@ export const NoticeForm = ({ closeModal }) => {
                   return;
                 }
                 changePage(1);
+                <FormWrapper hidden={page === 1}>
+                  <FormText>
+                    Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
+                    sit amet, consectetur
+                  </FormText>
+                  <CategoryWrapper>
+                    <CategoryLabel checkedCategory={values.category === 'sell'}>
+                      Sell
+                      <CategoryInput
+                        hidden
+                        type="radio"
+                        name="category"
+                        value="sell"
+                        onChange={handleChange}
+                      />
+                    </CategoryLabel>
+                    <CategoryLabel
+                      checkedCategory={values.category === 'for-free'}
+                    >
+                      In good hands
+                      <CategoryInput
+                        hidden
+                        type="radio"
+                        name="category"
+                        value="for-free"
+                        onChange={handleChange}
+                      />
+                    </CategoryLabel>
+                    <CategoryLabel
+                      checkedCategory={values.category === 'lost-found'}
+                    >
+                      Lost/found
+                      <CategoryInput
+                        hidden
+                        type="radio"
+                        name="category"
+                        value="lost-found"
+                        onChange={handleChange}
+                        req
+                      />
+                    </CategoryLabel>
+                  </CategoryWrapper>
+
+                  <Label>
+                    Title of ad<Required>*</Required>
+                    <TextInput
+                      type="text"
+                      name="title"
+                      value={values.title}
+                      placeholder="Type title"
+                      onChange={handleChange}
+                    />
+                    {errors.title || touched.title ? (
+                      <ErrorMessage>{errors.title}</ErrorMessage>
+                    ) : null}
+                  </Label>
+                  <Label>
+                    Name of the pet<Required>*</Required>
+                    <TextInput
+                      type="text"
+                      name="petName"
+                      value={values.petName}
+                      placeholder="Type pet name"
+                      onChange={handleChange}
+                    />
+                    {errors.petName || touched.petName ? (
+                      <ErrorMessage>{errors.petName}</ErrorMessage>
+                    ) : null}
+                  </Label>
+                  <Label>
+                    Date of birth<Required>*</Required>
+                    <TextInput
+                      type="date"
+                      name="dateOfBirth"
+                      value={values.dateOfBirth}
+                      min="2008-01-01"
+                      max={dateToday}
+                      placeholder="Type date of birth"
+                      onChange={handleChange}
+                    />
+                    {errors.dateOfBirth || touched.dateOfBirth ? (
+                      <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>
+                    ) : null}
+                  </Label>
+                  <Label>
+                    Breed
+                    <TextInput
+                      type="text"
+                      name="breed"
+                      value={values.breed}
+                      placeholder="Type breed"
+                      onChange={handleChange}
+                    />
+                    {errors.breed || touched.breed ? (
+                      <ErrorMessage>{errors.breed}</ErrorMessage>
+                    ) : null}
+                  </Label>
+                  <BtnWrapper>
+                    <Button NotFillBtn type="button" onClick={closeModal}>
+                      Cancel
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        const { category, title, petName, dateOfBirth } =
+                          values;
+                        if (!category || !title || !dateOfBirth || !petName) {
+                          toast.info('Please fill in required fields');
+                          return;
+                        }
+                        changePage(1);
+                      }}
+                    >
+                      Next
+                    </Button>
+                  </BtnWrapper>
+                </FormWrapper>;
               }}
             >
               Next
@@ -235,7 +353,7 @@ export const NoticeForm = ({ closeModal }) => {
             The sex<Required>*</Required>
           </Label>
           <SexWrapper>
-            <Label checkedSex={values.sex === 'male'} sexField>
+            <SexLabel checkedSex={values.sex === 'male'}>
               <Icon src={MaleIcon} alt="Male Icon"></Icon>
               Male
               <SexInput
@@ -245,8 +363,8 @@ export const NoticeForm = ({ closeModal }) => {
                 value="male"
                 onChange={handleChange}
               />
-            </Label>
-            <Label checkedSex={values.sex === 'female'} sexField>
+            </SexLabel>
+            <SexLabel checkedSex={values.sex === 'female'}>
               <Icon src={FemaleIcon} alt="Female Icon"></Icon>
               Female
               <SexInput
@@ -256,7 +374,7 @@ export const NoticeForm = ({ closeModal }) => {
                 value="female"
                 onChange={handleChange}
               />
-            </Label>
+            </SexLabel>
           </SexWrapper>
 
           <Label>
