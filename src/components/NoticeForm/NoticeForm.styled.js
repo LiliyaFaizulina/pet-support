@@ -175,21 +175,37 @@ export const CategoryLabel = styled.label`
 export const SexInput = styled.input`
 `;
 
-export const FileWrapper = styled.div`
+export const FileLabel = styled.label`
+    position: relative;
+    font-size: 18px;
+    @media screen and (min-width: 768px){
+        font-size: 24px;
+    }
+    display: flex;
+    flex-direction: column;
+`;
+
+export const FileInput = styled.input`
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+`;
+
+export const FileButton = styled.button`
 position: relative;
-display: flex;
 margin-top: 8px;
 margin-bottom: 28px;
 @media screen and (min-width: 768px){
     margin-top: 12px;
 }
-`;
-
-export const FileInput = styled.input`
-
-`;
-
-export const FileButton = styled.button`
     width: 116px;
     height: 116px;
     background-color: #FDF7F2;
@@ -303,7 +319,7 @@ export const Icon = styled.img`
 
 export const ErrorMessage = styled.p`
     position: absolute;
-    bottom: ${p => p.textAreaInput ? '8px' : '-27px'};
+    bottom: ${p => p.Input ? '8px' : '-27px'};
     left: 14px;
 
     font-size: 12px;
@@ -313,7 +329,7 @@ export const ErrorMessage = styled.p`
 
     @media screen and (min-width: 768px){
         font-size: 14px;
-        bottom: ${p => p.textAreaInput ? '8px' : '-30px'};
+        bottom: ${p => p.Input ? '8px' : '-30px'};
     }
 `;
 

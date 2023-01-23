@@ -84,7 +84,7 @@ const NoticesPage = () => {
         </>
       )}
       {openModal && (
-        <Backdrop closeModal={closeModal}>
+        <Backdrop closeModal={closeModal} isOpen={openModal}>
           {Boolean(noticeToShow) ? (
             <NoticeModal closeModal={closeModal} id={noticeToShow} />
           ) : (
