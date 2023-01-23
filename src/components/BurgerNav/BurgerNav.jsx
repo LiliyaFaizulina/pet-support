@@ -8,7 +8,7 @@ import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 
-export const BurgerNav = ({ close, setIsBurgerNavOpen }) => {
+export const BurgerNav = ({ close }) => {
   const isAuth = useSelector(selectIsAuth);
   const isMobile = useMedia('(max-width: 767px)');
 
@@ -19,8 +19,8 @@ export const BurgerNav = ({ close, setIsBurgerNavOpen }) => {
         <BurgerNavCloseBtn onClick={close} />
       </LogoMenu>
       <UserAuthMenu>
-        {isMobile && isAuth && <UserNav closeBurgerMenu={close} />}
-        {isMobile && !isAuth && <AuthNav closeBurgerMenu={close} />}
+        {isMobile && isAuth && <UserNav />}
+        {isMobile && !isAuth && <AuthNav />}
       </UserAuthMenu>
       <Nav />
     </BurgerNavMenu>
