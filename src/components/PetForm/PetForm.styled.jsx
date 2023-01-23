@@ -124,7 +124,6 @@ export const AcseptButton = styled.button`
     transition: none;
   }
   @media (min-width: 768px) {
-    width: 458px;
     font-size: 20px;
   }
 `;
