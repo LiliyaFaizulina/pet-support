@@ -15,7 +15,7 @@ export const CloseBtn = styled.div`
   top: 23px;
   right: 23px;
   background-color: transparent;
-
+  cursor: pointer;
   :hover,
   :focus {
     color: ${p => p.theme.colors.accent};
