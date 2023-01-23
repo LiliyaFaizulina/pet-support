@@ -1,6 +1,18 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const UserNavBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    margin-left: auto;
+    margin-right: 0;
+  }
+`;
+
 export const UserNavLink = styled(Link)`
   display: flex;
   text-decoration: none;
