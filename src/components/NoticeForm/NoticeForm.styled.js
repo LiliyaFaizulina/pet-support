@@ -23,26 +23,28 @@ export const Form = styled.form`
 export const FormWrapper = styled.div`
 `;
 
+export const SexLabel = styled.label`
+    display: flex;
+    flex-direction: column;;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: transform 250ms ease-in-out, color 100ms ease-in-out;
+    &:hover, 
+    &:focus {
+        transform: scale(1.1);
+    }
+    color: ${p => p.checkedSex && '#F59256'};
+`;
+
 export const Label = styled.label`
     position: relative;
     font-size: 18px;
     @media screen and (min-width: 768px){
         font-size: 24px;
     }
-
-    display: ${p => p.sexField && 'flex'};
-    flex-direction: ${p => p.sexField && 'column'};;
-    align-items: ${p => p.sexField && 'center'};
-    gap: ${p => p.sexField && '20px'};
-    font-size: ${p => p.sexField && '20px'};
-    line-height: ${p => p.sexField && '1.3'};
-    cursor: ${p => p.sexField && 'pointer'};
-    transition: ${p => p.sexField && 'transform 250ms ease-in-out, color 100ms ease-in-out'};
-    &:hover, 
-    &:focus {
-        transform: ${p => p.sexField && 'scale(1.1)'};
-    }
-    color: ${p => p.checkedSex && '#F59256'};
 `;
 
 export const Textarea = styled.textarea`
