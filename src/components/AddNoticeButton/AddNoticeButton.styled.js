@@ -15,7 +15,7 @@ export const NoticeButton = styled.button`
   @media screen and (max-width: 767px) {
     position: fixed;
     right: 20px;
-    top: 400px;
+    bottom: 100px;
     z-index: 2;
   }
   border: none;

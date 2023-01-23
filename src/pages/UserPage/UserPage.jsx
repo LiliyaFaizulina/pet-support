@@ -28,7 +28,7 @@ const UserPage = () => {
         <PetsData openModal={openModal} />
       </UserPageContainer>
       {isModalOpen && (
-        <Backdrop closeModal={closeModal} isOpen={isModalOpen}>
+        <Backdrop closeModal={closeModal}>
           <PetForm closeModal={closeModal} />
         </Backdrop>
       )}
