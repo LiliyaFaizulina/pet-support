@@ -70,7 +70,7 @@ export const ListItem = styled.li`
 export const Span = styled.span`
   position: absolute;
   top: 0;
-  left: 30%;
+  left: 94px;
 
   @media ${p => p.theme.media.tablet} {
     left: 90px;
