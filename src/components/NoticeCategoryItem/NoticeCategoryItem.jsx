@@ -112,15 +112,23 @@ export const NoticeCategoryItem = ({
 
       <Wrapper>
         <TitleWrapper>
-          <Title>{title}</Title>
+          <Title>
+            {title.length > 30 ? `${title.slice(0, 25)}...` : title}
+          </Title>
         </TitleWrapper>
 
         <List length={category === 'sell' ? 4 : 3}>
           <ListItem>
-            Breed: <Span>{breed}</Span>
+            Breed:{' '}
+            <Span>
+              {breed.length > 15 ? `${breed.slice(0, 12)}...` : breed}
+            </Span>
           </ListItem>
           <ListItem>
-            Place: <Span>{place}</Span>
+            Place:{' '}
+            <Span>
+              {place.length > 15 ? `${place.slice(0, 12)}...` : place}
+            </Span>
           </ListItem>
           <ListItem>
             Age: <Span>{dateOfBirth ? ageMessage : 'no information'}</Span>
