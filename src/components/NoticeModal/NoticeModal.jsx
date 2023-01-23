@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TfiClose } from 'react-icons/tfi';
 import { AiFillHeart } from 'react-icons/ai';
+import { GiCat } from 'react-icons/gi';
 import { toast } from 'react-toastify';
 import { getNotice } from 'redux/notices/noticesOperations';
 import { updateFavoriteStatus } from 'redux/auth/authOperations';
@@ -43,7 +44,9 @@ export const NoticeModal = ({ id, closeModal }) => {
 
   const toggleFavorite = () => {
     if (!isAuth) {
-      toast.info('You should be logged in to add to favorites');
+      toast.info('You should be logged in to add to favorites', {
+        icon: <GiCat />,
+      });
       return;
     }
     dispatch(updateFavoriteStatus(id));

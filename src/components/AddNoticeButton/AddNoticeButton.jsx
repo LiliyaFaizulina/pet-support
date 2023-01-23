@@ -7,7 +7,7 @@ export const AddNoticeButton = ({ openModalBtn }) => {
   return (
     <BoxForButton>
       {!isMobile && 'Add pet'}
-      <NoticeButton type="button" onClick={() => openModalBtn(true)}>
+      <NoticeButton type="button" onClick={openModalBtn}>
         <TfiPlus />
         {isMobile && 'Add pet'}
       </NoticeButton>
