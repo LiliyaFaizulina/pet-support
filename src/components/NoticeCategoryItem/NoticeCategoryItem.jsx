@@ -119,13 +119,13 @@ export const NoticeCategoryItem = ({
 
         <List length={category === 'sell' ? 4 : 3}>
           <ListItem>
-            Breed:{' '}
+            Breed:
             <Span>
               {breed.length > 15 ? `${breed.slice(0, 12)}...` : breed}
             </Span>
           </ListItem>
           <ListItem>
-            Place:{' '}
+            Place:
             <Span>
               {place.length > 15 ? `${place.slice(0, 12)}...` : place}
             </Span>
