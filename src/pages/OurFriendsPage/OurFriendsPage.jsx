@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ScrollToTop from 'react-scroll-to-top';
 
 import { getFriends } from 'redux/friends/friendsOperations';
 import {
@@ -29,6 +30,7 @@ const OurFriendsPage = () => {
         {!isLoading && error && <h2>Server error. Please, try again later.</h2>}
         {!isLoading && !error && <FriendsList friends={data} />}
       </Container>
+      <ScrollToTop smooth color="#F59256" />
     </Section>
   );
 };
