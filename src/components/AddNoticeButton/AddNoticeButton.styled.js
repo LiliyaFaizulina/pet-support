@@ -14,7 +14,7 @@ export const BoxForButton = styled.div`
 export const NoticeButton = styled.button`
   @media screen and (max-width: 767px) {
     position: fixed;
-    left: calc(50% + 60px);
+    right: 20px;
     top: 400px;
     z-index: 2;
   }
