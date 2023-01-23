@@ -17,12 +17,12 @@ import {
   deleteNotice,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
-import { Container } from 'utils/GlobalStyle';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
 import ScrollToTop from 'react-scroll-to-top';
+import { CustomizedContainer } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -80,7 +80,7 @@ const NoticesPage = () => {
   };
 
   return (
-    <Container>
+    <CustomizedContainer>
       <NoticesSearch
         onSubmit={onSearchSubmit}
         onChange={onSearchChange}
@@ -109,7 +109,7 @@ const NoticesPage = () => {
           )}
         </Backdrop>
       )}
-    </Container>
+    </CustomizedContainer>
   );
 };
 
