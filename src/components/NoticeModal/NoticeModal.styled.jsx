@@ -47,15 +47,18 @@ export const CloseBtn = styled.button`
   svg {
     width: 19px;
     height: 19px;
+    fill: currentColor;
   }
   @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;
   }
-  transition: transform ${p => p.theme.transition};
+  transition: transform ${p => p.theme.transition},
+    color transform ${p => p.theme.transition};
   &:hover,
   &:focus {
     transform: scale(1.05);
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
@@ -163,10 +166,31 @@ export const ContactLink = styled.a`
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
   margin-bottom: 12px;
-  transition: box-shadow ${p => p.theme.transition};
-  &:hover,
-  &:focus {
-    box-shadow: 1px 1px 1px 1px ${p => p.theme.colors.hoverBtn};
+  transition: transform ${p => p.theme.transition};
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
   }
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
@@ -193,10 +217,31 @@ export const ToggleFavoriteBtn = styled.button`
   font-size: 16px;
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
-  transition: box-shadow ${p => p.theme.transition};
-  &:hover,
-  &:focus {
-    box-shadow: 1px 1px 1px 1px ${p => p.theme.colors.accent};
+  transition: transform ${p => p.theme.transition};
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );
+    transition: all 650ms;
   }
   @media screen and (min-width: 768px) {
     width: 160px;

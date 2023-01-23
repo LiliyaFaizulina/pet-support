@@ -19,10 +19,7 @@ export const Navigation = () => {
   };
 
   const close = e => {
-    if (
-      e.currentTarget.nodeName === 'A' ||
-      e.currentTarget.nodeName === 'BUTTON'
-    ) {
+    if (e.target.nodeName === 'A' || e.currentTarget.nodeName === 'BUTTON') {
       setIsBurgerNavOpen(false);
     }
   };
