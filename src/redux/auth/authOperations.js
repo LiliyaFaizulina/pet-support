@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://pet-support-test2.onrender.com/api',
 });
 
 const token = {
