@@ -22,6 +22,7 @@ import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
+import ScrollToTop from 'react-scroll-to-top';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
