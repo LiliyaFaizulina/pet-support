@@ -7,7 +7,7 @@ import desktopBackground from '../../images/desktopAuthBackground.png';
 
 export const FormContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 82px);
+  min-height: calc(100vh - 58px);
   background-image: url(${mobileBackground});
   background-position: bottom;
   background-repeat: no-repeat;
@@ -16,7 +16,7 @@ export const FormContainer = styled.div`
   @media (min-width: 768px) {
     background-image: url(${tabletBackground});
     padding-top: 184px;
-    height: calc(100vh - 88px);
+    min-height: calc(100vh - 64px);
   }
   @media (min-width: 1280px) {
     background-image: url(${desktopBackground});
