@@ -8,7 +8,7 @@ import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 
-export const BurgerNav = ({ close }) => {
+export const BurgerNav = ({ close, setIsBurgerNavOpen }) => {
   const isAuth = useSelector(selectIsAuth);
   const isMobile = useMedia('(max-width: 767px)');
   const isDesktop = useMedia('(min-width: 1280px)');
@@ -16,16 +16,21 @@ export const BurgerNav = ({ close }) => {
     close();
   }
   return (
-    <BurgerNavMenu onClick={close}>
+    <BurgerNavMenu
+      onClick={close}
+      // onClick={() => setIsBurgerNavOpen(false)}
+    >
       <LogoMenu>
         <Logo />
         <BurgerNavCloseBtn onClick={close} />
       </LogoMenu>
+      {/* <div onClick={e => e.stopPropagation()}> */}
       <UserAuthMenu>
         {isMobile && isAuth && <UserNav />}
         {isMobile && !isAuth && <AuthNav />}
       </UserAuthMenu>
       <Nav />
+      {/* </div> */}
     </BurgerNavMenu>
   );
 };

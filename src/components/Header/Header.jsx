@@ -5,11 +5,13 @@ import { Navigation } from 'components/Navigation/Navigation';
 
 export const Header = () => {
   return (
-    <Container>
-      <HeaderBlok>
-        <Logo />
-        <Navigation />
-      </HeaderBlok>
-    </Container>
+    <header>
+      <Container>
+        <HeaderBlok>
+          <Logo />
+          <Navigation />
+        </HeaderBlok>
+      </Container>
+    </header>
   );
 };

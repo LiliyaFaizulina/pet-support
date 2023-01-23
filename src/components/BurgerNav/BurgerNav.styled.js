@@ -9,6 +9,7 @@ export const BurgerNavMenu = styled.div`
   top: 0;
   right: 0;
   padding: 20px 16px;
+  background: ${p => p.theme.colors.mainBackground};
 `;
 
 export const LogoMenu = styled.div`
