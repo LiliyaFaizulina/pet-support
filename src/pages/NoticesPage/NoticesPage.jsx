@@ -19,6 +19,7 @@ import {
 import { Container } from 'utils/GlobalStyle';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import ScrollToTop from 'react-scroll-to-top';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -84,6 +85,7 @@ const NoticesPage = () => {
           openNoticeModal={openNoticeModal}
         />
       )}
+      <ScrollToTop smooth color="#F59256" />
       {openModal && (
         <Backdrop closeModal={closeModal} isOpen={openModal}>
           {Boolean(noticeToShow) ? (
