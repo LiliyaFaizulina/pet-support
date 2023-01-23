@@ -13,6 +13,7 @@ import {
   AcseptButton,
   BackButton,
   AddButton,
+  ButtonWrapper,
 } from './PetForm.styled';
 
 export const PetForm = ({ closeModal }) => {
@@ -40,12 +41,14 @@ export const PetForm = ({ closeModal }) => {
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
-      .max(16, 'Breed must contain no more than 24 symbols'),
+      .max(16, 'Breed must contain no more than 24 symbols')
+      .required('Field required'),
     petAvatar: yup.string().required('Image is required'),
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
-      .max(120, 'Comment must contain no more than 120 symbols'),
+      .max(120, 'Comment must contain no more than 120 symbols')
+      .required('Field required'),
   });
 
   const { handleSubmit, values, handleChange, errors, touched } = useFormik({
@@ -113,22 +116,24 @@ export const PetForm = ({ closeModal }) => {
             />
             {errors.breed || touched.breed ? <p>{errors.breed}</p> : null}
           </label>
-          <BackButton type="button" onClick={closeModal}>
-            Cancel
-          </BackButton>
-          <AcseptButton
-            type="button"
-            onClick={() => {
-              const { name, birthday, breed } = values;
-              if (!name || !birthday || !breed) {
-                toast.info('Please fill in required fields');
-                return;
-              }
-              changePage(1);
-            }}
-          >
-            Next
-          </AcseptButton>
+          <ButtonWrapper>
+            <BackButton type="button" onClick={closeModal}>
+              Cancel
+            </BackButton>
+            <AcseptButton
+              type="button"
+              onClick={() => {
+                const { name, birthday, breed } = values;
+                if (!name || !birthday || !breed) {
+                  toast.info('Please fill in required fields');
+                  return;
+                }
+                changePage(1);
+              }}
+            >
+              Next
+            </AcseptButton>
+          </ButtonWrapper>
         </FormPage>
         <FormPage isHidden={page === 1}>
           <label>
@@ -176,15 +181,17 @@ export const PetForm = ({ closeModal }) => {
               <p>{errors.comments}</p>
             ) : null}
           </label>
-          <AcseptButton type="submit">Done</AcseptButton>
-          <BackButton
-            type="button"
-            onClick={() => {
-              changePage(-1);
-            }}
-          >
-            Back
-          </BackButton>
+          <ButtonWrapper>
+            <BackButton
+              type="button"
+              onClick={() => {
+                changePage(-1);
+              }}
+            >
+              Back
+            </BackButton>
+            <AcseptButton type="submit">Done</AcseptButton>
+          </ButtonWrapper>
         </FormPage>
       </form>
     </FormBox>
