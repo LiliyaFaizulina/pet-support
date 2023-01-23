@@ -10,7 +10,6 @@ export const NoticesCategoriesList = ({
   openNoticeModal,
 }) => {
   const isLoading = useSelector(selectIsLoading);
-  console.log(notices);
 
   return (
     <>
