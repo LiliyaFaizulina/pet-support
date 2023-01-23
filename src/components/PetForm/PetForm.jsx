@@ -6,7 +6,14 @@ import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { addPet } from 'redux/auth/authOperations';
-import { FormPage, FormBox, CloseBtn } from './PetForm.styled';
+import {
+  FormPage,
+  FormBox,
+  CloseBtn,
+  AcseptButton,
+  BackButton,
+  AddButton,
+} from './PetForm.styled';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -106,10 +113,10 @@ export const PetForm = ({ closeModal }) => {
             />
             {errors.breed || touched.breed ? <p>{errors.breed}</p> : null}
           </label>
-          <button type="button" onClick={closeModal}>
+          <BackButton type="button" onClick={closeModal}>
             Cancel
-          </button>
-          <button
+          </BackButton>
+          <AcseptButton
             type="button"
             onClick={() => {
               const { name, birthday, breed } = values;
@@ -121,7 +128,7 @@ export const PetForm = ({ closeModal }) => {
             }}
           >
             Next
-          </button>
+          </AcseptButton>
         </FormPage>
         <FormPage isHidden={page === 1}>
           <label>
@@ -141,7 +148,7 @@ export const PetForm = ({ closeModal }) => {
                 handleChange(e);
               }}
             />
-            <button type="button" onClick={handleClick}>
+            <AddButton type="button" onClick={handleClick}>
               {values.petAvatar ? (
                 <img
                   src={imageLink}
@@ -152,7 +159,7 @@ export const PetForm = ({ closeModal }) => {
               ) : (
                 <TfiPlus />
               )}
-            </button>
+            </AddButton>
             {errors.petAvatar || touched.petAvatar ? (
               <p>{errors.petAvatar}</p>
             ) : null}
@@ -169,15 +176,15 @@ export const PetForm = ({ closeModal }) => {
               <p>{errors.comments}</p>
             ) : null}
           </label>
-          <button type="submit">Done</button>
-          <button
+          <AcseptButton type="submit">Done</AcseptButton>
+          <BackButton
             type="button"
             onClick={() => {
               changePage(-1);
             }}
           >
             Back
-          </button>
+          </BackButton>
         </FormPage>
       </form>
     </FormBox>
