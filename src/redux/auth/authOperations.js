@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://pet-support-test2.onrender.com/api',
 });
 
 const token = {
@@ -120,9 +120,11 @@ export const deletePet = createAsyncThunk(
   'auth/deletePet',
   async (id, { rejectWithValue }) => {
     try {
-      await instance.delete(`/pets/${id}`);
+      const result = await instance.delete(`/pets/${id}`);
+      toast.success(`😿 ${result.data.result.name} was removed`);
       return id;
     } catch (error) {
+      toast.error(`😿 was not removed`);
       return rejectWithValue(error.message);
     }
   }

@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsLoading, selectError } from 'redux/auth/authSelectors';
+import { selectIsLoading } from 'redux/auth/authSelectors';
 import { deletePet } from 'redux/auth/authOperations';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import devaultIcon from '../../images/default-icon-pets.png';
 import {
@@ -17,14 +15,10 @@ import {
 } from './PetsListItem.styled';
 const PetsListItem = ({ id, name, birthday, breed, comment, petAvatar }) => {
   const isDeleting = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
 
   const dispatch = useDispatch();
-  const removePet = async id => {
+  const removePet = id => {
     dispatch(deletePet(id));
-    (await error)
-      ? toast.warning(`😿 ${name} was not removed`)
-      : toast.success(`😿 ${name} was removed`);
   };
 
   return (
@@ -58,7 +52,6 @@ const PetsListItem = ({ id, name, birthday, breed, comment, petAvatar }) => {
           {comment}
         </InfoPet>
       </BoxInfo>
-      <ToastContainer />
     </PetItem>
   );
 };
