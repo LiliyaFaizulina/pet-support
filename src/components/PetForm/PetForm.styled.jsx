@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const FormBox = styled.div`
+  max-width: 280px;
+  background-color: white;
+`;
+export const CloseBtn = styled.div`
+  background-color: transparent;
+  margin-left: auto;
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
 export const FormPage = styled.div`
   ${p => {
     if (p.isHidden) {
@@ -14,7 +27,11 @@ export const FormPage = styled.div`
     clip: rect(0 0 0 0);
     overflow: hidden;`;
     } else {
-      return `position: relative;`;
+      return `
+      position: relative;
+      `;
     }
   }}
+  display:flex;
+  flex-direction: column;
 `;
