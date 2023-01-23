@@ -3,13 +3,29 @@ import styled from 'styled-components';
 export const Card = styled.div`
   background-color: ${p => p.theme.colors.secondaryBackground};
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
-  width: 280px;
+  width: calc(100% - 40px);
   padding: 60px 20px 40px;
-  position: relative;
+
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media screen and (min-width: 420px) {
+    width: 380px;
+  }
+
   @media screen and (min-width: 768px) {
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 32px 20px;
     width: 704px;
   }
+`;
+
+export const StyledWrapper = styled.div`
+  flex-shrink: 0;
+  flex-grow: 1;
 `;
 
 export const FlexContainer = styled.div`
@@ -64,7 +80,7 @@ export const CloseBtn = styled.button`
 
 export const Wrapper = styled.div`
   position: relative;
-  width: 240px;
+  width: 100%;
   height: 240px;
   border-radius: 0 0 40px 40px;
   overflow: hidden;
@@ -114,6 +130,7 @@ export const NoticeTitle = styled.h3`
 
 export const NoticeInfoItem = styled.li`
   position: relative;
+  overflow: hidden;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -156,7 +173,7 @@ export const ContactLink = styled.a`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 100%;
   height: 40px;
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.secondaryBackground};
@@ -210,7 +227,7 @@ export const ToggleFavoriteBtn = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 100%;
   height: 40px;
   gap: 8px;
   font-weight: 500;
