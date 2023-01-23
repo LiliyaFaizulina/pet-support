@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { IoTrashSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
+import { GiCat } from 'react-icons/gi';
 import {
   selectFavoriteNoticesIds,
   selectIsAuth,
@@ -96,7 +97,9 @@ export const NoticeCategoryItem = ({
 
   const toggleFavorite = () => {
     if (!isAuth) {
-      toast.info('You should be logged in to add to favorites');
+      toast.info('You should be logged in to add to favorites', {
+        icon: <GiCat />,
+      });
       return;
     }
 

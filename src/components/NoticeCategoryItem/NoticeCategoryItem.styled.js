@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   position: relative;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
   background-color: ${p => p.theme.colors.secondaryBackground};
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
   border-radius: 0px 0px 20px 20px;
@@ -9,6 +13,7 @@ export const Item = styled.li`
 
   @media ${p => p.theme.media.tablet} {
     width: calc((100% - 32px) / 2);
+    margin: 0;
     border-radius: 0px 0px 40px 40px;
   }
 
@@ -18,18 +23,10 @@ export const Item = styled.li`
 `;
 
 export const Img = styled.img`
-  width: 280px;
+  width: 100%;
   height: 288px;
   object-fit: cover;
   margin-bottom: 20px;
-
-  @media ${p => p.theme.media.tablet} {
-    width: 336px;
-  }
-
-  @media ${p => p.theme.media.desktop} {
-    width: 288px;
-  }
 `;
 
 export const Wrapper = styled.div`
@@ -73,7 +70,7 @@ export const ListItem = styled.li`
 export const Span = styled.span`
   position: absolute;
   top: 0;
-  left: 94px;
+  left: 30%;
 
   @media ${p => p.theme.media.tablet} {
     left: 90px;
