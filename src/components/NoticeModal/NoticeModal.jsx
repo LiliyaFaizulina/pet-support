@@ -82,7 +82,8 @@ export const NoticeModal = ({ id, closeModal }) => {
                   Birthday: <span>{transformDate(notice.dateOfBirth)}</span>
                 </NoticeInfoItem>
                 <NoticeInfoItem>
-                  Breed: <span>{notice.breed}</span>
+                  Breed:{' '}
+                  <span>{notice.breed ? notice.breed : 'not indicated'}</span>
                 </NoticeInfoItem>
                 <NoticeInfoItem>
                   Location: <span>{notice.location}</span>

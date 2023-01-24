@@ -183,13 +183,12 @@ export const ContactLink = styled.a`
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
   margin-bottom: 12px;
-  transition: transform ${p => p.theme.transition};
+  transition: transform 0.5s;
   position: relative;
   overflow: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
-    transition: transform 0.5s;
   }
   :hover:before {
     left: 100%;
@@ -234,13 +233,12 @@ export const ToggleFavoriteBtn = styled.button`
   font-size: 16px;
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
-  transition: transform ${p => p.theme.transition};
+  transition: transform 0.5s;
   position: relative;
   overflow: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
-    transition: transform 0.5s;
   }
   :hover:before {
     left: 100%;
