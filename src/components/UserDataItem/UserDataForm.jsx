@@ -142,7 +142,7 @@ const UserDataForm = () => {
                             defaultValue={result.birthday}
                             name={'birthday'}
                             type="date"
-                            min="2020-01-01"
+                            min="1940-01-01"
                             max={maxDate}
                             pattern={dateRegexp}
                           />
