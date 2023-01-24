@@ -73,6 +73,7 @@ export const NoticeCategoryItem = ({
     'twenty',
   ];
 
+  const breedLength = breed.length > 18 ? `${breed.slice(0, 16)}...` : breed;
   const currentDate = new Date();
   const birthDate = new Date(dateOfBirth);
   const msInYear = 31536000000;
@@ -119,15 +120,13 @@ export const NoticeCategoryItem = ({
 
         <List length={category === 'sell' ? 4 : 3}>
           <ListItem>
-            Breed:{' '}
-            <Span>
-              {breed.length > 15 ? `${breed.slice(0, 12)}...` : breed}
-            </Span>
+            Breed:
+            <Span>{breed ? breedLength : 'no information'}</Span>
           </ListItem>
           <ListItem>
-            Place:{' '}
+            Place:
             <Span>
-              {place.length > 15 ? `${place.slice(0, 12)}...` : place}
+              {place.length > 18 ? `${place.slice(0, 16)}...` : place}
             </Span>
           </ListItem>
           <ListItem>

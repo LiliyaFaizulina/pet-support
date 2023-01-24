@@ -7,15 +7,34 @@ export const FormBox = styled.div`
   background-color: white;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.36;
     text-align: center;
+    margin-bottom: 20px;
+    @media (min-width: 768px) {
+      font-size: 36px;
+    }
   }
   label {
-    position: relative;
-    p {
-      position: absolute;
-      color: red;
-      font-size: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.44;
+    @media (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.08;
     }
+  }
+  p {
+    position: absolute;
+    color: red;
+    font-size: 12px;
+    left: 15px;
+  }
+
+  @media (min-width: 768px) {
+    width: 608px;
+    padding: 40px 80px;
   }
 `;
 export const CloseBtn = styled.div`
@@ -52,6 +71,9 @@ export const FormPage = styled.div`
   display:flex;
   flex-direction: column;
   gap: 16px;
+  @media (min-width: 768px) {
+    gap: 28px;
+  }
   input,
   textarea {
     width: 100%;
@@ -60,9 +82,13 @@ export const FormPage = styled.div`
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
     margin-top: 8px;
+
     &:focus,
     &:hover {
       outline: none;
+    }
+    @media (min-width: 768px) {
+      margin-top: 12px;
     }
   }
   textarea {
@@ -72,9 +98,11 @@ export const FormPage = styled.div`
 `;
 
 export const AddButton = styled.button`
+  display: list-item;
   width: 208px;
   height: 208px;
   margin: 0 auto;
+  margin-top: 20px;
   background-color: #fdf7f2;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   svg {
@@ -86,18 +114,31 @@ export const AddButton = styled.button`
     width: inherit;
     height: inherit;
     object-fit: cover;
+    border-radius: inherit;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 12px;
   }
 `;
 
 export const AcseptButton = styled.button`
   width: 100%;
+  height: 40px;
   padding: 7px 0 8px;
   text-align: center;
   color: #fff;
   background: #f59256;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-
+  margin-top: 24px;
   transform: scale(1);
   transition: transform 0.5s;
   cursor: pointer;
@@ -138,12 +179,17 @@ export const AcseptButton = styled.button`
   }
   @media (min-width: 768px) {
     font-size: 20px;
+    width: 180px;
+    height: 44px;
+    margin-top: 0px;
   }
 `;
 export const BackButton = styled(AcseptButton)`
   color: #000;
   background: #fff;
   border: 1px solid #f59256;
+  order: 2;
+  margin-top: 0;
   :before {
     background: linear-gradient(
       120deg,
@@ -151,5 +197,8 @@ export const BackButton = styled(AcseptButton)`
       rgba(245, 146, 86, 0.9),
       transparent
     );
+  }
+  @media (min-width: 768px) {
+    order: 0;
   }
 `;
