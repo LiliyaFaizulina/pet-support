@@ -68,7 +68,7 @@ export const Form1 = styled(Form)`
 
 export const Input = styled(Field)`
   width: 280px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.3;
   padding: 11px 0 12px 14px;
   background: #fdf7f2;
@@ -81,6 +81,7 @@ export const Input = styled(Field)`
   }
   @media (min-width: 768px) {
     width: 448px;
+    font-size: 14px;
     padding: 14px 0 13px 32px;
   }
   @media (min-width: 1280px) {
