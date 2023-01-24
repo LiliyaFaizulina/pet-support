@@ -81,7 +81,7 @@ export const Input = styled(Field)`
   }
   @media (min-width: 768px) {
     width: 448px;
-    font-size: 14px;
+    font-size: 18px;
     padding: 14px 0 13px 32px;
   }
   @media (min-width: 1280px) {
