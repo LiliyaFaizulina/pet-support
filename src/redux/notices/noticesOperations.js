@@ -38,7 +38,7 @@ export const addNotice = createAsyncThunk(
       toast.success('New notice added', { icon: <SiGnuicecat /> });
       return data;
     } catch (error) {
-      toast.success(error.response.data.message, { icon: <FaDog /> });
+      toast.error(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
@@ -52,7 +52,7 @@ export const deleteNotice = createAsyncThunk(
       toast.success('Notice deleted', { icon: <SiGnuicecat /> });
       return id;
     } catch (error) {
-      toast.success(error.response.data.message, { icon: <FaDog /> });
+      toast.error(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
