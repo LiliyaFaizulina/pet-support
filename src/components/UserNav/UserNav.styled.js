@@ -38,6 +38,32 @@ export const UserNavLink = styled(Link)`
   @media (min-width: 1280px) {
     margin-left: auto;
   }
+
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export const UserNavIcon = styled.img`
