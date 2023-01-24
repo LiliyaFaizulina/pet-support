@@ -121,9 +121,9 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 0px;
+    margin-bottom: 8px;
     @media ${p => p.theme.media.desktop} {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
   @media ${p => p.theme.media.tablet} {
@@ -256,4 +256,5 @@ export const ErrorText = styled.div`
   font-weight: ${p => p.theme.fontWeights.bold};
   font-style: italic;
   bottom: -12px;
+  z-index: 2;
 `;

@@ -75,7 +75,7 @@ const UserDataItem = ({
       <EditTextBtn onClick={handleClick}>
         {active ? <IconCheck /> : <EditTextBtnIcon />}
       </EditTextBtn>
-      {!isValid && <ErrorText>{errorText}</ErrorText>}
+      {!isValid && active && <ErrorText>{errorText}</ErrorText>}
     </>
   );
 };
