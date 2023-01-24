@@ -44,9 +44,56 @@ export const AuthNavLink = styled(NavLink)`
     line-height: 1.35;
   }
 
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );
+    transition: all 650ms;
+  }
+
   &.active {
     background: ${p => p.theme.colors.accent};
     border-radius: 40px;
     color: ${p => p.theme.colors.secondaryBackground};
+
+    :hover:before {
+      left: 100%;
+    }
+
+    :before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      );
+      transition: all 650ms;
+    }
   }
 `;
