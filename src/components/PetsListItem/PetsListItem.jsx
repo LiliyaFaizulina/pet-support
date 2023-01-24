@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
-import { deletePet } from 'redux/auth/authOperations';
 
 import devaultIcon from '../../images/default-icon-pets.png';
 import {
@@ -13,13 +12,16 @@ import {
   DeleteBtm,
   DelIcon,
 } from './PetsListItem.styled';
-const PetsListItem = ({ id, name, birthday, breed, comment, petAvatar }) => {
+const PetsListItem = ({
+  id,
+  name,
+  birthday,
+  breed,
+  comment,
+  petAvatar,
+  openDeleteModal,
+}) => {
   const isDeleting = useSelector(selectIsLoading);
-
-  const dispatch = useDispatch();
-  const removePet = id => {
-    dispatch(deletePet(id));
-  };
 
   return (
     <PetItem>
@@ -31,7 +33,7 @@ const PetsListItem = ({ id, name, birthday, breed, comment, petAvatar }) => {
         <DeleteBtm
           type="button"
           disabled={isDeleting}
-          onClick={() => removePet(id)}
+          onClick={() => openDeleteModal(id)}
         >
           <DelIcon />
         </DeleteBtm>
@@ -65,4 +67,5 @@ PetsListItem.prototype = {
   breed: PropTypes.string.isRequired,
   comments: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
+  openDeleteModal: PropTypes.func,
 };

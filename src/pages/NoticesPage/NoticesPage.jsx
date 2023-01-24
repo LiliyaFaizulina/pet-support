@@ -24,11 +24,13 @@ import { toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from 'react-scroll-to-top';
 import { CustomizedContainer } from './NoticesPage.styled';
+import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [noticeToShow, setNoticeToShow] = useState('');
+  const [noticeToDelete, setNoticeToDelete] = useState('');
 
   const notices = useSelector(selectNoticesByCategory);
   const isAuth = useSelector(selectIsAuth);
@@ -42,6 +44,11 @@ const NoticesPage = () => {
   useEffect(() => {
     dispatch(getNoticesByCategory(categoryName));
   }, [dispatch, categoryName]);
+
+  const openConfirmModal = id => {
+    setOpenModal(true);
+    setNoticeToDelete(id);
+  };
 
   const onSearchSubmit = e => {
     e.preventDefault();
@@ -58,11 +65,14 @@ const NoticesPage = () => {
 
   const deleteOwnNotice = id => {
     dispatch(deleteNotice(id));
+    setOpenModal(false);
+    setNoticeToDelete('');
   };
 
   const closeModal = () => {
     setOpenModal(false);
     setNoticeToShow('');
+    setNoticeToDelete('');
   };
 
   const openAddNoticeModal = () => {
@@ -96,7 +106,7 @@ const NoticesPage = () => {
       {!isLoading && (
         <NoticesCategoriesList
           notices={filterText ? filteredNotices : notices}
-          deleteOwnNotice={deleteOwnNotice}
+          deleteOwnNotice={openConfirmModal}
           openNoticeModal={openNoticeModal}
         />
       )}
@@ -104,9 +114,18 @@ const NoticesPage = () => {
       {openModal && (
         <AnimatePresence>
           <Backdrop closeModal={closeModal}>
-            {Boolean(noticeToShow) ? (
+            {!!noticeToShow && (
               <NoticeModal closeModal={closeModal} id={noticeToShow} />
-            ) : (
+            )}
+            {!!noticeToDelete && (
+              <ConfirmModal
+                text="delete this notice"
+                close={closeModal}
+                handleClick={deleteOwnNotice}
+                id={noticeToDelete}
+              />
+            )}
+            {!noticeToDelete && !noticeToShow && (
               <NoticeForm closeModal={closeModal} />
             )}
           </Backdrop>

@@ -1,5 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from 'redux/auth/authOperations';
+import { toast } from 'react-toastify';
+import { SiGnuicecat } from 'react-icons/si';
+import { FaDog } from 'react-icons/fa';
 
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
@@ -32,8 +35,10 @@ export const addNotice = createAsyncThunk(
       const { data } = await instance.post(`/notices/notice`, notice, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      toast.success('New notice added', { icon: <SiGnuicecat /> });
       return data;
     } catch (error) {
+      toast.success(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
@@ -44,8 +49,10 @@ export const deleteNotice = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       await instance.delete(`/notices/${id}`);
+      toast.success('Notice deleted', { icon: <SiGnuicecat /> });
       return id;
     } catch (error) {
+      toast.success(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
