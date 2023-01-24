@@ -77,7 +77,7 @@ export const NoticeForm = ({ closeModal }) => {
       .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
     price: yup.number().min(1).positive().integer(),
     image: yup.string().required('Image is required'),
-    comment: yup
+    comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
       .max(120, 'Comment must contain no more than 120 symbols'),
@@ -94,7 +94,7 @@ export const NoticeForm = ({ closeModal }) => {
       location: '',
       price: 1,
       image: '',
-      comment: '',
+      comments: '',
     },
     validationSchema,
     onSubmit: values => {
@@ -320,13 +320,13 @@ export const NoticeForm = ({ closeModal }) => {
             Comments
             <Textarea
               type="text"
-              name="comment"
-              value={values.comment}
+              name="comments"
+              value={values.comments}
               placeholder="Type comments"
               onChange={handleChange}
             ></Textarea>
-            {errors.comment || touched.comment ? (
-              <ErrorMessage Input>{errors.comment}</ErrorMessage>
+            {errors.comments || touched.comments ? (
+              <ErrorMessage Input>{errors.comments}</ErrorMessage>
             ) : null}
           </Label>
           <BtnWrapper>
