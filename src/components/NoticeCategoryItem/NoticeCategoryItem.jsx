@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { IoTrashSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
+import { GiCat } from 'react-icons/gi';
 import {
   selectFavoriteNoticesIds,
   selectIsAuth,
@@ -72,6 +73,7 @@ export const NoticeCategoryItem = ({
     'twenty',
   ];
 
+  const breedLength = breed.length > 18 ? `${breed.slice(0, 16)}...` : breed;
   const currentDate = new Date();
   const birthDate = new Date(dateOfBirth);
   const msInYear = 31536000000;
@@ -96,7 +98,9 @@ export const NoticeCategoryItem = ({
 
   const toggleFavorite = () => {
     if (!isAuth) {
-      toast.info('You should be logged in to add to favorites');
+      toast.info('You should be logged in to add to favorites', {
+        icon: <GiCat />,
+      });
       return;
     }
 
@@ -109,15 +113,21 @@ export const NoticeCategoryItem = ({
 
       <Wrapper>
         <TitleWrapper>
-          <Title>{title}</Title>
+          <Title>
+            {title.length > 30 ? `${title.slice(0, 25)}...` : title}
+          </Title>
         </TitleWrapper>
 
         <List length={category === 'sell' ? 4 : 3}>
           <ListItem>
-            Breed: <Span>{breed}</Span>
+            Breed:
+            <Span>{breed ? breedLength : 'no information'}</Span>
           </ListItem>
           <ListItem>
-            Place: <Span>{place}</Span>
+            Place:
+            <Span>
+              {place.length > 18 ? `${place.slice(0, 16)}...` : place}
+            </Span>
           </ListItem>
           <ListItem>
             Age: <Span>{dateOfBirth ? ageMessage : 'no information'}</Span>

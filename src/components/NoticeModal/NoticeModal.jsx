@@ -30,6 +30,7 @@ import {
   Comment,
   FlexContainer,
   BtnContainer,
+  StyledWrapper,
 } from './NoticeModal.styled';
 
 export const NoticeModal = ({ id, closeModal }) => {
@@ -71,7 +72,7 @@ export const NoticeModal = ({ id, closeModal }) => {
               <Image src={notice.image} alt="pet" />
               <Overlay>{transformCategoryName(notice.category)}</Overlay>
             </Wrapper>
-            <div>
+            <StyledWrapper>
               <NoticeTitle>{notice.title}</NoticeTitle>
               <ul>
                 <NoticeInfoItem>
@@ -101,7 +102,7 @@ export const NoticeModal = ({ id, closeModal }) => {
                   </NoticeInfoItem>
                 )}
               </ul>
-            </div>
+            </StyledWrapper>
           </FlexContainer>
           <Comment>
             Comments: <span>{notice.comments}</span>

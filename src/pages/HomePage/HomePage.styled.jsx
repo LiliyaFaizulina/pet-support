@@ -30,6 +30,7 @@ export const Heading = styled.h1`
 export const Section = styled.section`
   padding-top: 60px;
   min-height: 543px;
+  height: calc(100vh - 58px);
   background-repeat: no-repeat;
   background-position: bottom;
   background-image: url(${portraitMobile}), url(${waveMobile});
@@ -42,7 +43,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: 768px) {
-    min-height: 1108px;
+    min-height: 1130px;
     padding-top: 88px;
     background-image: url(${portraitTablet}), url(${waveTablet});
     background-size: 645px 715px, 100vw 1033px;
@@ -56,7 +57,8 @@ export const Section = styled.section`
   @media screen and (min-width: 1280px) {
     padding-top: 92px;
     padding-bottom: 408px;
-    min-height: calc(100vh - 64px);
+    min-height: 704px;
+    height: calc(100vh - 64px);
     background-image: url(${portraitDesktop}), url(${waveDesktop}),
       url(${union});
     background-size: 590px 640px, 100vw calc(100vw * 0.375), 92px 89px;

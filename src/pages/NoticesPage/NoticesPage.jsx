@@ -17,11 +17,13 @@ import {
   deleteNotice,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
-import { Container } from 'utils/GlobalStyle';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
+import ScrollToTop from 'react-scroll-to-top';
+import { CustomizedContainer } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -79,7 +81,7 @@ const NoticesPage = () => {
   };
 
   return (
-    <Container>
+    <CustomizedContainer>
       <NoticesSearch
         onSubmit={onSearchSubmit}
         onChange={onSearchChange}
@@ -98,16 +100,19 @@ const NoticesPage = () => {
           openNoticeModal={openNoticeModal}
         />
       )}
+      <ScrollToTop smooth color="#F59256" />
       {openModal && (
-        <Backdrop closeModal={closeModal} isOpen={openModal}>
-          {Boolean(noticeToShow) ? (
-            <NoticeModal closeModal={closeModal} id={noticeToShow} />
-          ) : (
-            <NoticeForm closeModal={closeModal} />
-          )}
-        </Backdrop>
+        <AnimatePresence>
+          <Backdrop closeModal={closeModal}>
+            {Boolean(noticeToShow) ? (
+              <NoticeModal closeModal={closeModal} id={noticeToShow} />
+            ) : (
+              <NoticeForm closeModal={closeModal} />
+            )}
+          </Backdrop>
+        </AnimatePresence>
       )}
-    </Container>
+    </CustomizedContainer>
   );
 };
 
