@@ -7,6 +7,7 @@ import { addNotice } from 'redux/notices/noticesOperations';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
+import { GiCat } from 'react-icons/gi';
 import {
   Modal,
   Form,
@@ -217,7 +218,9 @@ export const NoticeForm = ({ closeModal }) => {
               onClick={() => {
                 const { category, title, petName, dateOfBirth } = values;
                 if (!category || !title || !dateOfBirth || !petName) {
-                  toast.info('Please fill in required fields');
+                  toast.info('Please fill in required fields', {
+                    icon: <GiCat />,
+                  });
                   return;
                 }
                 changePage(1);
@@ -292,7 +295,7 @@ export const NoticeForm = ({ closeModal }) => {
               type="file"
               name="image"
               ref={inputRef}
-              accept="image/*, .jpg, .png"
+              accept="image/jpg, image/png, image/jpeg, image/bmp"
               value={values.image}
               onChange={e => {
                 if (e.target.files[0]) {
