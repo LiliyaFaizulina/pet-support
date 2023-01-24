@@ -24,8 +24,14 @@ export const FormContainer = styled.div`
   }
 `;
 export const Title = styled.h2`
+  font-size: 24px;
+  font-weight: 700;
   margin-bottom: 40px;
   margin-top: 0;
+  @media (min-width: 768px) {
+    font-size: 36px;
+    font-weight: 500;
+  }
 `;
 export const Form1 = styled(Form)`
   position: relative;
@@ -59,6 +65,8 @@ export const Form1 = styled(Form)`
 
 export const Input = styled(Field)`
   width: 280px;
+  font-size: 18px;
+  line-height: 1.3;
   padding: 11px 0 12px 14px;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -71,7 +79,6 @@ export const Input = styled(Field)`
   @media (min-width: 768px) {
     width: 448px;
     padding: 14px 0 13px 32px;
-    font-size: 18px;
   }
   @media (min-width: 1280px) {
     width: 458px;

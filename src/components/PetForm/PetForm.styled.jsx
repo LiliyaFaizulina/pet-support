@@ -7,8 +7,23 @@ export const FormBox = styled.div`
   background-color: white;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.36;
     text-align: center;
     margin-bottom: 20px;
+    @media (min-width: 768px) {
+      font-size: 36px;
+    }
+  }
+  label {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.44;
+    @media (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.08;
+    }
   }
   p {
     position: absolute;
