@@ -69,7 +69,7 @@ const UserPage = () => {
           )}
           {!!petToDelete && (
             <ConfirmModal
-              text="your pet"
+              text="delete your pet"
               close={closeModal}
               handleClick={removePet}
               id={petToDelete}

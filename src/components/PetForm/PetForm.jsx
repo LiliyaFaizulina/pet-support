@@ -143,7 +143,7 @@ export const PetForm = ({ closeModal }) => {
               type="file"
               name="petAvatar"
               ref={inputRef}
-              accept="image/*,.jpg,.png"
+              accept="image/jpg, image/png, image/jpeg, image/bmp"
               value={values.petAvatar}
               onChange={e => {
                 if (e.target.files[0]) {

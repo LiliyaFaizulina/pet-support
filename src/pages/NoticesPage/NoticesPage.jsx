@@ -121,7 +121,7 @@ const NoticesPage = () => {
             )}
             {!!noticeToDelete && (
               <ConfirmModal
-                text="delete this notice"
+                text="delete your notice"
                 close={closeModal}
                 handleClick={deleteOwnNotice}
                 id={noticeToDelete}

@@ -8,11 +8,11 @@ export const Button = styled.button`
   }
   cursor: pointer;
   background-color: ${p =>
-    p.fill ? p.theme.colors.accent : p.theme.colors.secondaryBackground};
+    p.filling ? p.theme.colors.accent : p.theme.colors.secondaryBackground};
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   color: ${p =>
-    p.fill ? p.theme.colors.secondaryBackground : p.theme.colors.accent};
+    p.filling ? p.theme.colors.secondaryBackground : p.theme.colors.accent};
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@ export const Button = styled.button`
     width: 100%;
     height: 100%;
     ${p => {
-      if (!p.fill) {
+      if (!p.filling) {
         return `background: linear-gradient(
       120deg,
       transparent,
@@ -77,5 +77,9 @@ export const Notification = styled.p`
     margin-bottom: 20px;
     font-size: 24px;
     line-height: calc(38 / 28);
+  }
+  svg {
+    fill: ${p => p.theme.colors.accent};
+    font-size: 30px;
   }
 `;

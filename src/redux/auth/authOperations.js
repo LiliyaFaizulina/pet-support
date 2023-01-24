@@ -103,7 +103,8 @@ export const updateUser = createAsyncThunk(
     try {
       const { data } = await instance.put(`/users/user`, user);
       toast.success(
-        `${data.name}, your private data was changed successfully!`
+        `${data.name}, your private data was changed successfully!`,
+        { icon: <SiGnuicecat /> }
       );
       return data;
     } catch (error) {
