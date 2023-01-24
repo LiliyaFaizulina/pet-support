@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { selectIsLoading } from 'redux/notices/noticesSelectors';
-import { ErrorText, List } from './NoticesCategoriesList.styled';
+import { List } from './NoticesCategoriesList.styled';
 import Spinner from 'components/Spinner/Spinner';
+import { NoMatchesText } from 'components/NoMatchesText/NoMatchesText';
 
 export const NoticesCategoriesList = ({
   notices,
@@ -15,9 +16,7 @@ export const NoticesCategoriesList = ({
     <>
       {isLoading && <Spinner />}
 
-      {!isLoading && notices.length === 0 && (
-        <ErrorText>No notices for your request</ErrorText>
-      )}
+      {!isLoading && notices.length === 0 && <NoMatchesText />}
 
       {!isLoading && notices.length > 0 && (
         <List>

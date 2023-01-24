@@ -25,6 +25,8 @@ import { AnimatePresence } from 'framer-motion';
 import ScrollToTop from 'react-scroll-to-top';
 import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
+import Spinner from 'components/Spinner/Spinner';
+import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -101,8 +103,8 @@ const NoticesPage = () => {
         <NoticesCategoriesNav />
         <AddNoticeButton openModalBtn={openAddNoticeModal} />
       </FlexContainer>
-      {error && <p>Ooops... something Wrong</p>}
-      {isLoading && <p>Loading...</p>}
+      {error && <ErrorText>Ooops... something Wrong</ErrorText>}
+      {isLoading && <Spinner />}
       {!isLoading && (
         <NoticesCategoriesList
           notices={filterText ? filteredNotices : notices}
