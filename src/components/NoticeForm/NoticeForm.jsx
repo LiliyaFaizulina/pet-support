@@ -7,6 +7,7 @@ import { addNotice } from 'redux/notices/noticesOperations';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
+import { GiCat } from 'react-icons/gi';
 import {
   Modal,
   Form,
@@ -53,19 +54,17 @@ export const NoticeForm = ({ closeModal }) => {
   };
 
   const validationSchema = yup.object({
-    category: yup
-      .string('Please, enter your category')
-      .required('category is required'),
+    category: yup.string('Please, enter your category').required(),
     title: yup
       .string('Please, enter your password')
       .min(3, 'Title must consist of at least 3 symbols')
       .max(30, 'Title must contain no more than 30 symbols')
-      .required('Title is required'),
+      .required(),
     petName: yup
       .string('Please, enter name of the pet')
       .min(2, 'Name of the pet must consist of at least 2 symbols')
       .max(16, 'Name of the pet must contain no more than 16 symbols')
-      .required('Name of the pet is required'),
+      .required(),
     dateOfBirth: yup.date().required('Date of birth is required'),
     breed: yup
       .string('Please, enter breed of the pet')
@@ -74,11 +73,11 @@ export const NoticeForm = ({ closeModal }) => {
     sex: yup.string(),
     location: yup
       .string()
-      .required('Location is required')
+      .required()
       .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
     price: yup.number().min(1).positive().integer(),
     image: yup.string().required('Image is required'),
-    comment: yup
+    comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
       .max(120, 'Comment must contain no more than 120 symbols'),
@@ -95,14 +94,13 @@ export const NoticeForm = ({ closeModal }) => {
       location: '',
       price: 1,
       image: '',
-      comment: '',
+      comments: '',
     },
     validationSchema,
     onSubmit: values => {
       const formData = new FormData();
       console.log(values.image);
       for (let value in values) {
-        console.log(value);
         formData.append(value, values[value]);
       }
       formData.set('image', file);
@@ -121,18 +119,18 @@ export const NoticeForm = ({ closeModal }) => {
         <FormLabel>Add pet</FormLabel>
         <FormWrapper hidden={page === 2}>
           <FormText>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
+            You can add a pet for others to buy or take it into good hands.
           </FormText>
           <CategoryWrapper>
-            <CategoryLabel checkedCategory={values.category === 'sell'}>
-              Sell
+            <CategoryLabel checkedCategory={values.category === 'lost-found'}>
+              Lost/found
               <CategoryInput
                 hidden
                 type="radio"
                 name="category"
-                value="sell"
+                value="lost-found"
                 onChange={handleChange}
+                req
               />
             </CategoryLabel>
             <CategoryLabel checkedCategory={values.category === 'for-free'}>
@@ -145,15 +143,14 @@ export const NoticeForm = ({ closeModal }) => {
                 onChange={handleChange}
               />
             </CategoryLabel>
-            <CategoryLabel checkedCategory={values.category === 'lost-found'}>
-              Lost/found
+            <CategoryLabel checkedCategory={values.category === 'sell'}>
+              Sell
               <CategoryInput
                 hidden
                 type="radio"
                 name="category"
-                value="lost-found"
+                value="sell"
                 onChange={handleChange}
-                req
               />
             </CategoryLabel>
           </CategoryWrapper>
@@ -221,127 +218,12 @@ export const NoticeForm = ({ closeModal }) => {
               onClick={() => {
                 const { category, title, petName, dateOfBirth } = values;
                 if (!category || !title || !dateOfBirth || !petName) {
-                  toast.info('Please fill in required fields');
+                  toast.info('Please fill in required fields', {
+                    icon: <GiCat />,
+                  });
                   return;
                 }
                 changePage(1);
-                <FormWrapper hidden={page === 1}>
-                  <FormText>
-                    Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
-                    sit amet, consectetur
-                  </FormText>
-                  <CategoryWrapper>
-                    <CategoryLabel checkedCategory={values.category === 'sell'}>
-                      Sell
-                      <CategoryInput
-                        hidden
-                        type="radio"
-                        name="category"
-                        value="sell"
-                        onChange={handleChange}
-                      />
-                    </CategoryLabel>
-                    <CategoryLabel
-                      checkedCategory={values.category === 'for-free'}
-                    >
-                      In good hands
-                      <CategoryInput
-                        hidden
-                        type="radio"
-                        name="category"
-                        value="for-free"
-                        onChange={handleChange}
-                      />
-                    </CategoryLabel>
-                    <CategoryLabel
-                      checkedCategory={values.category === 'lost-found'}
-                    >
-                      Lost/found
-                      <CategoryInput
-                        hidden
-                        type="radio"
-                        name="category"
-                        value="lost-found"
-                        onChange={handleChange}
-                        req
-                      />
-                    </CategoryLabel>
-                  </CategoryWrapper>
-
-                  <Label>
-                    Title of ad<Required>*</Required>
-                    <TextInput
-                      type="text"
-                      name="title"
-                      value={values.title}
-                      placeholder="Type title"
-                      onChange={handleChange}
-                    />
-                    {errors.title || touched.title ? (
-                      <ErrorMessage>{errors.title}</ErrorMessage>
-                    ) : null}
-                  </Label>
-                  <Label>
-                    Name of the pet<Required>*</Required>
-                    <TextInput
-                      type="text"
-                      name="petName"
-                      value={values.petName}
-                      placeholder="Type pet name"
-                      onChange={handleChange}
-                    />
-                    {errors.petName || touched.petName ? (
-                      <ErrorMessage>{errors.petName}</ErrorMessage>
-                    ) : null}
-                  </Label>
-                  <Label>
-                    Date of birth<Required>*</Required>
-                    <TextInput
-                      type="date"
-                      name="dateOfBirth"
-                      value={values.dateOfBirth}
-                      min="2008-01-01"
-                      max={dateToday}
-                      placeholder="Type date of birth"
-                      onChange={handleChange}
-                    />
-                    {errors.dateOfBirth || touched.dateOfBirth ? (
-                      <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>
-                    ) : null}
-                  </Label>
-                  <Label>
-                    Breed
-                    <TextInput
-                      type="text"
-                      name="breed"
-                      value={values.breed}
-                      placeholder="Type breed"
-                      onChange={handleChange}
-                    />
-                    {errors.breed || touched.breed ? (
-                      <ErrorMessage>{errors.breed}</ErrorMessage>
-                    ) : null}
-                  </Label>
-                  <BtnWrapper>
-                    <Button NotFillBtn type="button" onClick={closeModal}>
-                      Cancel
-                    </Button>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        const { category, title, petName, dateOfBirth } =
-                          values;
-                        if (!category || !title || !dateOfBirth || !petName) {
-                          toast.info('Please fill in required fields');
-                          return;
-                        }
-                        changePage(1);
-                      }}
-                    >
-                      Next
-                    </Button>
-                  </BtnWrapper>
-                </FormWrapper>;
               }}
             >
               Next
@@ -413,7 +295,7 @@ export const NoticeForm = ({ closeModal }) => {
               type="file"
               name="image"
               ref={inputRef}
-              accept="image/*, .jpg, .png"
+              accept="image/jpg, image/png, image/jpeg, image/bmp"
               value={values.image}
               onChange={e => {
                 if (e.target.files[0]) {
@@ -438,13 +320,13 @@ export const NoticeForm = ({ closeModal }) => {
             Comments
             <Textarea
               type="text"
-              name="comment"
-              value={values.comment}
+              name="comments"
+              value={values.comments}
               placeholder="Type comments"
               onChange={handleChange}
             ></Textarea>
-            {errors.comment || touched.comment ? (
-              <ErrorMessage Input>{errors.comment}</ErrorMessage>
+            {errors.comments || touched.comments ? (
+              <ErrorMessage Input>{errors.comments}</ErrorMessage>
             ) : null}
           </Label>
           <BtnWrapper>

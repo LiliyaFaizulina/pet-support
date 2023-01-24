@@ -39,9 +39,45 @@ export const LinkNav = styled(NavLink)`
   text-decoration: none;
   color: ${p => p.theme.colors.heading};
 
+  transform: scale(1);
+  transition: transform 0.5s;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );
+    transition: all 650ms;
+  }
+
   &.active {
     background-color: ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.secondaryBackground};
+
+    :before {
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      );
+    }
   }
 
   @media ${p => p.theme.media.tablet} {

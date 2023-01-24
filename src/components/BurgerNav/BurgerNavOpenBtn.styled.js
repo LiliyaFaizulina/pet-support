@@ -12,4 +12,7 @@ export const GiHamburgerMenuOpen = styled.button`
   @media (min-width: 768px) {
     margin-left: 25px;
   }
+  svg {
+    fill: ${p => p.theme.colors.heading};
+  }
 `;

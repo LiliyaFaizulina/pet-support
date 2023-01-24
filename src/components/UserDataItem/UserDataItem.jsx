@@ -10,7 +10,15 @@ import {
   ErrorText,
 } from './UserDataItem.styled';
 
-const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
+const UserDataItem = ({
+  min,
+  max,
+  name,
+  defaultValue,
+  type,
+  pattern,
+  errorText,
+}) => {
   const [active, setActive] = useState(false);
   const [inputeValue, setInputeValue] = useState(defaultValue ?? '');
 
@@ -61,11 +69,13 @@ const UserDataItem = ({ name, defaultValue, type, pattern, errorText }) => {
         type={type}
         pattern={pattern}
         value={inputeValue}
+        min={min || null}
+        max={max || null}
       />
       <EditTextBtn onClick={handleClick}>
         {active ? <IconCheck /> : <EditTextBtnIcon />}
       </EditTextBtn>
-      {!isValid && <ErrorText>{errorText}</ErrorText>}
+      {!isValid && active && <ErrorText>{errorText}</ErrorText>}
     </>
   );
 };

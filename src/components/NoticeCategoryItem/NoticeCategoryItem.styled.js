@@ -103,6 +103,33 @@ export const ButtonMore = styled.button`
   border-radius: 40px;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.accent};
+
+  transform: scale(1);
+  transition: transform 0.5s;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export const ButtonDelete = styled(ButtonMore)`
@@ -111,6 +138,15 @@ export const ButtonDelete = styled(ButtonMore)`
   gap: 15px;
   border-color: ${p => p.theme.colors.hoverBtn};
   color: ${p => p.theme.colors.hoverBtn};
+
+  :before {
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 97, 1, 0.9),
+      transparent
+    );
+  }
 
   svg {
     display: block;
@@ -155,6 +191,33 @@ export const LikeButton = styled.button`
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   color: ${p => p.theme.colors.accent};
+
+  transform: scale(1);
+  transition: transform 0.5s;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
 
   svg {
     width: 28px;
