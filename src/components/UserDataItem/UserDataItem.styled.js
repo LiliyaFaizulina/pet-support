@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { HiPencil } from "react-icons/hi";
-import { HiCamera } from "react-icons/hi2";
-import { BsCheckLg } from "react-icons/bs";
+import styled from 'styled-components';
+import { HiPencil } from 'react-icons/hi';
+import { HiCamera } from 'react-icons/hi2';
+import { BsCheckLg } from 'react-icons/bs';
 
 export const UserBlock = styled.div`
   display: flex;
@@ -23,7 +23,8 @@ export const UserBlock = styled.div`
     min-height: 311px;
     padding: 24px 40px 24px 32px;
 
-    border-radius: 0 ${p => p.theme.radii.mainBorderRadius} ${p => p.theme.radii.mainBorderRadius} 0;
+    border-radius: 0 ${p => p.theme.radii.mainBorderRadius}
+      ${p => p.theme.radii.mainBorderRadius} 0;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;
@@ -151,6 +152,7 @@ export const Text = styled.p`
   }
 `;
 export const Block = styled.div`
+  position: relative;
   display: flex;
   flex: auto;
   flex-wrap: wrap;
@@ -217,8 +219,11 @@ export const UserDataInput = styled.input`
   width: 159px;
   height: 24px;
 
-  background-color: ${p => (p.disabled ? p.theme.colors.secondaryBackground : p.theme.colors.mainBackground)};
-  border: ${p => (p.disabled ? "none" : p.theme.borders.inputModal)};
+  background-color: ${p =>
+    p.disabled
+      ? p.theme.colors.secondaryBackground
+      : p.theme.colors.mainBackground};
+  border: ${p => (p.disabled ? 'none' : p.theme.borders.inputModal)};
   border-color: ${p => p.theme.colors.inputModal};
   color: ${p => p.theme.colors.heading};
   border-radius: 40px;
@@ -240,6 +245,7 @@ export const UserDataInput = styled.input`
 `;
 
 export const ErrorText = styled.div`
+  position: absolute;
   margin-left: auto;
   margin-right: auto;
   &:not(:last-of-type) {
@@ -249,4 +255,5 @@ export const ErrorText = styled.div`
   color: red;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-style: italic;
+  bottom: -12px;
 `;
