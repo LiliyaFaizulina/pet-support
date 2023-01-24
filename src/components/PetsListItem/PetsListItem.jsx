@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import { transformDate } from 'helpers/transformDate';
 
 import devaultIcon from '../../images/default-icon-pets.png';
 import {
@@ -43,7 +44,7 @@ const PetsListItem = ({
         </InfoPet>
         <InfoPet>
           <Title>Date of birth: </Title>
-          {birthday}
+          {transformDate(birthday)}
         </InfoPet>
         <InfoPet>
           <Title>Breed: </Title>
