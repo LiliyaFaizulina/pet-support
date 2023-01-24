@@ -102,8 +102,12 @@ export const updateUser = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await instance.put(`/users/user`, user);
+      toast.success(
+        `${data.user.name}, your private data was changed successfully!`
+      );
       return data;
     } catch (error) {
+      // toast.error(`${user.name}, your private data was faild for changing!`);
       return rejectWithValue(error.message);
     }
   }
