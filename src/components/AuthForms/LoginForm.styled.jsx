@@ -61,6 +61,9 @@ export const Form1 = styled(Form)`
   > div {
     position: relative;
   }
+  :last-child {
+    font-size: 12px;
+  }
 `;
 
 export const Input = styled(Field)`
