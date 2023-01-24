@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { SiGnuicecat } from 'react-icons/si';
+import { FaDog } from 'react-icons/fa';
 
 export const instance = axios.create({
   baseURL: 'https://pet-support-test2.onrender.com/api',
@@ -42,7 +44,7 @@ export const register = createAsyncThunk(
       localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
@@ -55,11 +57,11 @@ export const login = createAsyncThunk(
       const { data } = await instance.post('/users/login', userData);
       token.set(data.accessToken);
 
-      toast.success(`Welcome, ${data.user.name}!`);
+      toast.success(`Welcome, ${data.user.name}!`, { icon: <SiGnuicecat /> });
       localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }
@@ -72,7 +74,7 @@ export const logout = createAsyncThunk(
       await instance.get('/users/logout');
       token.unset();
       localStorage.removeItem('refreshToken');
-      toast.success('Logout successful');
+      toast.success('Logout successful', { icon: <SiGnuicecat /> });
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -112,6 +114,7 @@ export const addPet = createAsyncThunk(
   async (pet, { rejectWithValue }) => {
     try {
       const { data } = await instance.post(`/pets`, pet);
+      toast.success('Pet added', { icon: <SiGnuicecat /> });
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -124,10 +127,12 @@ export const deletePet = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await instance.delete(`/pets/${id}`);
-      toast.success(`😿 ${result.data.result.name} was removed`);
+      toast.success(`😿 ${result.data.result.name} was removed`, {
+        icon: <SiGnuicecat />,
+      });
       return id;
     } catch (error) {
-      toast.error(`😿 was not removed`);
+      toast.error(`😿 was not removed`, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }

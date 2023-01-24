@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectPets } from 'redux/auth/authSelectors';
 import { BoxNotFoundPet } from './PetsList.styled';
 
-const PetsList = ({ isLoading }) => {
+const PetsList = ({ isLoading, openDeleteModal }) => {
   const pets = useSelector(selectPets);
 
   return (
@@ -27,6 +27,7 @@ const PetsList = ({ isLoading }) => {
               id={_id}
               birthday={birthday}
               petAvatar={petAvatar}
+              openDeleteModal={openDeleteModal}
             />
           )
         )

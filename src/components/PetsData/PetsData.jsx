@@ -11,7 +11,7 @@ import {
 } from './PetsData.styled';
 import PetsList from '../PetsList/PetsList';
 
-const PetsData = ({ openModal }) => {
+const PetsData = ({ openModal, openDeleteModal }) => {
   const isLoading = useSelector(selectIsLoading);
 
   return (
@@ -24,7 +24,7 @@ const PetsData = ({ openModal }) => {
             <AddPetBtn openModal={openModal} />
           </BoxBtn>
         </BoxTitlePet>
-        <PetsList isLoading={isLoading} />
+        <PetsList isLoading={isLoading} openDeleteModal={openDeleteModal} />
       </BoxPet>
     </>
   );

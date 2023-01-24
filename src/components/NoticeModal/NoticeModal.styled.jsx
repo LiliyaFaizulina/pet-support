@@ -125,6 +125,7 @@ export const NoticeTitle = styled.h3`
     margin-bottom: 20px;
     font-size: 28px;
     line-height: calc(38 / 28);
+    width: 320px;
   }
 `;
 
