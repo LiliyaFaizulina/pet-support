@@ -20,6 +20,9 @@ instance.interceptors.response.use(
   async error => {
     if (error.response.status === 401) {
       const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        return Promise.reject(error);
+      }
       const { data } = await instance.post('/users/refresh', { refreshToken });
       token.set(data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
