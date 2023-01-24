@@ -114,7 +114,7 @@ export const NoticeCategoryItem = ({
       <Wrapper>
         <TitleWrapper>
           <Title>
-            {title.length > 30 ? `${title.slice(0, 25)}...` : title}
+            {title.length > 31 ? `${title.slice(0, 30)}...` : title}
           </Title>
         </TitleWrapper>
 
