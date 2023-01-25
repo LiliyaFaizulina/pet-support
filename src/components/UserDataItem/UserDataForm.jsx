@@ -103,8 +103,10 @@ const UserDataForm = () => {
                       />
                     </form>
                   </ImageContainer>
-                  <IconEditImgBtn />
-                  <label htmlFor="userAvatar"> Edit photo</label>
+                  <label htmlFor="userAvatar">
+                    <IconEditImgBtn />
+                    Edit photo
+                  </label>
                 </EditImgBtn>
               </BoxImg>
               <BoxInfo>
