@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
   Form1,
   FormContainer,
@@ -9,6 +11,7 @@ import {
   Button,
   Title,
   ErrBox,
+  ShowPassword,
 } from './LoginForm.styled';
 import { login } from 'redux/auth/authOperations';
 
@@ -23,7 +26,10 @@ const SignupSchema = object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-
+  const [showPass, setShowPass] = useState(false);
+  const showPassword = () => {
+    setShowPass(!showPass);
+  };
   return (
     <FormContainer>
       <Formik
@@ -49,8 +55,14 @@ export const LoginForm = () => {
               ) : null}
             </div>
             <div>
-              <Input name="password" type="password" placeholder="Password" />
-
+              <Input
+                name="password"
+                type={showPass ? 'text' : 'password'}
+                placeholder="Password"
+              />
+              <ShowPassword onClick={showPassword}>
+                {!showPass ? <ImEyeBlocked /> : <ImEye />}
+              </ShowPassword>
               {errors.password && touched.password ? (
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
