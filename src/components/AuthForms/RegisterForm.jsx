@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useFormik, Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
 import { register } from 'redux/auth/authOperations';
 import {
@@ -14,6 +15,7 @@ import {
   ErrBox,
   BackButton,
   PhoneInput,
+  ShowPassword,
 } from './LoginForm.styled';
 
 const phoneNumberMask = [
@@ -48,7 +50,7 @@ const RegisterSchema = object().shape({
   email: string().email('Invalid email').required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
-    .matches(/^[a-zA-Zа-яА-Я-]*$/, 'Only letters')
+    .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')
@@ -67,6 +69,8 @@ const RegisterSchema = object().shape({
 
 export const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
   const showForm = () => {
     setIsShown(false);
@@ -74,6 +78,7 @@ export const RegisterForm = () => {
   const hideForm = () => {
     setIsShown(true);
   };
+
   const onSubmit = values => {
     const { name, email, password, phone, city } = values;
     dispatch(
@@ -99,6 +104,13 @@ export const RegisterForm = () => {
     validationSchema: RegisterSchema,
     onSubmit,
   });
+
+  const showPassword = () => {
+    setShowPass(!showPass);
+  };
+  const showConfirmPassword = () => {
+    setShowConfirmPass(!showConfirmPass);
+  };
   const isValid =
     (formik.errors.email && formik.touched.email) ||
     (formik.errors.password && formik.touched.password) ||
@@ -137,13 +149,16 @@ export const RegisterForm = () => {
               <div>
                 <Input
                   name="password"
-                  type="password"
+                  type={showPass ? 'text' : 'password'}
                   placeholder="Password"
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   onBlur={formik.handleBlur}
                 />
 
+                <ShowPassword onClick={showPassword}>
+                  {!showPass ? <ImEyeBlocked /> : <ImEye />}
+                </ShowPassword>
                 {formik.errors.password && formik.touched.password ? (
                   <ErrBox>{formik.errors.password}</ErrBox>
                 ) : null}
@@ -155,13 +170,15 @@ export const RegisterForm = () => {
               <div>
                 <Input
                   name="confirmPassword"
-                  type="password"
+                  type={showConfirmPass ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   onChange={formik.handleChange}
                   value={formik.values.confirmPassword}
                   onBlur={formik.handleBlur}
                 />
-
+                <ShowPassword onClick={showConfirmPassword}>
+                  {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
+                </ShowPassword>
                 {formik.errors.confirmPassword &&
                 formik.touched.confirmPassword ? (
                   <ErrBox>{formik.errors.confirmPassword}</ErrBox>

@@ -68,6 +68,21 @@ export const Form1 = styled(Form)`
   }
 `;
 
+export const ShowPassword = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 15px;
+  top: 13px;
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;
