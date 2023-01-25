@@ -6,6 +6,12 @@ export const FormBox = styled.div`
   padding: 40px 20px;
   background-color: white;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+
+  @media (min-width: 768px) {
+    width: 608px;
+    /* padding: 40px 80px; */
+    padding: ${p => (p.secondPage ? '40px 107px' : '40px 80px')};
+  }
   h3 {
     font-weight: 500;
     font-size: 24px;
@@ -30,11 +36,6 @@ export const FormBox = styled.div`
     color: red;
     font-size: 12px;
     left: 15px;
-  }
-
-  @media (min-width: 768px) {
-    width: 608px;
-    padding: 40px 80px;
   }
 `;
 export const CloseBtn = styled.div`

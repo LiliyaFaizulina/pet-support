@@ -72,7 +72,7 @@ export const PetForm = ({ closeModal }) => {
   });
 
   return (
-    <FormBox>
+    <FormBox secondPage={page === 2}>
       <form onSubmit={handleSubmit}>
         <CloseBtn type="button" onClick={closeModal}>
           <TfiClose />
