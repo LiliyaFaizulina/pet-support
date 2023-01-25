@@ -61,7 +61,7 @@ const RegisterSchema = object().shape({
     .required('Phone is required'),
   city: string()
     .matches(
-      /^[a-zA-Zа-яА-Я-]+(,)[a-zA-Zа-яА-Я-]*$/,
+      /^[a-zA-Zа-яА-Я-]+(,)(\s?)+[a-zA-Zа-яА-Я-]*$/,
       'Error. Example: Brovary, Kyiv'
     )
     .required('City is required'),
