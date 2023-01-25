@@ -260,3 +260,7 @@ export const ErrorText = styled.div`
   bottom: -12px;
   z-index: 2;
 `;
+
+export const Label = styled.label`
+  cursor: pointer;
+`;
