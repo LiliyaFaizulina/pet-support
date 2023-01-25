@@ -22,6 +22,10 @@ export const FormBox = styled.div`
       font-size: 36px;
     }
   }
+  h4 {
+    text-align: center;
+    margin-bottom: -32px;
+  }
   label {
     font-size: 18px;
     font-weight: 500;
@@ -36,6 +40,16 @@ export const FormBox = styled.div`
     color: red;
     font-size: 12px;
     left: 15px;
+  }
+`;
+
+export const FileLable = styled.label`
+  width: 208px;
+  margin: 0 auto;
+  p {
+    @media (min-width: 768px) {
+      left: 100px;
+    }
   }
 `;
 export const CloseBtn = styled.div`
