@@ -16,11 +16,13 @@ export const FormContainer = styled.div`
   @media (min-width: 768px) {
     background-image: url(${tabletBackground});
     padding-top: 184px;
+    padding-bottom: 268px;
     min-height: calc(100vh - 64px);
   }
   @media (min-width: 1280px) {
     background-image: url(${desktopBackground});
     padding-top: 50px;
+    padding-bottom: 147px;
   }
 `;
 export const Title = styled.h2`
