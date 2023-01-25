@@ -14,6 +14,7 @@ import {
   BackButton,
   AddButton,
   ButtonWrapper,
+  FileLable,
 } from './PetForm.styled';
 
 export const PetForm = ({ closeModal }) => {
@@ -140,8 +141,8 @@ export const PetForm = ({ closeModal }) => {
           </ButtonWrapper>
         </FormPage>
         <FormPage isHidden={page === 1}>
-          <label>
-            Add photo and some comments
+          <h4>Add photo and some comments</h4>
+          <FileLable>
             <input
               hidden
               type="file"
@@ -173,7 +174,7 @@ export const PetForm = ({ closeModal }) => {
             {errors.petAvatar || touched.petAvatar ? (
               <p>{errors.petAvatar}</p>
             ) : null}
-          </label>
+          </FileLable>
           <label>
             Comments
             <textarea
