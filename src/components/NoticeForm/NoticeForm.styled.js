@@ -187,7 +187,17 @@ export const CategoryLabel = styled.label`
 export const SexInput = styled.input``;
 
 export const FileLabel = styled.label`
+  width: 116px;
+  margin-top: 8px;
+  margin-bottom: 28px;
+  @media screen and (min-width: 768px) {
+    margin-top: 12px;
+    width: 140px;
+  }
+`;
+export const FileInputWrapper = styled.div`
   position: relative;
+
   font-size: 18px;
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -211,12 +221,8 @@ export const FileInput = styled.input`
 `;
 
 export const FileButton = styled.button`
+  margin: 0;
   position: relative;
-  margin-top: 8px;
-  margin-bottom: 28px;
-  @media screen and (min-width: 768px) {
-    margin-top: 12px;
-  }
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
@@ -307,6 +313,16 @@ export const Button = styled.button`
       transparent
     )`};
     transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
   }
 `;
 

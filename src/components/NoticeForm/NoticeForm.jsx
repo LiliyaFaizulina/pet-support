@@ -33,6 +33,7 @@ import {
   FormText,
   FormCloseBtn,
   BtnWrapper,
+  FileInputWrapper,
 } from 'components/NoticeForm/NoticeForm.styled';
 import FemaleIcon from 'images/female-icon.png';
 import MaleIcon from 'images/male-icon.png';
@@ -53,19 +54,20 @@ export const NoticeForm = ({ closeModal }) => {
     setPage(page + value);
   };
 
-  const validationSchema = yup.object({
+  const validationSchema = yup.object().shape({
     category: yup.string('Please, enter your category').required(),
     title: yup
-      .string('Please, enter your password')
+      .string('Please, enter title')
       .min(3, 'Title must consist of at least 3 symbols')
-      .max(30, 'Title must contain no more than 30 symbols')
-      .required(),
+      .max(30, 'Title must contain no more than 30 symbols'),
     petName: yup
       .string('Please, enter name of the pet')
       .min(2, 'Name of the pet must consist of at least 2 symbols')
-      .max(16, 'Name of the pet must contain no more than 16 symbols')
-      .required(),
-    dateOfBirth: yup.date().required('Date of birth is required'),
+      .max(16, 'Name of the pet must contain no more than 16 symbols'),
+    dateOfBirth: yup
+      .date()
+      .min('2000-01-01', 'Min date of birth can be 2000-01-01')
+      .max(dateToday, 'Max date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
@@ -73,10 +75,9 @@ export const NoticeForm = ({ closeModal }) => {
     sex: yup.string(),
     location: yup
       .string()
-      .required()
       .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
     price: yup.number().min(1).positive().integer(),
-    image: yup.string().required('Image is required'),
+    image: yup.string().required('Pet image is required'),
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
@@ -99,7 +100,6 @@ export const NoticeForm = ({ closeModal }) => {
     validationSchema,
     onSubmit: values => {
       const formData = new FormData();
-      console.log(values.image);
       for (let value in values) {
         formData.append(value, values[value]);
       }
@@ -109,6 +109,14 @@ export const NoticeForm = ({ closeModal }) => {
       closeModal();
     },
   });
+
+  const isDisable =
+    !values.title ||
+    !values.category ||
+    !values.petName ||
+    !values.dateOfBirth ||
+    !values.image ||
+    !values.location;
 
   return (
     <Modal>
@@ -287,35 +295,37 @@ export const NoticeForm = ({ closeModal }) => {
               ) : null}
             </Label>
           )}
-          <FileLabel>
+          <FileInputWrapper>
             <div>
               Load the pet's image<Required>*</Required>
             </div>
-            <FileInput
-              type="file"
-              name="image"
-              ref={inputRef}
-              accept="image/jpg, image/png, image/jpeg, image/bmp"
-              value={values.image}
-              onChange={e => {
-                if (e.target.files[0]) {
-                  setFile(e.target.files[0]);
-                  setImageLink(URL.createObjectURL(e.target.files[0]));
-                }
-                handleChange(e);
-              }}
-            />
-            <FileButton type="button" onClick={handleClick}>
-              {values.image ? (
-                <FileImg src={imageLink} alt={values.petName} />
-              ) : (
-                <TfiPlus />
-              )}
-            </FileButton>
+            <FileLabel>
+              <FileInput
+                type="file"
+                name="image"
+                ref={inputRef}
+                accept="image/jpg, image/png, image/jpeg, image/bmp"
+                value={values.image}
+                onChange={e => {
+                  if (e.target.files[0]) {
+                    setFile(e.target.files[0]);
+                    setImageLink(URL.createObjectURL(e.target.files[0]));
+                  }
+                  handleChange(e);
+                }}
+              />
+              <FileButton type="button" onClick={handleClick}>
+                {values.image ? (
+                  <FileImg src={imageLink} alt={values.petName} />
+                ) : (
+                  <TfiPlus />
+                )}
+              </FileButton>
+            </FileLabel>
             {errors.image || touched.image ? (
               <ErrorMessage Input>{errors.image}</ErrorMessage>
             ) : null}
-          </FileLabel>
+          </FileInputWrapper>
           <Label>
             Comments
             <Textarea
@@ -339,7 +349,9 @@ export const NoticeForm = ({ closeModal }) => {
             >
               Back
             </Button>
-            <Button type="submit">Done</Button>
+            <Button type="submit" disabled={isDisable}>
+              Done
+            </Button>
           </BtnWrapper>
         </FormWrapper>
       </Form>
