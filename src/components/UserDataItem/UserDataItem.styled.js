@@ -99,6 +99,8 @@ export const IconEditImgBtn = styled(HiCamera)`
   width: 20px;
   height: 20px;
   margin-right: 4px;
+  margin-bottom: -5px;
+  cursor: pointer;
 
   fill: ${p => p.theme.colors.accent};
 `;
@@ -257,4 +259,8 @@ export const ErrorText = styled.div`
   font-style: italic;
   bottom: -12px;
   z-index: 2;
+`;
+
+export const Label = styled.label`
+  cursor: pointer;
 `;

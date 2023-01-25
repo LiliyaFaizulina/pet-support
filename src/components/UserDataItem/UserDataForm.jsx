@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getUser, updateAvatar } from '../../redux/auth/authOperations';
 import UserDataItem from './UserDataItem';
 import devaultIcon from '../../images/default-icon-user.png';
-
+import { toast } from 'react-toastify';
 import { selectUser, selectIsLoading } from '../../redux/auth/authSelectors';
 import { Loader } from 'components/Loader';
 import {
@@ -19,6 +19,7 @@ import {
   Block,
   Form,
   ImageContainer,
+  Label,
 } from './UserDataItem.styled';
 import { useForm } from 'react-hook-form';
 
@@ -57,10 +58,22 @@ const UserDataForm = () => {
       reader.readAsDataURL(e.target.files[0]);
       reader.onloadend = () => {
         const avatar = reader.result;
-        setNewUserAvatar(avatar);
-        const file = new FormData();
-        file.append('avatar', e.target.files[0]);
-        dispatch(updateAvatar(file));
+        if (
+          avatar.includes('image/png') ||
+          avatar.includes('image/jpg') ||
+          avatar.includes('image/jpeg') ||
+          avatar.includes('image/bmp')
+        ) {
+          setNewUserAvatar(avatar);
+          const file = new FormData();
+          file.append('avatar', e.target.files[0]);
+          dispatch(updateAvatar(file));
+        } else {
+          toast.warning(
+            'Please, try upload .png, .jpg, .jpeg, .bmp type of photo'
+          );
+          return newUserAvatar;
+        }
       };
     }
   };
@@ -100,11 +113,14 @@ const UserDataForm = () => {
                         id="userAvatar"
                         {...register('avatar', {})}
                         onChange={handleImage}
+                        accept="image/jpg, image/png, image/jpeg, image/bmp"
                       />
                     </form>
                   </ImageContainer>
-                  <IconEditImgBtn />
-                  <label htmlFor="userAvatar"> Edit photo</label>
+                  <Label htmlFor="userAvatar">
+                    <IconEditImgBtn />
+                    Edit photo
+                  </Label>
                 </EditImgBtn>
               </BoxImg>
               <BoxInfo>

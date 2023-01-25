@@ -160,8 +160,24 @@ export const updateAvatar = createAsyncThunk(
   async (avatar, { rejectWithValue }) => {
     try {
       const { data } = await instance.put(`/users/avatar`, avatar);
+      toast.success('Your avatar was updated!', { icon: <SiGnuicecat /> });
       return data;
     } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async (data, { rejectWithValue }) => {
+    try {
+      await instance.patch(`/users/user`, data);
+      toast.success('Password updated successfully!', {
+        icon: <SiGnuicecat />,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message, { icon: <FaDog /> });
       return rejectWithValue(error.message);
     }
   }

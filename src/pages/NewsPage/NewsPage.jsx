@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'components/Spinner/Spinner';
+import { NoMatchesText } from 'components/NoMatchesText/NoMatchesText';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,9 @@ const NewsPage = () => {
       <NewsCard news={news} key={news._id} />
     ));
     if (newsCards.length > 0) {
-      return newsCards;
+      return <List> {newsCards} </List>;
     } else {
-      return <Title>We have no news for you</Title>;
+      return <NoMatchesText/>;
     }
   };
 
@@ -60,15 +61,14 @@ const NewsPage = () => {
         onChange={evt => onChange(evt)}
         setFilterText={() => setFilterText()}
       ></SearchField>
-      {error && <p>Ooops... something Wrong</p>}
+      {error && <Title>Ooops... something Wrong</Title>}
       {isLoading && <Spinner />}
-      {!isLoading && (
-        <List>
-          {allNews && !filterText && renderCard(allNews)}
-          {allNews &&
-            filterText &&
-            renderCard(filteredNews(allNews, filterText))}
-        </List>
+      {!isLoading && allNews && (
+      <>
+        {!filterText && renderCard(allNews)}
+        {filterText &&
+          renderCard(filteredNews(allNews, filterText))}
+      </>
       )}
       <ScrollToTop smooth color="#F59256" />
     </Wrapper>
