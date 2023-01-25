@@ -72,7 +72,6 @@ const UserDataForm = () => {
           toast.warning(
             'Please, try upload .png, .jpg, .jpeg, .bmp type of photo'
           );
-          return newUserAvatar;
         }
       };
     }
@@ -93,13 +92,13 @@ const UserDataForm = () => {
                 {!isChangeUserAvatar ? (
                   <ImgUser
                     id="img_container"
-                    src={imgUrl ? imgUrl : devaultIcon}
+                    src={imgUrl ? imgUrl || user.avatarURL : devaultIcon}
                     alt={imgAlt}
                   />
                 ) : (
                   <ImgUser
                     id="img_container"
-                    src={newUserAvatar}
+                    src={newUserAvatar || user.avatarURL}
                     alt={imgAlt}
                   />
                 )}
