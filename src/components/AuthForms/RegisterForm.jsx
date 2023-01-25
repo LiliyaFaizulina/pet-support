@@ -48,7 +48,7 @@ const RegisterSchema = object().shape({
   email: string().email('Invalid email').required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
-    .matches(/^[a-zA-Zа-яА-Я]*$/, 'Only letters')
+    .matches(/^[a-zA-Zа-яА-Я-]*$/, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')
@@ -58,7 +58,10 @@ const RegisterSchema = object().shape({
     )
     .required('Phone is required'),
   city: string()
-    .matches(/^(\w+(,)\s*)+\w+$/, 'Error. Example: Brovary, Kyiv')
+    .matches(
+      /^[a-zA-Zа-яА-Я-]+(,)[a-zA-Zа-яА-Я-]*$/,
+      'Error. Example: Brovary, Kyiv'
+    )
     .required('City is required'),
 });
 
@@ -71,7 +74,7 @@ export const RegisterForm = () => {
   const hideForm = () => {
     setIsShown(true);
   };
-  const onSubmit = (values, { resetForm, setValues }) => {
+  const onSubmit = values => {
     const { name, email, password, phone, city } = values;
     dispatch(
       register({
@@ -83,8 +86,6 @@ export const RegisterForm = () => {
       }),
       hideForm()
     );
-
-    resetForm();
   };
   const formik = useFormik({
     initialValues: {

@@ -51,25 +51,26 @@ export const PetForm = ({ closeModal }) => {
       .required('Field required'),
   });
 
-  const { handleSubmit, values, handleChange, errors, touched } = useFormik({
-    initialValues: {
-      name: '',
-      birthday: '',
-      breed: '',
-      petAvatar: '',
-      comments: '',
-    },
-    validationSchema,
-    onSubmit: values => {
-      const formData = new FormData();
-      for (let value in values) {
-        formData.append(value, values[value]);
-      }
-      formData.set('petAvatar', file);
-      dispatch(addPet(formData));
-      closeModal();
-    },
-  });
+  const { handleSubmit, handleBlur, values, handleChange, errors, touched } =
+    useFormik({
+      initialValues: {
+        name: '',
+        birthday: '',
+        breed: '',
+        petAvatar: '',
+        comments: '',
+      },
+      validationSchema,
+      onSubmit: values => {
+        const formData = new FormData();
+        for (let value in values) {
+          formData.append(value, values[value]);
+        }
+        formData.set('petAvatar', file);
+        dispatch(addPet(formData));
+        closeModal();
+      },
+    });
 
   return (
     <FormBox secondPage={page === 2}>
@@ -87,6 +88,7 @@ export const PetForm = ({ closeModal }) => {
               value={values.name}
               placeholder="Type name pet"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
             {errors.name || touched.name ? <p>{errors.name}</p> : null}
           </label>
@@ -100,6 +102,7 @@ export const PetForm = ({ closeModal }) => {
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
             {errors.birthday || touched.birthday ? (
               <p>{errors.birthday}</p>
@@ -113,6 +116,7 @@ export const PetForm = ({ closeModal }) => {
               value={values.breed}
               placeholder="Type breed"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
             {errors.breed || touched.breed ? <p>{errors.breed}</p> : null}
           </label>
@@ -145,6 +149,7 @@ export const PetForm = ({ closeModal }) => {
               ref={inputRef}
               accept="image/jpg, image/png, image/jpeg, image/bmp"
               value={values.petAvatar}
+              onBlur={handleBlur}
               onChange={e => {
                 if (e.target.files[0]) {
                   setFile(e.target.files[0]);
@@ -176,6 +181,7 @@ export const PetForm = ({ closeModal }) => {
               value={values.comments}
               placeholder="Type comments"
               onChange={handleChange}
+              onBlur={handleBlur}
             ></textarea>
             {errors.comments || touched.comments ? (
               <p>{errors.comments}</p>
