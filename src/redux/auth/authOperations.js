@@ -182,3 +182,18 @@ export const updatePassword = createAsyncThunk(
     }
   }
 );
+
+export const restorePassword = createAsyncThunk(
+  'auth/restorePassword',
+  async (email, { rejectWithValue }) => {
+    try {
+      const data = await instance.patch(`/users/restore`, email);
+      toast.success(data.message, {
+        icon: <SiGnuicecat />,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message, { icon: <FaDog /> });
+      return rejectWithValue(error.message);
+    }
+  }
+);
