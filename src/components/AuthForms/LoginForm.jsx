@@ -25,7 +25,7 @@ const SignupSchema = object().shape({
   email: string().email('Invalid email').required('Email Required'),
 });
 
-export const LoginForm = () => {
+export const LoginForm = ({ openModal }) => {
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
   const showPassword = () => {
@@ -64,7 +64,9 @@ export const LoginForm = () => {
               <ShowPassword onClick={showPassword}>
                 {!showPass ? <ImEyeBlocked /> : <ImEye />}
               </ShowPassword>
-              <ForgotPassword type="button">Forgot password?</ForgotPassword>
+              <ForgotPassword type="button" onClick={openModal}>
+                Forgot password?
+              </ForgotPassword>
               {errors.password && touched.password ? (
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}

@@ -131,6 +131,8 @@ export const ForgotPassword = styled.button`
   bottom: 0;
   background-color: transparent;
   border: none;
+  text-decoration: underline;
+  color: ${p => p.theme.colors.link};
 `;
 
 export const Button = styled.button`

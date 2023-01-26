@@ -187,7 +187,7 @@ export const restorePassword = createAsyncThunk(
   'auth/restorePassword',
   async (email, { rejectWithValue }) => {
     try {
-      const data = await instance.patch(`/users/restore`, email);
+      const { data } = await instance.patch(`/users/restore`, email);
       toast.success(data.message, {
         icon: <SiGnuicecat />,
       });

@@ -12,7 +12,7 @@ export const Button = styled.button`
   border: 2px solid ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   color: ${p =>
-    p.filling ? p.theme.colors.secondaryBackground : p.theme.colors.accent};
+    p.filling ? p.theme.colors.secondaryBackground : p.theme.colors.black};
   display: inline-flex;
   justify-content: center;
   align-items: center;
