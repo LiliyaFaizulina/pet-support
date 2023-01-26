@@ -240,23 +240,34 @@ export const ErrBox = styled.div`
 `;
 
 export const ButtonModal = styled.button`
-  width: 100%;
-  padding: 11px 0 12px 14px;
-  text-align: center;
-  color: #fff;
-  background: #f59256;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin: 16px;
-  transform: scale(1);
-  transition: transform 0.5s;
+    @media screen and (max-width: 767px) {
+    &:last-child {
+      margin-top: 12px;
+    }
+  }
   cursor: pointer;
+  background-color: ${p =>
+    p.filling ? p.theme.colors.accent : p.theme.colors.secondaryBackground};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
+  color: ${p =>
+    p.filling ? p.theme.colors.secondaryBackground : p.theme.colors.accent};
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 50px;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: calc(22 / 16);
+  letter-spacing: 0.04em;
+  transition: transform 0.5s;
   position: relative;
   overflow: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
-    transition: transform 0.5s;
   }
   :hover:before {
     left: 100%;
@@ -268,26 +279,86 @@ export const ButtonModal = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
+    ${p => {
+      if (!p.filling) {
+        return `background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(245, 146, 86, 0.9),
+      transparent
+    );`;
+      } else {
+        return `
+      background: linear-gradient(
       120deg,
       transparent,
       rgba(255, 255, 255, 0.6),
       transparent
     );
+      `;
+      }
+    }}
     transition: all 650ms;
   }
-  :disabled {
-    opacity: 0.5;
-    cursor: auto;
-    transform: none;
-    transition: none;
+  @media screen and (min-width: 768px) {
+    width: 448px;
+    margin-bottom: 16px;
   }
-  :disabled:before {
-    transform: none;
-    transition: none;
+`;
+
+export const RefreshInput = styled(Field)`
+  width: 240px;
+  font-size: 14px;
+  line-height: 1.3;
+  padding: 11px 0 12px 14px;
+  background: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 16px;
+  &:focus,
+  &:hover {
+    outline: none;
   }
   @media (min-width: 768px) {
+    width: 448px;
+    font-size: 18px;
+    padding: 14px 0 13px 32px;
+  }
+  @media (min-width: 1280px) {
     width: 458px;
-    font-size: 20px;
+  }
+`;
+
+export const FormRef = styled(Form)`
+  position: relative;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 44px;
+  padding-bottom: 40px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 20px;
+  -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
+  box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
+  
+  @media (min-width: 768px) {
+    width: 608px;
+    margin: 0 auto;
+    padding: 60px 0 40px 0;
+    border-radius: 40px;
+  }
+  @media (min-width: 1280px) {
+    width: 618px;
+    padding: 60px 0 60px 0;
+  }
+  > div {
+    position: relative;
+  }
+  :last-child {
+    font-size: 12px;
   }
 `;

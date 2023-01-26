@@ -22,7 +22,7 @@ export const LogOut = styled.button`
   }
 
   @media ${p => p.theme.media.tablet} {
-    left: 32px;
+    left: 45%;
     bottom: 24px;
     width: 90px;
     height: 22px;
@@ -30,7 +30,7 @@ export const LogOut = styled.button`
     padding: 0;
   }
   @media ${p => p.theme.media.desktop} {
-    left: 16px;
+    left: 75%;
   }
 `;
 export const LogOutIcon = styled(HiArrowRightOnRectangle)`
