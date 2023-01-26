@@ -11,6 +11,7 @@ import {
   Button,
   Title,
   ErrBox,
+  ForgotPassword,
   ShowPassword,
 } from './LoginForm.styled';
 import { login } from 'redux/auth/authOperations';
@@ -63,6 +64,7 @@ export const LoginForm = () => {
               <ShowPassword onClick={showPassword}>
                 {!showPass ? <ImEyeBlocked /> : <ImEye />}
               </ShowPassword>
+              <ForgotPassword type="button">Forgot password?</ForgotPassword>
               {errors.password && touched.password ? (
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
