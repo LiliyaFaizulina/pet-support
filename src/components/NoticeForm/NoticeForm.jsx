@@ -66,8 +66,8 @@ export const NoticeForm = ({ closeModal }) => {
       .max(16, 'Name of the pet must contain no more than 16 symbols'),
     dateOfBirth: yup
       .date()
-      .min('2000-01-01', 'Min date of birth can be 2000-01-01')
-      .max(dateToday, 'Max date of birth is today'),
+      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
+      .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
@@ -77,7 +77,7 @@ export const NoticeForm = ({ closeModal }) => {
       .string()
       .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
     price: yup.number().min(1).positive().integer(),
-    image: yup.string().required('Pet image is required'),
+    image: yup.string(),
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
@@ -284,7 +284,7 @@ export const NoticeForm = ({ closeModal }) => {
             <Label>
               Price<Required>*</Required>
               <TextInput
-                type="text"
+                type="number"
                 name="price"
                 value={values.price}
                 placeholder="Type price"
