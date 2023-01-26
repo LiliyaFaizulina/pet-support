@@ -4,14 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
-  Form1,
-  Input,
+  FormRef,
+  RefreshInput,
   ButtonModal,
   Title,
   ErrBox,
   ShowPassword,
 } from './LoginForm.styled';
-import { Card} from 'components/NoticeModal/NoticeModal.styled';
 import { updatePassword } from 'redux/auth/authOperations';
 
 const SignupSchema = object().shape({
@@ -44,11 +43,11 @@ export const RefreshPassForm = ({close}) => {
         }}
       >
         {({ errors, touched }) => (
-            <Card>
-          <Form1>
+            <FormRef>
+          
             <Title>Update Password</Title>
             <div>
-              <Input
+              <RefreshInput
                 name="passwordOld"
                 type={showPass ? 'text' : 'password'}
                 placeholder="Old Password"
@@ -61,7 +60,7 @@ export const RefreshPassForm = ({close}) => {
               ) : null}
             </div>
             <div>
-              <Input
+              <RefreshInput
                 name="password"
                 type={showPass ? 'text' : 'password'}
                 placeholder="New Password"
@@ -73,11 +72,9 @@ export const RefreshPassForm = ({close}) => {
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
             </div>
-
-            <ButtonModal type="submit">Refresh</ButtonModal>
-            <ButtonModal type="button" onClick={()=>close()}>Cancel</ButtonModal>
-          </Form1>
-          </Card>
+              <ButtonModal type="submit"  filling>Refresh</ButtonModal>
+              <ButtonModal type="button" onClick={()=>close()}>Cancel</ButtonModal>
+          </FormRef>
         )}
       </Formik>
   );

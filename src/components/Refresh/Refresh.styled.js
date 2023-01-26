@@ -8,13 +8,13 @@ export const RefreshBtn = styled.button`
   display: inline-flex;
   align-items: center;
   margin-left: auto;
-  /* margin-bottom: 8px; */
 
   border: none;
   background-color: transparent;
   color: ${p => p.theme.colors.inputText};
   font-size: 16px;
   font-weight: 500;
+
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -22,15 +22,15 @@ export const RefreshBtn = styled.button`
   }
 
   @media ${p => p.theme.media.tablet} {
-    left: 50%;
+    left: 32px;
     bottom: 24px;
-    width: 90px;
+    width: 100px;
     height: 22px;
     margin: 0;
     padding: 0;
   }
   @media ${p => p.theme.media.desktop} {
-    left: 70%;
+    left: 12px;
   }
 `;
 export const RefreshIcon = styled(HiPencil)`
