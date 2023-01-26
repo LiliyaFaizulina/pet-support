@@ -11,7 +11,6 @@ import {
   ErrBox,
   ShowPassword,
 } from './LoginForm.styled';
-import { Card} from 'components/NoticeModal/NoticeModal.styled';
 import { updatePassword } from 'redux/auth/authOperations';
 
 const SignupSchema = object().shape({
