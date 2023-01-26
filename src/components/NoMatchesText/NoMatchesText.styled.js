@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ErrorText = styled.h2`
   position: relative;
-  padding: 20px 0 20px 20px;
+  padding: 120px 0 70px 20px;
 
   text-align: center;
   font-size: 18px;
@@ -12,7 +12,7 @@ export const ErrorText = styled.h2`
 
   svg {
     position: absolute;
-    top: 20px;
+    top: 120px;
     left: 40px;
     width: 24px;
     height: 24px;
@@ -23,7 +23,6 @@ export const ErrorText = styled.h2`
     font-size: 28px;
 
     svg {
-      top: 20px;
       left: 190px;
       width: 38px;
       height: 38px;
@@ -32,7 +31,6 @@ export const ErrorText = styled.h2`
 
   @media ${p => p.theme.media.desktop} {
     svg {
-      top: 20px;
       left: 460px;
     }
   }
