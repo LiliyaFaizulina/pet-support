@@ -68,6 +68,21 @@ export const Form1 = styled(Form)`
   }
 `;
 
+export const ShowPassword = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 15px;
+  top: 13px;
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;
@@ -110,6 +125,14 @@ export const PhoneInput = styled(MaskedInput)`
     width: 458px;
   }
 `;
+export const ForgotPassword = styled.button`
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  background-color: transparent;
+  border: none;
+`;
+
 export const Button = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
