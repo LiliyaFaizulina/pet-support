@@ -125,6 +125,14 @@ export const PhoneInput = styled(MaskedInput)`
     width: 458px;
   }
 `;
+export const ForgotPassword = styled.button`
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  background-color: transparent;
+  border: none;
+`;
+
 export const Button = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
