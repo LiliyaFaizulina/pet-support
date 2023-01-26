@@ -240,3 +240,56 @@ export const ErrBox = styled.div`
     left: 33px;
   }
 `;
+
+export const ButtonModal = styled.button`
+  width: 100%;
+  padding: 11px 0 12px 14px;
+  text-align: center;
+  color: #fff;
+  background: #f59256;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin: 16px;
+  transform: scale(1);
+  transition: transform 0.5s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
+  }
+  @media (min-width: 768px) {
+    width: 458px;
+    font-size: 20px;
+  }
+`;

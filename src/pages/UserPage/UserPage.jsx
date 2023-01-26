@@ -11,11 +11,14 @@ import { UserData } from 'components/UserData/UserData';
 import { Backdrop } from 'components/Backdrop/Backdrop';
 import { PetForm } from 'components/PetForm/PetForm';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
+import Refresh from 'components/Refresh/Refresh';
+import { RefreshPassForm } from 'components/AuthForms/RefreshPassForm';
 
 const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [petToDelete, setPetToDelete] = useState('');
+  const [isRefreshOpen, setIsRefreshOpen] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -34,6 +37,11 @@ const UserPage = () => {
     setIsLogoutOpen(true);
   };
 
+  const openRefreshModal = () => {
+    setIsModalOpen(true)
+    setIsRefreshOpen(true)
+  }
+
   const openDeleteModal = id => {
     setIsModalOpen(true);
     setPetToDelete(id);
@@ -43,6 +51,7 @@ const UserPage = () => {
     setIsModalOpen(false);
     setIsLogoutOpen(false);
     setPetToDelete('');
+    setIsRefreshOpen(false)
   };
 
   const openModal = () => {
@@ -54,12 +63,13 @@ const UserPage = () => {
         <BoxUser>
           <UserData />
           <Logout openModal={openLogoutModal} />
+          <Refresh openModal={openRefreshModal} />
         </BoxUser>
         <PetsData openModal={openModal} openDeleteModal={openDeleteModal} />
       </UserPageContainer>
       {isModalOpen && (
         <Backdrop closeModal={closeModal}>
-          {!isLogoutOpen && !petToDelete && <PetForm closeModal={closeModal} />}
+          {!isLogoutOpen && !petToDelete && !isRefreshOpen && <PetForm closeModal={closeModal} />}
           {isLogoutOpen && (
             <ConfirmModal
               text="exit"
@@ -75,6 +85,7 @@ const UserPage = () => {
               id={petToDelete}
             />
           )}
+          {isRefreshOpen && <RefreshPassForm close={closeModal} />}
         </Backdrop>
       )}
     </>
