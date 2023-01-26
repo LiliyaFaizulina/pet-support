@@ -103,6 +103,7 @@ export const TextInput = styled.input`
   }
 
   &[type='text'],
+  &[type='number'],
   &[type='date'] {
     font-weight: 400;
     font-size: 14px;
@@ -111,6 +112,12 @@ export const TextInput = styled.input`
     @media screen and (min-width: 768px) {
       font-size: 16px;
       line-height: 1.625;
+    }
+
+    &[type=number]::-webkit-inner-spin-button, 
+    &[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
   transition: transform 250ms ease-in-out;
