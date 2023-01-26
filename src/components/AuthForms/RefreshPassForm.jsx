@@ -12,9 +12,11 @@ import {
   ShowPassword,
 } from './LoginForm.styled';
 import { updatePassword } from 'redux/auth/authOperations';
+import { toast } from 'react-toastify';
+import { GiCat } from 'react-icons/gi';
 
 const SignupSchema = object().shape({
-  passwordOld: string().required('Email Required'),
+  passwordOld: string().required('All passwords is required'),
   password: string()
     .min(7, 'Too Short!')
     .max(32, 'Too Long!')
@@ -36,10 +38,15 @@ export const RefreshPassForm = ({close}) => {
         }}
         validationSchema={SignupSchema}
         onSubmit={({ password, passwordOld }, { resetForm }) => {
-          dispatch(updatePassword({password: passwordOld, newPassword: password
-         }));
-          resetForm();
-          close()
+          if(password !== passwordOld){
+            dispatch(updatePassword({password: passwordOld, newPassword: password}));
+            resetForm();
+            close()
+            }else{
+              toast.error('You must use the password that differ from you old one', {
+                icon: <GiCat />,
+              });
+            }
         }}
       >
         {({ errors, touched }) => (
