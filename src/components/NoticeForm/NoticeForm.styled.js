@@ -89,7 +89,8 @@ export const Textarea = styled.textarea`
 `;
 
 export const TextInput = styled.input`
-  width: calc(100%);
+  width: 100%;
+  display: block;
   padding: 11px 20px 12px 14px;
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -130,7 +131,7 @@ export const TextInput = styled.input`
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
         color: rgba(27, 27, 27, 0.3);
         position: absolute;
-        top: 11px;
+        top: 12px;
         left: 14px;
         width: 205px;
       }

@@ -91,7 +91,8 @@ export const FormPage = styled.div`
   }
   input,
   textarea {
-    width: calc(100%);
+    width: 240px;
+    display: block;
     padding: 11px 11px 12px 14px;
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
@@ -105,6 +106,7 @@ export const FormPage = styled.div`
     }
     @media (min-width: 768px) {
       margin-top: 12px;
+      width: 100%;
     }
   }
   @media (max-width: 420px) {
@@ -116,7 +118,7 @@ export const FormPage = styled.div`
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
         color: rgba(27, 27, 27, 0.3);
         position: absolute;
-        top: 10px;
+        top: 12px;
         left: 14px;
         width: 205px;
       }
