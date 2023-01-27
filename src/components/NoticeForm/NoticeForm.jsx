@@ -63,7 +63,8 @@ export const NoticeForm = ({ closeModal }) => {
     petName: yup
       .string('Please, enter name of the pet')
       .min(2, 'Name of the pet must consist of at least 2 symbols')
-      .max(16, 'Name of the pet must contain no more than 16 symbols'),
+      .max(16, 'Name of the pet must contain no more than 16 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     dateOfBirth: yup
       .date()
       .required()
@@ -72,7 +73,8 @@ export const NoticeForm = ({ closeModal }) => {
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
-      .max(24, 'Breed must contain no more than 24 symbols'),
+      .max(24, 'Breed must contain no more than 24 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     sex: yup.string(),
     location: yup
       .string()

@@ -35,9 +35,10 @@ export const PetForm = ({ closeModal }) => {
   const validationSchema = yup.object({
     name: yup
       .string('Please, enter name of the pet')
+      .required('Pet name is required')
       .min(2, 'too short')
       .max(16, 'too long')
-      .required('Pet name is required'),
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     birthday: yup
       .date()
       .required()
@@ -45,9 +46,10 @@ export const PetForm = ({ closeModal }) => {
       .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
+      .required('Field required')
       .min(2, 'Breed must consist of at least 2 symbols')
       .max(16, 'Breed must contain no more than 24 symbols')
-      .required('Field required'),
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     petAvatar: yup.string().required('Image is required'),
     comments: yup
       .string()
