@@ -50,7 +50,7 @@ const RegisterSchema = object().shape({
   email: string().email('Invalid email').required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
-    .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters')
+    .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')

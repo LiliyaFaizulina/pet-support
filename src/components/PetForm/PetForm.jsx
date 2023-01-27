@@ -39,7 +39,7 @@ export const PetForm = ({ closeModal }) => {
       .required('Pet name is required')
       .min(2, 'too short')
       .max(16, 'too long')
-      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     birthday: yup
       .date()
       .required()
@@ -50,7 +50,7 @@ export const PetForm = ({ closeModal }) => {
       .required('Field required')
       .min(2, 'Breed must consist of at least 2 symbols')
       .max(16, 'Breed must contain no more than 24 symbols')
-      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     petAvatar: yup.string().required('Image is required'),
     comments: yup
       .string()
