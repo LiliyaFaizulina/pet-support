@@ -59,6 +59,8 @@ export const Time = styled.button`
 `;
 
 export const Text = styled.p`
+  display: flex;
+  justify-content: space-between;
   font: inherit;
   font-weight: 600;
   font-size: 12px;
