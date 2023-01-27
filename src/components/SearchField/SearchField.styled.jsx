@@ -37,7 +37,6 @@ export const Input = styled.input`
   &:focus {
     outline: 2px solid ${p => p.theme.colors.accent};
   }
-
   @media ${p => p.theme.media.tablet} {
     width: 608px;
     padding: 8px 56px 9px 20px;
@@ -57,18 +56,15 @@ export const SearchButton = styled.button`
   padding: 0;
   margin: 0;
 
-  cursor: auto;
+  cursor: text;
+  pointer-events: none;
 
-  &:hover,
-  &:focus {
-    scale: 1.2;
-  }
-
+  
   svg {
     width: 20px;
     height: 20px;
     color: ${p => p.theme.colors.primaryText};
-
+    
     @media ${p => p.theme.media.tablet} {
       width: 24px;
       height: 24px;
@@ -101,4 +97,11 @@ export const RemoveButton = styled(SearchButton)`
   transition-duration: 500ms;
   transition-timing-function: linear;
   transition-delay: 0ms;
+
+  cursor:pointer;
+  pointer-events: auto;
+&:hover,
+&:focus {
+  scale: 1.2;
+}
 `;
