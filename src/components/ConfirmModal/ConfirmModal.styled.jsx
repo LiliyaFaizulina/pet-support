@@ -32,6 +32,9 @@ export const Button = styled.button`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -40,6 +43,9 @@ export const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     ${p => {
       if (!p.filling) {
         return `background: linear-gradient(
