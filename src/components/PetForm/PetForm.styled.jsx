@@ -121,7 +121,7 @@ export const FormPage = styled.div`
       }
     }
   }
-  @supports (-webkit-overflow-scrolling: touch) {
+  /* @supports (-webkit-overflow-scrolling: touch) {
     input[type='date'] {
       display: block;
       -webkit-appearance: textfield;
@@ -132,7 +132,7 @@ export const FormPage = styled.div`
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
       }
     }
-  }
+  } */
 
   textarea {
     height: 100px;

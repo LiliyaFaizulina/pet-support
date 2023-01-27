@@ -136,7 +136,7 @@ export const TextInput = styled.input`
     }
   }
 
-  @supports (-webkit-overflow-scrolling: touch) {
+  /* @supports (-webkit-overflow-scrolling: touch) {
     &[type='date'] {
       display: block;
       -webkit-appearance: textfield;
@@ -147,7 +147,7 @@ export const TextInput = styled.input`
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
       }
     }
-  }
+  } */
 
   transition: transform 250ms ease-in-out;
   &:focus {
