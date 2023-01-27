@@ -38,7 +38,11 @@ export const PetForm = ({ closeModal }) => {
       .min(2, 'too short')
       .max(16, 'too long')
       .required('Pet name is required'),
-    birthday: yup.string().required('Date of birth is required'),
+    birthday: yup
+      .string()
+      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
+      .max(dateToday, 'The maximum date of birth is today')
+      .required('Date of birth is required'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
@@ -80,7 +84,7 @@ export const PetForm = ({ closeModal }) => {
           <TfiClose />
         </CloseBtn>
         <h3>Add pet</h3>
-        <FormPage isHidden={page === 2}>
+        <FormPage isHidden={page === 2} isEmpty={values.birthday === ''}>
           <label>
             Name pet
             <input
@@ -99,7 +103,7 @@ export const PetForm = ({ closeModal }) => {
               type="date"
               name="birthday"
               value={values.birthday}
-              min="2003-01-01"
+              min="2000-01-01"
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}

@@ -195,10 +195,11 @@ export const NoticeForm = ({ closeModal }) => {
           <Label>
             Date of birth<Required>*</Required>
             <TextInput
+              isEmpty={values.dateOfBirth === ''}
               type="date"
               name="dateOfBirth"
               value={values.dateOfBirth}
-              min="2008-01-01"
+              min="2000-01-01"
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}

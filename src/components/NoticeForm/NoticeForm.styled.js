@@ -120,6 +120,23 @@ export const TextInput = styled.input`
       margin: 0;
     }
   }
+
+  @supports (-webkit-overflow-scrolling: touch) {
+    &[type='date'] {
+      display:block;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      -webkit-text-fill-color: #666;
+      height: 42px;
+      &::after {
+        content: ${p=> p.isEmpty ? `attr(placeholder)` : `""`};
+      }
+    }
+  }
+
+
+
+
   transition: transform 250ms ease-in-out;
   &:focus {
     transform: scale(1.03);
