@@ -39,10 +39,10 @@ export const PetForm = ({ closeModal }) => {
       .max(16, 'too long')
       .required('Pet name is required'),
     birthday: yup
-      .string()
+      .date()
+      .required()
       .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
-      .max(dateToday, 'The maximum date of birth is today')
-      .required('Date of birth is required'),
+      .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
@@ -110,7 +110,9 @@ export const PetForm = ({ closeModal }) => {
               onBlur={handleBlur}
             />
             {errors.birthday || touched.birthday ? (
-              <p>{errors.birthday}</p>
+              <p>
+                {!values.birthday ? 'Date must be a valid' : errors.birthday}
+              </p>
             ) : null}
           </label>
           <label>

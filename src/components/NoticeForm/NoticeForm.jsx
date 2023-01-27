@@ -66,6 +66,7 @@ export const NoticeForm = ({ closeModal }) => {
       .max(16, 'Name of the pet must contain no more than 16 symbols'),
     dateOfBirth: yup
       .date()
+      .required()
       .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
       .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
@@ -205,7 +206,11 @@ export const NoticeForm = ({ closeModal }) => {
               onChange={handleChange}
             />
             {errors.dateOfBirth || touched.dateOfBirth ? (
-              <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>
+              <ErrorMessage>
+                {!values.dateOfBirth
+                  ? 'Date must be a valid'
+                  : errors.dateOfBirth}
+              </ErrorMessage>
             ) : null}
           </Label>
           <Label>
