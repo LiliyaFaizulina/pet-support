@@ -8,10 +8,12 @@ export const TimeTable = ({ shedule }) => {
         <TimeItem key={nanoid()}>
           {item?.isOpen ? (
             <Text>
-              {item.day}:{item.from}-{item.to}
+              <span>{item.day}</span> {item.from}-{item.to}
             </Text>
           ) : (
-            <Text>{item.day}:Closed</Text>
+            <Text>
+              <span>{item.day}</span> Closed
+            </Text>
           )}
         </TimeItem>
       ))}
