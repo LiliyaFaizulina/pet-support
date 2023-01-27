@@ -114,8 +114,8 @@ export const ButtonMore = styled.button`
   }
   :hover:before {
     left: 100%;
-    @media screen and (max-width: 767.98px){
-        visibility: visible;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
     }
   }
   :before {
@@ -132,7 +132,7 @@ export const ButtonMore = styled.button`
       transparent
     );
     transition: all 650ms;
-    @media screen and (max-width: 767.98px){
+    @media screen and (max-width: 767px) {
       visibility: hidden;
     }
   }
