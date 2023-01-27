@@ -92,7 +92,6 @@ export const FormPage = styled.div`
   input,
   textarea {
     width: 240px;
-    display: block;
     padding: 11px 11px 12px 14px;
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
@@ -120,7 +119,7 @@ export const FormPage = styled.div`
         position: absolute;
         top: 12px;
         left: 14px;
-        width: 205px;
+        width: 150px;
       }
     }
   }
