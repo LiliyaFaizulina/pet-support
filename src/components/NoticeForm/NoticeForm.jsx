@@ -63,15 +63,18 @@ export const NoticeForm = ({ closeModal }) => {
     petName: yup
       .string('Please, enter name of the pet')
       .min(2, 'Name of the pet must consist of at least 2 symbols')
-      .max(16, 'Name of the pet must contain no more than 16 symbols'),
+      .max(16, 'Name of the pet must contain no more than 16 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     dateOfBirth: yup
       .date()
+      .required()
       .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
       .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
-      .max(24, 'Breed must contain no more than 24 symbols'),
+      .max(24, 'Breed must contain no more than 24 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters'),
     sex: yup.string(),
     location: yup
       .string()
@@ -195,16 +198,21 @@ export const NoticeForm = ({ closeModal }) => {
           <Label>
             Date of birth<Required>*</Required>
             <TextInput
+              isEmpty={values.dateOfBirth === ''}
               type="date"
               name="dateOfBirth"
               value={values.dateOfBirth}
-              min="2008-01-01"
+              min="2000-01-01"
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}
             />
             {errors.dateOfBirth || touched.dateOfBirth ? (
-              <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>
+              <ErrorMessage>
+                {!values.dateOfBirth
+                  ? 'Date must be a valid'
+                  : errors.dateOfBirth}
+              </ErrorMessage>
             ) : null}
           </Label>
           <Label>

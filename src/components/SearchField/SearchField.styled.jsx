@@ -26,7 +26,8 @@ export const Input = styled.input`
   color: ${p => p.theme.colors.primaryText};
 
   border-radius: 20px;
-  border: 0;
+  border: 2px solid transparent;
+  outline: none;
 
   box-shadow: 7px 4px 14px ${p => p.theme.colors.shadowCard};
 
@@ -35,9 +36,8 @@ export const Input = styled.input`
   }
 
   &:focus {
-    outline: 2px solid ${p => p.theme.colors.accent};
+    border: 2px solid ${p => p.theme.colors.accent};
   }
-
   @media ${p => p.theme.media.tablet} {
     width: 608px;
     padding: 8px 56px 9px 20px;
@@ -57,12 +57,8 @@ export const SearchButton = styled.button`
   padding: 0;
   margin: 0;
 
-  cursor: auto;
-
-  &:hover,
-  &:focus {
-    scale: 1.2;
-  }
+  cursor: text;
+  pointer-events: none;
 
   svg {
     width: 20px;
@@ -101,4 +97,11 @@ export const RemoveButton = styled(SearchButton)`
   transition-duration: 500ms;
   transition-timing-function: linear;
   transition-delay: 0ms;
+
+  cursor: pointer;
+  pointer-events: auto;
+  &:hover,
+  &:focus {
+    scale: 1.2;
+  }
 `;
