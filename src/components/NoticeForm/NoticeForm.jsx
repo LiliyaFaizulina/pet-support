@@ -75,7 +75,10 @@ export const NoticeForm = ({ closeModal }) => {
     sex: yup.string(),
     location: yup
       .string()
-      .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
+      .matches(
+        /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
+        'Example: Brovary, Kyiv'
+      ),
     price: yup.number().min(1).positive().integer(),
     image: yup.string(),
     comments: yup

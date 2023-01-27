@@ -4,18 +4,19 @@ import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
-  Form1,
-  Input,
+  FormRef,
+  RefreshInput,
   ButtonModal,
   Title,
   ErrBox,
   ShowPassword,
 } from './LoginForm.styled';
-import { Card} from 'components/NoticeModal/NoticeModal.styled';
 import { updatePassword } from 'redux/auth/authOperations';
+import { toast } from 'react-toastify';
+import { GiCat } from 'react-icons/gi';
 
 const SignupSchema = object().shape({
-  passwordOld: string().required('Email Required'),
+  passwordOld: string().required('All passwords is required'),
   password: string()
     .min(7, 'Too Short!')
     .max(32, 'Too Long!')
@@ -37,18 +38,23 @@ export const RefreshPassForm = ({close}) => {
         }}
         validationSchema={SignupSchema}
         onSubmit={({ password, passwordOld }, { resetForm }) => {
-          dispatch(updatePassword({password: passwordOld, newPassword: password
-         }));
-          resetForm();
-          close()
+          if(password !== passwordOld){
+            dispatch(updatePassword({password: passwordOld, newPassword: password}));
+            resetForm();
+            close()
+            }else{
+              toast.error('You must use the password that differ from you old one', {
+                icon: <GiCat />,
+              });
+            }
         }}
       >
         {({ errors, touched }) => (
-            <Card>
-          <Form1>
+            <FormRef>
+          
             <Title>Update Password</Title>
             <div>
-              <Input
+              <RefreshInput
                 name="passwordOld"
                 type={showPass ? 'text' : 'password'}
                 placeholder="Old Password"
@@ -61,7 +67,7 @@ export const RefreshPassForm = ({close}) => {
               ) : null}
             </div>
             <div>
-              <Input
+              <RefreshInput
                 name="password"
                 type={showPass ? 'text' : 'password'}
                 placeholder="New Password"
@@ -73,11 +79,9 @@ export const RefreshPassForm = ({close}) => {
                 <ErrBox>{errors.password}</ErrBox>
               ) : null}
             </div>
-
-            <ButtonModal type="submit">Refresh</ButtonModal>
-            <ButtonModal type="button" onClick={()=>close()}>Cancel</ButtonModal>
-          </Form1>
-          </Card>
+              <ButtonModal type="submit"  filling>Refresh</ButtonModal>
+              <ButtonModal type="button" onClick={()=>close()}>Cancel</ButtonModal>
+          </FormRef>
         )}
       </Formik>
   );

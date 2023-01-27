@@ -24,6 +24,17 @@ body {
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     background-color: ${p => p.theme.colors.mainBackground};
+    &::-webkit-scrollbar {
+    width: 0px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 1px;
+    background-color: ${p => p.theme.colors.mainBackground};
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${p => p.theme.colors.accent};
+    border-radius: 1px;
+  }
 }
 
 .Toastify__toast-theme--light.Toastify__toast--info {
