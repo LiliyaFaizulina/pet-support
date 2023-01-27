@@ -92,8 +92,12 @@ export const NoticeCategoryItem = ({
     }
   } else {
     const months = Math.floor(age / msInMonth);
-    ageMessage =
-      months === 1 ? `${numbers[months]} month` : `${numbers[months]} months`;
+    if (months === 0) {
+      ageMessage = 'newborn';
+    } else {
+      ageMessage =
+        months === 1 ? `${numbers[months]} month` : `${numbers[months]} months`;
+    }
   }
 
   const toggleFavorite = () => {
