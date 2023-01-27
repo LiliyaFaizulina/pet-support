@@ -16,6 +16,7 @@ import {
   ButtonWrapper,
   FileLable,
 } from './PetForm.styled';
+import { FileInput } from 'components/NoticeForm/NoticeForm.styled';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -151,8 +152,7 @@ export const PetForm = ({ closeModal }) => {
         <FormPage isHidden={page === 1}>
           <h4>Add photo and some comments</h4>
           <FileLable>
-            <input
-              hidden
+            <FileInput
               type="file"
               name="petAvatar"
               ref={inputRef}
