@@ -31,6 +31,8 @@ const UserDataForm = () => {
   const isLoading = useSelector(selectIsLoading);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
+  const maxDate = new Date().toISOString().slice(0, 10);
+
   const { register } = useForm({
     mode: 'onBlur',
   });
@@ -78,7 +80,6 @@ const UserDataForm = () => {
       };
     }
   };
-  const maxDate = new Date().toISOString().slice(0, 10);
 
   return (
     <UserBlock>
