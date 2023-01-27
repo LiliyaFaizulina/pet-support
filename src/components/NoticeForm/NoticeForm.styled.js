@@ -89,7 +89,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const TextInput = styled.input`
-  width: 100%;
+  width: calc(100%);
   padding: 11px 20px 12px 14px;
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -125,7 +125,7 @@ export const TextInput = styled.input`
     &[type='date'] {
       position: relative;
       height: 46px;
-      width: calc(100%);
+
       &::after {
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
         color: rgba(27, 27, 27, 0.3);
