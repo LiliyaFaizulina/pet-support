@@ -3,15 +3,25 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   padding: 26px 20px 100px 20px;
   margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   font-family: ${p => p.theme.fonts.mainFamily};
 
    color: ${p => p.theme.colors.heading};
 
+
+   @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
   @media screen and (min-width: 768px) {
     padding: 62px 32px 100px 32px;
+    width: 768px;
   }
   @media screen and (min-width: 1280px) {
     padding: 39px 16px 200px 16px;
+    width: 1280px;
   }
 `;
 
