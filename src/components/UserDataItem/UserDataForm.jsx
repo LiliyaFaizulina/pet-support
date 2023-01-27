@@ -29,6 +29,7 @@ const UserDataForm = () => {
   const [newUserAvatar, setNewUserAvatar] = useState();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
   const { register } = useForm({
     mode: 'onBlur',
@@ -131,6 +132,8 @@ const UserDataForm = () => {
                         <Title>Name:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.name}
                             name="name"
                             type="text"
@@ -143,6 +146,8 @@ const UserDataForm = () => {
                         <Title>Email:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.email}
                             name={'email'}
                             type="email"
@@ -155,6 +160,8 @@ const UserDataForm = () => {
                         <Title>Birthday:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.birthday}
                             name={'birthday'}
                             type="date"
@@ -168,6 +175,8 @@ const UserDataForm = () => {
                         <Title>Phone:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.phone}
                             name={'phone'}
                             type="tel"
@@ -180,6 +189,8 @@ const UserDataForm = () => {
                         <Title>City:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.city}
                             name={'city'}
                             type="text"
