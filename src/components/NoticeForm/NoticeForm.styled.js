@@ -125,6 +125,7 @@ export const TextInput = styled.input`
     &[type='date'] {
       position: relative;
       height: 46px;
+      width: calc(100%);
       &::after {
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
         color: rgba(27, 27, 27, 0.3);
