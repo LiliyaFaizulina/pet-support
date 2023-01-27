@@ -97,6 +97,7 @@ export const FormPage = styled.div`
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
     margin-top: 8px;
+    color: rgba(27, 27, 27, 0.6);
 
     &:focus,
     &:hover {
@@ -106,7 +107,21 @@ export const FormPage = styled.div`
       margin-top: 12px;
     }
   }
-  @supports (-webkit-overflow-scrolling: touch) {
+  @media (max-width: 420px) {
+    input[type='date'] {
+      position: relative;
+      height: 46px;
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+        color: rgba(27, 27, 27, 0.3);
+        position: absolute;
+        top: 10px;
+        left: 14px;
+        width: 205px;
+      }
+    }
+  }
+  /* @supports (-webkit-overflow-scrolling: touch) {
     input[type='date'] {
       display: block;
       -webkit-appearance: textfield;
@@ -117,7 +132,7 @@ export const FormPage = styled.div`
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
       }
     }
-  }
+  } */
 
   textarea {
     height: 100px;

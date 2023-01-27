@@ -114,28 +114,40 @@ export const TextInput = styled.input`
       line-height: 1.625;
     }
 
-    &[type=number]::-webkit-inner-spin-button, 
-    &[type=number]::-webkit-outer-spin-button {
+    &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
   }
 
-  @supports (-webkit-overflow-scrolling: touch) {
+  @media (max-width: 420px) {
     &[type='date'] {
-      display:block;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      -webkit-text-fill-color: #666;
-      height: 42px;
+      position: relative;
+      height: 46px;
       &::after {
-        content: ${p=> p.isEmpty ? `attr(placeholder)` : `""`};
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+        color: rgba(27, 27, 27, 0.3);
+        position: absolute;
+        top: 11px;
+        left: 14px;
+        width: 205px;
       }
     }
   }
 
-
-
+  /* @supports (-webkit-overflow-scrolling: touch) {
+    &[type='date'] {
+      display: block;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      -webkit-text-fill-color: #666;
+      height: 46px;
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+      }
+    }
+  } */
 
   transition: transform 250ms ease-in-out;
   &:focus {
