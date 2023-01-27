@@ -4,7 +4,7 @@ const Refresh = ({ openModal }) => {
   return (
     <RefreshBtn onClick={openModal}>
       <RefreshIcon />
-      edit pass
+      Edit pass
     </RefreshBtn>
   );
 };

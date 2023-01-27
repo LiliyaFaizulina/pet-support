@@ -179,6 +179,9 @@ export const AcseptButton = styled.button`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -187,6 +190,9 @@ export const AcseptButton = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,
@@ -219,6 +225,9 @@ export const BackButton = styled(AcseptButton)`
   order: 2;
   margin-top: 0;
   :before {
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,

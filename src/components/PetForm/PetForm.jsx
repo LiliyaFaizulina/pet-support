@@ -161,8 +161,19 @@ export const PetForm = ({ closeModal }) => {
               onBlur={handleBlur}
               onChange={e => {
                 if (e.target.files[0]) {
-                  setFile(e.target.files[0]);
-                  setImageLink(URL.createObjectURL(e.target.files[0]));
+                  if (
+                    ['image/jpg', 'image/png', 'image/jpeg', 'image/bmp'].some(
+                      item => item === e.target.files[0].type
+                    )
+                  ) {
+                    setFile(e.target.files[0]);
+                    setImageLink(URL.createObjectURL(e.target.files[0]));
+                  } else {
+                    toast.info(
+                      'You can add only .png, .jpg, .jpeg, .bmp type of photo'
+                    );
+                    return;
+                  }
                 }
                 handleChange(e);
               }}
