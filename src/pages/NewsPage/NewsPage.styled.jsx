@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   padding: 26px 20px 100px 20px;
   margin: 0;
-    margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
   width: 100%;
   font-family: ${p => p.theme.fonts.mainFamily};
