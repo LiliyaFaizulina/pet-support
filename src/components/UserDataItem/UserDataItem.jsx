@@ -35,6 +35,18 @@ const UserDataItem = ({
     setIsBtnDisabled(true);
     if (name === 'birthday') {
       let inputValue = new Date(inputeValue).toISOString().slice(0, 10);
+      if (new Date(inputeValue) < new Date(min)) {
+        setActive(false);
+        setIsBtnDisabled(false);
+        setInputeValue(min);
+        return;
+      }
+      if (new Date(inputeValue) > new Date(max)) {
+        setActive(false);
+        setIsBtnDisabled(false);
+        setInputeValue(max);
+        return;
+      }
       setInputeValue(inputValue);
     }
     const isValidValue = pattern.test(inputeValue);
@@ -54,9 +66,7 @@ const UserDataItem = ({
         [name]: inputeValue,
       };
       setIsValid(true);
-
       dispatch(updateUser(data));
-
       return;
     }
     setIsValid(true);
