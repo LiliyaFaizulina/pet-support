@@ -56,10 +56,12 @@ export const FileLable = styled.div`
     border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   }
 `;
-export const CloseBtn = styled.div`
+export const CloseBtn = styled.button`
   position: absolute;
   top: 23px;
   right: 23px;
+  padding: 0;
+  color: ${p => p.theme.colors.heading};
   background-color: transparent;
   cursor: pointer;
   :hover,

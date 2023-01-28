@@ -54,12 +54,15 @@ export const CloseBtn = styled.button`
   width: 34px;
   height: 34px;
   display: flex;
+  padding: 0;
   justify-content: center;
   align-items: center;
   border: none;
   border-radius: ${p => p.theme.radii.round};
   background-color: ${p => p.theme.colors.mainBackground};
   backdrop-filter: blur(2px);
+  color: ${p => p.theme.colors.black};
+
   svg {
     width: 19px;
     height: 19px;

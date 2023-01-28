@@ -18,7 +18,7 @@ const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [petToDelete, setPetToDelete] = useState('');
-  const [isRefreshOpen, setIsRefreshOpen] = useState(false)
+  const [isRefreshOpen, setIsRefreshOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -38,9 +38,9 @@ const UserPage = () => {
   };
 
   const openRefreshModal = () => {
-    setIsModalOpen(true)
-    setIsRefreshOpen(true)
-  }
+    setIsModalOpen(true);
+    setIsRefreshOpen(true);
+  };
 
   const openDeleteModal = id => {
     setIsModalOpen(true);
@@ -51,7 +51,7 @@ const UserPage = () => {
     setIsModalOpen(false);
     setIsLogoutOpen(false);
     setPetToDelete('');
-    setIsRefreshOpen(false)
+    setIsRefreshOpen(false);
   };
 
   const openModal = () => {
@@ -69,7 +69,9 @@ const UserPage = () => {
       </UserPageContainer>
       {isModalOpen && (
         <Backdrop closeModal={closeModal}>
-          {!isLogoutOpen && !petToDelete && !isRefreshOpen && <PetForm closeModal={closeModal} />}
+          {!isLogoutOpen && !petToDelete && !isRefreshOpen && (
+            <PetForm closeModal={closeModal} />
+          )}
           {isLogoutOpen && (
             <ConfirmModal
               text="exit"
