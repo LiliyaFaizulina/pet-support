@@ -29,6 +29,9 @@ const UserDataForm = () => {
   const [newUserAvatar, setNewUserAvatar] = useState();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
+  const maxDate = new Date().toISOString().slice(0, 10);
 
   const { register } = useForm({
     mode: 'onBlur',
@@ -45,8 +48,9 @@ const UserDataForm = () => {
 
   const emailRegex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  const nameRegex = /^[a-zA-Zа-яА-Я-`']*$/;
-  const cityRegex = /^[a-zA-Zа-яА-Я-]+(,)(\s?)+[a-zA-Zа-яА-Я-]*$/;
+  const nameRegex = /^[a-zA-Zа-яА-Я-`'іІїЇ]*$/;
+  const cityRegex =
+    /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/;
 
   const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/;
   const dateRegexp = /\d{4}-\d{1,2}-\d{1,2}/;
@@ -76,7 +80,6 @@ const UserDataForm = () => {
       };
     }
   };
-  const maxDate = new Date().toISOString().slice(0, 10);
 
   return (
     <UserBlock>
@@ -130,6 +133,8 @@ const UserDataForm = () => {
                         <Title>Name:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.name}
                             name="name"
                             type="text"
@@ -142,6 +147,8 @@ const UserDataForm = () => {
                         <Title>Email:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.email}
                             name={'email'}
                             type="email"
@@ -154,6 +161,8 @@ const UserDataForm = () => {
                         <Title>Birthday:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.birthday}
                             name={'birthday'}
                             type="date"
@@ -167,6 +176,8 @@ const UserDataForm = () => {
                         <Title>Phone:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.phone}
                             name={'phone'}
                             type="tel"
@@ -179,6 +190,8 @@ const UserDataForm = () => {
                         <Title>City:</Title>
                         <Block>
                           <UserDataItem
+                            isBtnDisabled={isBtnDisabled}
+                            setIsBtnDisabled={setIsBtnDisabled}
                             defaultValue={result.city}
                             name={'city'}
                             type="text"

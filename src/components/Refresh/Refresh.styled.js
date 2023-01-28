@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import { HiPencil } from 'react-icons/hi';
 
-export const LogOut = styled.button`
+export const RefreshBtn = styled.button`
   position: absolute;
-  right: 12px;
+  left: 12px;
   bottom: 20px;
   display: inline-flex;
   align-items: center;
   margin-left: auto;
-  /* margin-bottom: 8px; */
 
   border: none;
   background-color: transparent;
   color: ${p => p.theme.colors.inputText};
   font-size: 16px;
   font-weight: 500;
+
   cursor: pointer;
   :hover svg,
   :focus svg {
@@ -22,18 +22,18 @@ export const LogOut = styled.button`
   }
 
   @media ${p => p.theme.media.tablet} {
-    left: 45%;
+    left: 32px;
     bottom: 24px;
-    width: 90px;
+    width: 100px;
     height: 22px;
     margin: 0;
     padding: 0;
   }
   @media ${p => p.theme.media.desktop} {
-    left: 75%;
+    left: 12px;
   }
 `;
-export const LogOutIcon = styled(HiArrowRightOnRectangle)`
+export const RefreshIcon = styled(HiPencil)`
   width: 18px;
   height: 18px;
   margin-right: 8px;

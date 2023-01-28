@@ -97,12 +97,13 @@ export const FormPage = styled.div`
   }
   input,
   textarea {
-    width: 100%;
+    width: 240px;
     padding: 11px 11px 12px 14px;
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
     margin-top: 8px;
+    color: rgba(27, 27, 27, 0.6);
 
     &:focus,
     &:hover {
@@ -110,8 +111,37 @@ export const FormPage = styled.div`
     }
     @media (min-width: 768px) {
       margin-top: 12px;
+      width: 100%;
     }
   }
+  @media (max-width: 420px) {
+    input[type='date'] {
+      position: relative;
+      height: 46px;
+
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+        color: rgba(27, 27, 27, 0.3);
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        width: 150px;
+      }
+    }
+  }
+  /* @supports (-webkit-overflow-scrolling: touch) {
+    input[type='date'] {
+      display: block;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      -webkit-text-fill-color: #666;
+      height: 42px;
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+      }
+    }
+  } */
+
   textarea {
     height: 100px;
     border-radius: 20px;
@@ -174,6 +204,9 @@ export const AcseptButton = styled.button`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -182,6 +215,9 @@ export const AcseptButton = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,
@@ -214,6 +250,9 @@ export const BackButton = styled(AcseptButton)`
   order: 2;
   margin-top: 0;
   :before {
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,

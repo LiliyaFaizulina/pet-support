@@ -193,6 +193,9 @@ export const ContactLink = styled.a`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -201,6 +204,9 @@ export const ContactLink = styled.a`
     left: -100%;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,
@@ -243,6 +249,9 @@ export const ToggleFavoriteBtn = styled.button`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -251,6 +260,9 @@ export const ToggleFavoriteBtn = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
     background: linear-gradient(
       120deg,
       transparent,

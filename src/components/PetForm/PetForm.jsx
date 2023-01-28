@@ -31,17 +31,22 @@ export const PetForm = ({ closeModal }) => {
   const validationSchema = yup.object({
     name: yup
       .string('Please, enter name of the pet')
+      .required('Pet name is required')
       .min(2, 'too short')
       .max(16, 'too long')
-      .required('Pet name is required'),
-    birthday: yup.string().required('Date of birth is required'),
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
+    birthday: yup
+      .date()
+      .required()
+      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
+      .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
+      .required('Field required')
       .min(2, 'Breed must consist of at least 2 symbols')
       .max(16, 'Breed must contain no more than 24 symbols')
-      .required('Field required'),
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     petAvatar: yup.string(),
-
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
@@ -93,7 +98,7 @@ export const PetForm = ({ closeModal }) => {
           <TfiClose />
         </CloseBtn>
         <h3>Add pet</h3>
-        <FormPage isHidden={page === 2}>
+        <FormPage isHidden={page === 2} isEmpty={values.birthday === ''}>
           <label>
             Name pet
             <input
@@ -112,14 +117,16 @@ export const PetForm = ({ closeModal }) => {
               type="date"
               name="birthday"
               value={values.birthday}
-              min="2003-01-01"
+              min="2000-01-01"
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}
               onBlur={handleBlur}
             />
             {errors.birthday || touched.birthday ? (
-              <p>{errors.birthday}</p>
+              <p>
+                {!values.birthday ? 'Date must be a valid' : errors.birthday}
+              </p>
             ) : null}
           </label>
           <label>

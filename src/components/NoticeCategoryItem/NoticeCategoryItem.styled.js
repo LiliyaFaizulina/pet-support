@@ -114,6 +114,9 @@ export const ButtonMore = styled.button`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -129,6 +132,9 @@ export const ButtonMore = styled.button`
       transparent
     );
     transition: all 650ms;
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
   }
 `;
 

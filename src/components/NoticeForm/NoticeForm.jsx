@@ -63,21 +63,27 @@ export const NoticeForm = ({ closeModal }) => {
     petName: yup
       .string('Please, enter name of the pet')
       .min(2, 'Name of the pet must consist of at least 2 symbols')
-      .max(16, 'Name of the pet must contain no more than 16 symbols'),
+      .max(16, 'Name of the pet must contain no more than 16 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     dateOfBirth: yup
       .date()
-      .min('2000-01-01', 'Min date of birth can be 2000-01-01')
-      .max(dateToday, 'Max date of birth is today'),
+      .required()
+      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
+      .max(dateToday, 'The maximum date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .min(2, 'Breed must consist of at least 2 symbols')
-      .max(24, 'Breed must contain no more than 24 symbols'),
+      .max(24, 'Breed must contain no more than 24 symbols')
+      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     sex: yup.string(),
     location: yup
       .string()
-      .matches(/^(\w+(,)\s*)+\w+$/, 'Example: Brovary, Kyiv'),
+      .matches(
+        /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
+        'Example: Brovary, Kyiv'
+      ),
     price: yup.number().min(1).positive().integer(),
-    image: yup.string().required('Pet image is required'),
+    image: yup.string(),
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
@@ -192,16 +198,21 @@ export const NoticeForm = ({ closeModal }) => {
           <Label>
             Date of birth<Required>*</Required>
             <TextInput
+              isEmpty={values.dateOfBirth === ''}
               type="date"
               name="dateOfBirth"
               value={values.dateOfBirth}
-              min="2008-01-01"
+              min="2000-01-01"
               max={dateToday}
               placeholder="Type date of birth"
               onChange={handleChange}
             />
             {errors.dateOfBirth || touched.dateOfBirth ? (
-              <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>
+              <ErrorMessage>
+                {!values.dateOfBirth
+                  ? 'Date must be a valid'
+                  : errors.dateOfBirth}
+              </ErrorMessage>
             ) : null}
           </Label>
           <Label>
@@ -284,7 +295,7 @@ export const NoticeForm = ({ closeModal }) => {
             <Label>
               Price<Required>*</Required>
               <TextInput
-                type="text"
+                type="number"
                 name="price"
                 value={values.price}
                 placeholder="Type price"
@@ -308,8 +319,22 @@ export const NoticeForm = ({ closeModal }) => {
                 value={values.image}
                 onChange={e => {
                   if (e.target.files[0]) {
-                    setFile(e.target.files[0]);
-                    setImageLink(URL.createObjectURL(e.target.files[0]));
+                    if (
+                      [
+                        'image/jpg',
+                        'image/png',
+                        'image/jpeg',
+                        'image/bmp',
+                      ].some(item => item === e.target.files[0].type)
+                    ) {
+                      setFile(e.target.files[0]);
+                      setImageLink(URL.createObjectURL(e.target.files[0]));
+                    } else {
+                      toast.info(
+                        'You can add only .png, .jpg, .jpeg, .bmp type of photo'
+                      );
+                      return;
+                    }
                   }
                   handleChange(e);
                 }}

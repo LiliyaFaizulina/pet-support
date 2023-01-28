@@ -4,7 +4,7 @@ const Logout = ({ openModal }) => {
   return (
     <LogOut onClick={openModal}>
       <LogOutIcon />
-      log out
+      Log Out
     </LogOut>
   );
 };

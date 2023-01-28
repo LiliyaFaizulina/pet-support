@@ -10,6 +10,7 @@ import {
   deletePet,
   updateAvatar,
   updatePassword,
+  restorePassword,
 } from './authOperations';
 
 const initialState = {
@@ -53,6 +54,7 @@ const authSlice = createSlice({
     [deletePet.pending]: handlePending,
     [updateAvatar.pending]: handlePending,
     [updatePassword.pending]: handlePending,
+    [restorePassword.pending]: handlePending,
 
     [register.rejected]: handleRejected,
     [login.rejected]: handleRejected,
@@ -64,6 +66,7 @@ const authSlice = createSlice({
     [deletePet.rejected]: handleRejected,
     [updateAvatar.rejected]: handleRejected,
     [updatePassword.rejected]: handleRejected,
+    [restorePassword.rejected]: handleRejected,
 
     [register.fulfilled]: (state, { payload: { user, accessToken } }) => {
       state.accessToken = accessToken;
@@ -118,6 +121,9 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [updatePassword.fulfilled]: state => {
+      state.isLoading = false;
+    },
+    [restorePassword.fulfilled]: state => {
       state.isLoading = false;
     },
   },

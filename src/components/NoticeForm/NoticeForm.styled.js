@@ -6,15 +6,16 @@ export const Modal = styled.div`
   left: 50%;
   transform: translateX(-50%);
   background-color: #ffffff;
-  border-radius: 40px;
-  width: calc(100% - 40px);
+  border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+  width: 280px;
   padding: 40px 20px;
 
-  @media screen and (min-width: 420px) {
+  /* @media screen and (min-width: 420px) {
     width: 380px;
-  }
+  } */
 
   @media screen and (min-width: 768px) {
+    border-radius: ${p => p.theme.radii.mainBorderRadius};
     position: relative;
     transform: translateX(0);
     top: 0;
@@ -89,7 +90,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const TextInput = styled.input`
-  width: 100%;
+  width: 240px;
   padding: 11px 20px 12px 14px;
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -98,11 +99,13 @@ export const TextInput = styled.input`
   margin-top: 8px;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
+    width: 100%;
     margin-top: 12px;
     margin-bottom: 28px;
   }
 
   &[type='text'],
+  &[type='number'],
   &[type='date'] {
     font-weight: 400;
     font-size: 14px;
@@ -112,7 +115,43 @@ export const TextInput = styled.input`
       font-size: 16px;
       line-height: 1.625;
     }
+
+    &[type='number']::-webkit-inner-spin-button,
+    &[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
+
+  @media (max-width: 420px) {
+    &[type='date'] {
+      position: relative;
+      height: 46px;
+
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+        color: rgba(27, 27, 27, 0.3);
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        width: 150px;
+      }
+    }
+  }
+
+  /* @supports (-webkit-overflow-scrolling: touch) {
+    &[type='date'] {
+      display: block;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      -webkit-text-fill-color: #666;
+      height: 46px;
+      &::after {
+        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
+      }
+    }
+  } */
+
   transition: transform 250ms ease-in-out;
   &:focus {
     transform: scale(1.03);
@@ -122,11 +161,14 @@ export const TextInput = styled.input`
 export const CategoryWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  column-gap: 6px;
+  row-gap: 12px;
   margin-bottom: 32px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
+    column-gap: 12px;
+    row-gap: 16px;
   }
 `;
 
@@ -136,14 +178,14 @@ export const CategoryLabel = styled.label`
   line-height: 1.35;
   letter-spacing: 0.04em;
 
-  padding: 8px 28px;
+  padding: 6px 25px;
   border: 2px solid #f59256;
   border-radius: 40px;
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
   cursor: pointer;
   background-color: ${p => (p.checkedCategory ? '#F59256' : '#FFFFFF')};
@@ -274,6 +316,7 @@ export const Button = styled.button`
   font-size: 20px;
   line-height: 1.35;
   letter-spacing: 0.04em;
+  height: 40px;
 
   @media screen and (min-width: 768px) {
     width: 180px;

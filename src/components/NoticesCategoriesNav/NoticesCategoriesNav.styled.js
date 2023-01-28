@@ -49,6 +49,9 @@ export const LinkNav = styled(NavLink)`
   }
   :hover:before {
     left: 100%;
+    @media screen and (max-width: 767.98px){
+        visibility: visible;
+      }
   }
   :before {
     content: '';
@@ -64,6 +67,9 @@ export const LinkNav = styled(NavLink)`
       transparent
     );
     transition: all 650ms;
+    @media screen and (max-width: 767.98px){
+        visibility: hidden;
+      }
   }
 
   &.active {
@@ -71,12 +77,17 @@ export const LinkNav = styled(NavLink)`
     color: ${p => p.theme.colors.secondaryBackground};
 
     :before {
+      
       background: linear-gradient(
         120deg,
         transparent,
         rgba(255, 255, 255, 0.6),
         transparent
       );
+
+      @media screen and (max-width: 767.98px){
+        visibility: hidden;
+      }
     }
   }
 

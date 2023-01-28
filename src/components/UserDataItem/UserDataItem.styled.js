@@ -175,14 +175,18 @@ export const EditTextBtn = styled.button`
   border-radius: ${p => p.theme.radii.round};
   border: none;
   background-color: ${p => p.theme.colors.mainBackground};
+  color: ${p => p.theme.colors.accent};
   cursor: pointer;
-  :hover svg,
-  :focus svg {
-    fill: ${p => p.theme.colors.hoverBtn};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.hoverBtn};
   }
   @media ${p => p.theme.media.tablet} {
     width: 32px;
     height: 32px;
+  }
+  :disabled {
+    color: grey;
   }
 `;
 
@@ -190,7 +194,7 @@ export const EditTextBtnIcon = styled(HiPencil)`
   width: 13px;
   height: 13px;
 
-  color: ${p => p.theme.colors.accent};
+  fill: currentColor;
   @media ${p => p.theme.media.tablet} {
     width: 20px;
     height: 20px;
@@ -201,7 +205,7 @@ export const IconCheck = styled(BsCheckLg)`
   width: 10px;
   height: 8px;
 
-  fill: ${p => p.theme.colors.accent};
+  fill: currentColor;
   @media ${p => p.theme.media.tablet} {
     width: 17px;
     height: 13px;

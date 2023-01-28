@@ -50,7 +50,7 @@ const RegisterSchema = object().shape({
   email: string().email('Invalid email').required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
-    .matches(/^[a-zA-Zа-яА-Я-`']*$/, 'Only letters')
+    .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')
@@ -61,7 +61,7 @@ const RegisterSchema = object().shape({
     .required('Phone is required'),
   city: string()
     .matches(
-      /^[a-zA-Zа-яА-Я-]+(,)(\s?)+[a-zA-Zа-яА-Я-]*$/,
+      /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
       'Error. Example: Brovary, Kyiv'
     )
     .required('City is required'),

@@ -18,6 +18,8 @@ const UserDataItem = ({
   type,
   pattern,
   errorText,
+  isBtnDisabled,
+  setIsBtnDisabled,
 }) => {
   const [active, setActive] = useState(false);
   const [inputeValue, setInputeValue] = useState(defaultValue ?? '');
@@ -30,8 +32,21 @@ const UserDataItem = ({
 
   const handleClick = e => {
     e.preventDefault();
+    setIsBtnDisabled(true);
     if (name === 'birthday') {
       let inputValue = new Date(inputeValue).toISOString().slice(0, 10);
+      if (new Date(inputeValue) < new Date(min)) {
+        setActive(false);
+        setIsBtnDisabled(false);
+        setInputeValue(min);
+        return;
+      }
+      if (new Date(inputeValue) > new Date(max)) {
+        setActive(false);
+        setIsBtnDisabled(false);
+        setInputeValue(max);
+        return;
+      }
       setInputeValue(inputValue);
     }
     const isValidValue = pattern.test(inputeValue);
@@ -42,6 +57,7 @@ const UserDataItem = ({
     }
     if (active === true && inputeValue.length !== 0) {
       setActive(false);
+      setIsBtnDisabled(false);
       if (inputeValue === defaultValue) {
         return;
       }
@@ -50,9 +66,7 @@ const UserDataItem = ({
         [name]: inputeValue,
       };
       setIsValid(true);
-
       dispatch(updateUser(data));
-
       return;
     }
     setIsValid(true);
@@ -72,7 +86,7 @@ const UserDataItem = ({
         min={min || null}
         max={max || null}
       />
-      <EditTextBtn onClick={handleClick}>
+      <EditTextBtn onClick={handleClick} disabled={!active && isBtnDisabled}>
         {active ? <IconCheck /> : <EditTextBtnIcon />}
       </EditTextBtn>
       {!isValid && active && <ErrorText>{errorText}</ErrorText>}
