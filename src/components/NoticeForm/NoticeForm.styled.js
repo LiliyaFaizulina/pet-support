@@ -201,6 +201,10 @@ export const CategoryLabel = styled.label`
   }
   :hover:before {
     left: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -209,6 +213,11 @@ export const CategoryLabel = styled.label`
     left: -100%;
     width: 100%;
     height: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
+
     background: ${p =>
       p.checkedCategory
         ? `linear-gradient(
@@ -334,6 +343,10 @@ export const Button = styled.button`
   }
   :hover:before {
     left: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -342,6 +355,11 @@ export const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
+
     background: ${p =>
       !p.NotFillBtn
         ? `linear-gradient(
@@ -443,6 +461,7 @@ export const FormCloseBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 
   width: 34px;
   height: 34px;

@@ -47,7 +47,7 @@ export const Input = styled.input`
   }
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled.div`
   position: absolute;
   right: 12px;
   bottom: 10px;
@@ -61,8 +61,8 @@ export const SearchButton = styled.button`
   pointer-events: none;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     color: ${p => p.theme.colors.primaryText};
 
     @media ${p => p.theme.media.tablet} {

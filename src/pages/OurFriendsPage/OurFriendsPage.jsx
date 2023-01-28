@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ScrollToTop from 'react-scroll-to-top';
 
 import { getFriends } from 'redux/friends/friendsOperations';
 import {
@@ -12,6 +11,7 @@ import {
 import { Container, Section } from 'utils/GlobalStyle';
 import FriendsList from 'components/FriendsList/FriendsList';
 import Spinner from 'components/Spinner/Spinner';
+import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const OurFriendsPage = () => {
         {!isLoading && error && <h2>Server error. Please, try again later.</h2>}
         {!isLoading && !error && <FriendsList friends={data} />}
       </Container>
-      <ScrollToTop smooth color="#F59256" />
+      <Scroll smooth color="#F59256" />
     </Section>
   );
 };

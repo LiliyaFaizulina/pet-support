@@ -1,8 +1,6 @@
-import { Wrapper, Title, List } from './NewsPage.styled';
+import { Wrapper, Title, List, Scroll } from './NewsPage.styled';
 import { SearchField } from 'components/SearchField/SearchField';
 import { NewsCard } from 'components/NewsCard/NewsCard';
-import ScrollToTop from 'react-scroll-to-top';
-
 import { getNews } from 'redux/news/newsOperations';
 import {
   selectNews,
@@ -36,7 +34,7 @@ const NewsPage = () => {
     if (newsCards.length > 0) {
       return <List> {newsCards} </List>;
     } else {
-      return <NoMatchesText/>;
+      return <NoMatchesText />;
     }
   };
 
@@ -64,13 +62,12 @@ const NewsPage = () => {
       {error && <Title>Ooops... something Wrong</Title>}
       {isLoading && <Spinner />}
       {!isLoading && allNews && (
-      <>
-        {!filterText && renderCard(allNews)}
-        {filterText &&
-          renderCard(filteredNews(allNews, filterText))}
-      </>
+        <>
+          {!filterText && renderCard(allNews)}
+          {filterText && renderCard(filteredNews(allNews, filterText))}
+        </>
       )}
-      <ScrollToTop smooth color="#F59256" />
+      <Scroll smooth color="#F59256" />
     </Wrapper>
   );
 };

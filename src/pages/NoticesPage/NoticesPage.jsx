@@ -22,11 +22,11 @@ import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
-import ScrollToTop from 'react-scroll-to-top';
 import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
 import Spinner from 'components/Spinner/Spinner';
 import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
+import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
 const NoticesPage = () => {
   const [filterText, setFilterText] = useState('');
@@ -112,7 +112,7 @@ const NoticesPage = () => {
           openNoticeModal={openNoticeModal}
         />
       )}
-      <ScrollToTop smooth color="#F59256" />
+      <Scroll smooth color="#F59256" />
       {openModal && (
         <AnimatePresence>
           <Backdrop closeModal={closeModal}>
