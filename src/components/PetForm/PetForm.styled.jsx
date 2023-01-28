@@ -142,6 +142,7 @@ export const FormPage = styled.div`
 
 export const AddButton = styled.div`
   display: flex;
+  flex-direction: column;
   width: 182px;
   height: 182px;
   margin: 0 auto;
@@ -154,6 +155,11 @@ export const AddButton = styled.div`
     width: 48px;
     height: 48px;
     fill: rgba(17, 17, 17, 0.6);
+  }
+  span {
+    font-size: 12px;
+    margin-top: 35px;
+    color: grey;
   }
 `;
 
