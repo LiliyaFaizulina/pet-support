@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const FormBox = styled.div`
   position: relative;
   width: 280px;
@@ -24,7 +23,7 @@ export const FormBox = styled.div`
   }
   h4 {
     text-align: center;
-    margin-bottom: -32px;
+    /* margin-bottom: -32px; */
   }
   label {
     font-size: 18px;
@@ -43,13 +42,20 @@ export const FormBox = styled.div`
   }
 `;
 
-export const FileLable = styled.label`
-  width: 208px;
+export const FileLable = styled.div`
+  width: 182px;
+  height: 182px;
   margin: 0 auto;
-  p {
-    @media (min-width: 768px) {
-      left: 100px;
-    }
+  position: relative;
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
+
+  img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   }
 `;
 export const CloseBtn = styled.div`
@@ -123,18 +129,6 @@ export const FormPage = styled.div`
       }
     }
   }
-  /* @supports (-webkit-overflow-scrolling: touch) {
-    input[type='date'] {
-      display: block;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      -webkit-text-fill-color: #666;
-      height: 42px;
-      &::after {
-        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
-      }
-    }
-  } */
 
   textarea {
     height: 100px;
@@ -142,25 +136,27 @@ export const FormPage = styled.div`
   }
 `;
 
-export const AddButton = styled.button`
-  display: list-item;
-  width: 208px;
-  height: 208px;
+export const AddButton = styled.div`
+  display: flex;
+  width: 182px;
+  height: 182px;
   margin: 0 auto;
-  margin-top: 20px;
   background-color: #fdf7f2;
+  justify-content: center;
+  align-items: center;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+  cursor: pointer;
   svg {
     width: 48px;
     height: 48px;
     fill: rgba(17, 17, 17, 0.6);
   }
-  img {
-    width: inherit;
-    height: inherit;
+  /* img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: inherit;
-  }
+  } */
 `;
 
 export const ButtonWrapper = styled.div`

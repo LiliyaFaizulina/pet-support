@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { addPet } from 'redux/auth/authOperations';
@@ -16,18 +15,14 @@ import {
   ButtonWrapper,
   FileLable,
 } from './PetForm.styled';
-import { FileInput } from 'components/NoticeForm/NoticeForm.styled';
+import { useDropzone } from 'react-dropzone';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [file, setFile] = useState(null);
-  const [imageLink, setImageLink] = useState('');
+
   const dateToday = new Date().toISOString().slice(0, 10);
-  const inputRef = useRef(null);
-  const handleClick = () => {
-    inputRef.current.click();
-  };
 
   const changePage = value => {
     setPage(page + value);
@@ -51,7 +46,7 @@ export const PetForm = ({ closeModal }) => {
       .min(2, 'Breed must consist of at least 2 symbols')
       .max(16, 'Breed must contain no more than 24 symbols')
       .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
-    petAvatar: yup.string().required('Image is required'),
+    petAvatar: yup.string(),
     comments: yup
       .string()
       .min(8, 'Comment must consist of at least 8 symbols')
@@ -79,7 +74,23 @@ export const PetForm = ({ closeModal }) => {
         closeModal();
       },
     });
-
+  const [yourImage, setYourImage] = useState([]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    maxFiles: 1,
+    accept: {
+      'image/*': ['.jpeg', '.png', '.bmp', '.jpg'],
+    },
+    onDrop: acceptedFiles => {
+      setYourImage(
+        acceptedFiles.map(upFile =>
+          Object.assign(upFile, {
+            preview: URL.createObjectURL(upFile),
+          })
+        )
+      );
+      setFile(acceptedFiles[0]);
+    },
+  });
   return (
     <FormBox secondPage={page === 2}>
       <form onSubmit={handleSubmit}>
@@ -151,49 +162,25 @@ export const PetForm = ({ closeModal }) => {
         </FormPage>
         <FormPage isHidden={page === 1}>
           <h4>Add photo and some comments</h4>
-          <FileLable>
-            <FileInput
-              type="file"
+          <FileLable {...getRootProps()}>
+            <input
+              {...getInputProps()}
               name="petAvatar"
-              ref={inputRef}
-              accept="image/jpg, image/png, image/jpeg, image/bmp"
               value={values.petAvatar}
-              onBlur={handleBlur}
-              onChange={e => {
-                if (e.target.files[0]) {
-                  if (
-                    ['image/jpg', 'image/png', 'image/jpeg', 'image/bmp'].some(
-                      item => item === e.target.files[0].type
-                    )
-                  ) {
-                    setFile(e.target.files[0]);
-                    setImageLink(URL.createObjectURL(e.target.files[0]));
-                  } else {
-                    toast.info(
-                      'You can add only .png, .jpg, .jpeg, .bmp type of photo'
-                    );
-                    return;
-                  }
-                }
-                handleChange(e);
-              }}
             />
-            <AddButton type="button" onClick={handleClick}>
-              {values.petAvatar ? (
-                <img
-                  src={imageLink}
-                  alt="Pet avatar"
-                  width="300px"
-                  height="300px"
-                />
-              ) : (
-                <TfiPlus />
-              )}
-            </AddButton>
-            {errors.petAvatar || touched.petAvatar ? (
-              <p>{errors.petAvatar}</p>
-            ) : null}
+            <AddButton>{isDragActive ? null : <TfiPlus />}</AddButton>
+            <div>
+              {yourImage.map(upFile => {
+                return (
+                  <div key={upFile}>
+                    <img src={upFile.preview} alt="pet-avatar" />
+                  </div>
+                );
+              })}
+            </div>
+            {!file && <p>Image required</p>}
           </FileLable>
+
           <label>
             Comments
             <textarea
@@ -216,7 +203,9 @@ export const PetForm = ({ closeModal }) => {
             >
               Back
             </BackButton>
-            <AcseptButton type="submit">Done</AcseptButton>
+            <AcseptButton type="submit" disabled={!file}>
+              Done
+            </AcseptButton>
           </ButtonWrapper>
         </FormPage>
       </form>
