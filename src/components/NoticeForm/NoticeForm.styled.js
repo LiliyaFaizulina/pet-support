@@ -447,11 +447,13 @@ export const FormCloseBtn = styled.button`
   width: 34px;
   height: 34px;
   border-radius: 50%;
+  color: ${p => p.theme.colors.black};
   background-color: #fdf7f2;
-  backdrop-filter: blur(2px);
 
   svg {
     fill: currentColor;
+    width: 16px;
+    height: 16px;
     @media screen and (min-width: 768px) {
       width: 20px;
       height: 20px;

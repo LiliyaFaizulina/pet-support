@@ -8,7 +8,6 @@ export const FormBox = styled.div`
 
   @media (min-width: 768px) {
     width: 608px;
-    /* padding: 40px 80px; */
     padding: ${p => (p.secondPage ? '40px 107px' : '40px 80px')};
   }
   h3 {
@@ -23,7 +22,6 @@ export const FormBox = styled.div`
   }
   h4 {
     text-align: center;
-    /* margin-bottom: -32px; */
   }
   label {
     font-size: 18px;
@@ -67,6 +65,12 @@ export const CloseBtn = styled.div`
   :hover,
   :focus {
     color: ${p => p.theme.colors.accent};
+  }
+  svg {
+    @media (min-width: 768px) {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
@@ -151,12 +155,6 @@ export const AddButton = styled.div`
     height: 48px;
     fill: rgba(17, 17, 17, 0.6);
   }
-  /* img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-  } */
 `;
 
 export const ButtonWrapper = styled.div`
