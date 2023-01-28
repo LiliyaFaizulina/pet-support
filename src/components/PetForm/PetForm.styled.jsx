@@ -129,18 +129,6 @@ export const FormPage = styled.div`
       }
     }
   }
-  /* @supports (-webkit-overflow-scrolling: touch) {
-    input[type='date'] {
-      display: block;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      -webkit-text-fill-color: #666;
-      height: 42px;
-      &::after {
-        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
-      }
-    }
-  } */
 
   textarea {
     height: 100px;

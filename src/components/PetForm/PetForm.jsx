@@ -168,9 +168,7 @@ export const PetForm = ({ closeModal }) => {
               name="petAvatar"
               value={values.petAvatar}
             />
-            <AddButton>
-              {isDragActive ? <p>image here</p> : <TfiPlus />}
-            </AddButton>
+            <AddButton>{isDragActive ? null : <TfiPlus />}</AddButton>
             <div>
               {yourImage.map(upFile => {
                 return (
