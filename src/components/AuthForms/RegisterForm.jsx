@@ -47,7 +47,13 @@ const RegisterSchema = object().shape({
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
-  email: string().email('Invalid email').required('Email is required'),
+  email: string()
+    .matches(
+      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+      'Invalid email'
+    )
+    .email('Invalid email')
+    .required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
