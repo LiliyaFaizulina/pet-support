@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
-import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
-import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
-import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
-import { Backdrop } from 'components/Backdrop/Backdrop';
-import { NoticeForm } from 'components/NoticeForm/NoticeForm';
+import { toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
 import { GiCat } from 'react-icons/gi';
+
 import {
   selectError,
   selectIsLoading,
@@ -17,14 +14,20 @@ import {
   deleteNotice,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
+
+import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
+import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
+import { Backdrop } from 'components/Backdrop/Backdrop';
+import { NoticeForm } from 'components/NoticeForm/NoticeForm';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
-import { selectIsAuth } from 'redux/auth/authSelectors';
-import { toast } from 'react-toastify';
-import { AnimatePresence } from 'framer-motion';
-import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
+import { selectIsAuth } from 'redux/auth/authSelectors';
+
 import Spinner from 'components/Spinner/Spinner';
+import { CustomizedContainer } from './NoticesPage.styled';
 import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
 import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
