@@ -12,7 +12,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/pet-support/">
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <App />

@@ -58,22 +58,22 @@ export const NoticeForm = ({ closeModal }) => {
     category: yup.string('Please, enter your category').required(),
     title: yup
       .string('Please, enter title')
-      .min(3, 'Title must consist of at least 3 symbols')
-      .max(30, 'Title must contain no more than 30 symbols'),
+      .min(3, 'Minimum 3 symbols')
+      .max(30, 'Maximum 30 symbols'),
     petName: yup
       .string('Please, enter name of the pet')
-      .min(2, 'Name of the pet must consist of at least 2 symbols')
-      .max(16, 'Name of the pet must contain no more than 16 symbols')
+      .min(2, 'Minimum 2 symbols')
+      .max(16, 'Maximum 16 symbols')
       .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     dateOfBirth: yup
       .date()
       .required()
-      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
-      .max(dateToday, 'The maximum date of birth is today'),
+      .min('2000-01-01', 'The min date is 01.01.2000')
+      .max(dateToday, 'The max date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
-      .min(2, 'Breed must consist of at least 2 symbols')
-      .max(24, 'Breed must contain no more than 24 symbols')
+      .min(2, 'Minimum 2 symbols')
+      .max(24, 'Maximum 24 symbols')
       .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     sex: yup.string(),
     location: yup
@@ -82,12 +82,17 @@ export const NoticeForm = ({ closeModal }) => {
         /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
         'Example: Brovary, Kyiv'
       ),
-    price: yup.number().min(1).positive().integer(),
+    price: yup
+      .number()
+      .min(1, 'Price must be a positive number')
+      .max(99999, 'Max price can be 99999')
+      .positive('Price must be a positive number')
+      .integer('Price must be an integer'),
     image: yup.string(),
     comments: yup
       .string()
-      .min(8, 'Comment must consist of at least 8 symbols')
-      .max(120, 'Comment must contain no more than 120 symbols'),
+      .min(8, 'Minimum 8 symbols')
+      .max(120, 'Maximum 120 symbols'),
   });
 
   const { handleSubmit, values, handleChange, errors, touched } = useFormik({
@@ -122,7 +127,8 @@ export const NoticeForm = ({ closeModal }) => {
     !values.petName ||
     !values.dateOfBirth ||
     !values.image ||
-    !values.location;
+    !values.location ||
+    (values.category === 'sell' && (!values.price || errors.price));
 
   return (
     <Modal>
@@ -236,8 +242,17 @@ export const NoticeForm = ({ closeModal }) => {
               type="button"
               onClick={() => {
                 const { category, title, petName, dateOfBirth } = values;
-                if (!category || !title || !dateOfBirth || !petName) {
-                  toast.info('Please fill in required fields', {
+                if (
+                  !category ||
+                  errors.category ||
+                  !title ||
+                  errors.title ||
+                  !dateOfBirth ||
+                  errors.dateOfBirth ||
+                  !petName ||
+                  errors.petName
+                ) {
+                  toast.info('Please fill in required fields in valid format', {
                     icon: <GiCat />,
                   });
                   return;
@@ -301,8 +316,12 @@ export const NoticeForm = ({ closeModal }) => {
                 placeholder="Type price"
                 onChange={handleChange}
               />
-              {errors.price || touched.price ? (
-                <ErrorMessage>{errors.price}</ErrorMessage>
+              {errors.price || touched.price || !values.price ? (
+                <ErrorMessage>
+                  {!values.price
+                    ? 'Price must be a positive number'
+                    : errors.price}
+                </ErrorMessage>
               ) : null}
             </Label>
           )}

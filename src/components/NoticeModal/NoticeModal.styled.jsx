@@ -54,12 +54,15 @@ export const CloseBtn = styled.button`
   width: 34px;
   height: 34px;
   display: flex;
+  padding: 0;
   justify-content: center;
   align-items: center;
   border: none;
   border-radius: ${p => p.theme.radii.round};
   background-color: ${p => p.theme.colors.mainBackground};
   backdrop-filter: blur(2px);
+  color: ${p => p.theme.colors.black};
+
   svg {
     width: 19px;
     height: 19px;
@@ -83,7 +86,8 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 240px;
   border-radius: 0 0 40px 40px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
     width: 288px;
@@ -112,6 +116,7 @@ export const Overlay = styled.p`
   font-size: 12px;
   line-height: calc(16 / 12);
   letter-spacing: 0.04em;
+  text-align: center;
 `;
 
 export const NoticeTitle = styled.h3`
@@ -131,7 +136,8 @@ export const NoticeTitle = styled.h3`
 
 export const NoticeInfoItem = styled.li`
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -145,6 +151,21 @@ export const NoticeInfoItem = styled.li`
     top: 0px;
     font-weight: 500;
     white-space: nowrap;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+    position: absolute;
+    left: 118px;
+    top: 0px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color ${p => p.theme.transition};
+    :hover,
+    :focus {
+      color: ${p => p.theme.colors.accent};
+    }
   }
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -186,7 +207,8 @@ export const ContactLink = styled.a`
   margin-bottom: 12px;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -242,7 +264,8 @@ export const ToggleFavoriteBtn = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

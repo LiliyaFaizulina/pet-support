@@ -23,7 +23,8 @@ export const CardTitle = styled.h3`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const Line = styled.div`
@@ -55,7 +56,8 @@ export const Description = styled.p`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 8;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   @media screen and (min-width: 768px) {
     -webkit-line-clamp: 6;

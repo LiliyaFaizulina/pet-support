@@ -42,4 +42,10 @@ export const NaviLink = styled(NavLink)`
     font-size: 20px;
     line-height: 1.35;
   }
+  transition: color ${p => p.theme.transition};
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
 `;

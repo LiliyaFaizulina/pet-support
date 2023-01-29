@@ -1,3 +1,4 @@
+import ScrollToTop from 'react-scroll-to-top';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -8,10 +9,9 @@ export const Wrapper = styled.div`
   width: 100%;
   font-family: ${p => p.theme.fonts.mainFamily};
 
-   color: ${p => p.theme.colors.heading};
+  color: ${p => p.theme.colors.heading};
 
-
-   @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px) {
     width: 480px;
   }
 
@@ -55,3 +55,10 @@ export const List = styled.ul`
   }
 `;
 
+export const Scroll = styled(ScrollToTop)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  padding: 8px;
+`;

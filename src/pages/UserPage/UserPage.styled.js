@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UserPageContainer = styled.div`
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 119px;
+  padding-top: 61px;
+  padding-bottom: 80px;
   @media ${p => p.theme.media.mobile} {
     width: 320px;
   }
@@ -12,13 +13,15 @@ export const UserPageContainer = styled.div`
     width: 768px;
     padding-left: 0px;
     padding-right: 32px;
-    padding-top: 158px;
+    padding-top: 88px;
+    padding-bottom: 100px;
   }
   @media ${p => p.theme.media.desktop} {
     display: flex;
     padding-left: 0px;
     padding-right: 16px;
-    padding-top: 126px;
+    padding-top: 58px;
+    padding-bottom: 40px;
     width: 1280px;
   }
 `;

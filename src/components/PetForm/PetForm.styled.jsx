@@ -56,10 +56,12 @@ export const FileLable = styled.div`
     border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   }
 `;
-export const CloseBtn = styled.div`
+export const CloseBtn = styled.button`
   position: absolute;
   top: 23px;
   right: 23px;
+  padding: 0;
+  color: ${p => p.theme.colors.heading};
   background-color: transparent;
   cursor: pointer;
   :hover,
@@ -86,7 +88,8 @@ export const FormPage = styled.div`
     white-space: nowrap;
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
-    overflow: hidden;`;
+    overflow-x: hidden;
+    overflow-y: hidden;`;
     } else {
       return `
       position: relative;
@@ -188,7 +191,8 @@ export const AcseptButton = styled.button`
   transition: transform 0.5s;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

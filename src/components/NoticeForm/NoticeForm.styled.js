@@ -126,7 +126,7 @@ export const TextInput = styled.input`
   @media (max-width: 420px) {
     &[type='date'] {
       position: relative;
-      height: 46px;
+      height: 44px;
 
       &::after {
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
@@ -193,7 +193,8 @@ export const CategoryLabel = styled.label`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -201,6 +202,10 @@ export const CategoryLabel = styled.label`
   }
   :hover:before {
     left: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -209,6 +214,11 @@ export const CategoryLabel = styled.label`
     left: -100%;
     width: 100%;
     height: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
+
     background: ${p =>
       p.checkedCategory
         ? `linear-gradient(
@@ -259,7 +269,8 @@ export const FileInput = styled.input`
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const FileButton = styled.button`
@@ -269,7 +280,8 @@ export const FileButton = styled.button`
   height: 116px;
   background-color: #fdf7f2;
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   padding: 0;
 
   svg {
@@ -326,7 +338,8 @@ export const Button = styled.button`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -334,6 +347,10 @@ export const Button = styled.button`
   }
   :hover:before {
     left: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -342,6 +359,11 @@ export const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
+
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+    }
+
     background: ${p =>
       !p.NotFillBtn
         ? `linear-gradient(
@@ -391,7 +413,7 @@ export const Icon = styled.img`
 
 export const ErrorMessage = styled.p`
   position: absolute;
-  bottom: ${p => (p.Input ? '8px' : '-27px')};
+  bottom: ${p => (p.Input ? '9px' : '-29px')};
   left: 14px;
 
   font-size: 12px;
@@ -401,7 +423,7 @@ export const ErrorMessage = styled.p`
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    bottom: ${p => (p.Input ? '8px' : '-30px')};
+    bottom: ${p => (p.Input ? '9px' : '-32px')};
   }
 `;
 
@@ -443,6 +465,7 @@ export const FormCloseBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 
   width: 34px;
   height: 34px;
