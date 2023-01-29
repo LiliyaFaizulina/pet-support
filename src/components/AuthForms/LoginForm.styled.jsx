@@ -134,6 +134,12 @@ export const ForgotPassword = styled.button`
   border: none;
   text-decoration: underline;
   color: ${p => p.theme.colors.link};
+
+  transition: color ${p => p.theme.transition};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const Button = styled.button`
