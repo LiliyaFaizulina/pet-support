@@ -193,7 +193,8 @@ export const CategoryLabel = styled.label`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -268,7 +269,8 @@ export const FileInput = styled.input`
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const FileButton = styled.button`
@@ -278,7 +280,8 @@ export const FileButton = styled.button`
   height: 116px;
   background-color: #fdf7f2;
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   padding: 0;
 
   svg {
@@ -335,7 +338,8 @@ export const Button = styled.button`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

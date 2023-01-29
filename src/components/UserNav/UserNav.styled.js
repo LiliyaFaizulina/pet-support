@@ -40,7 +40,8 @@ export const UserNavLink = styled(Link)`
   }
 
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

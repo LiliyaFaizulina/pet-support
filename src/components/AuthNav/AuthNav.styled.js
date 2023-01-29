@@ -45,7 +45,8 @@ export const AuthNavLink = styled(NavLink)`
   }
 
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
