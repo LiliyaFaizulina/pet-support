@@ -242,7 +242,7 @@ export const UserDataInput = styled.input`
   }
 
   @media ${p => p.theme.media.tablet} {
-    width: 216px;
+    width: 240px;
     height: 32px;
     padding: 4px 12px;
 
