@@ -1,25 +1,22 @@
 import styled from 'styled-components';
 
-export const Modal = styled.div`
+export const ModalWrapper = styled.div`
   position: absolute;
   top: 160px;
   left: 50%;
   transform: translateX(-50%);
+  padding-bottom: 160px;
+`;
+
+export const Modal = styled.div`
+  z-index: 10;
   background-color: #ffffff;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   width: 280px;
   padding: 40px 20px;
 
-  /* @media screen and (min-width: 420px) {
-    width: 380px;
-  } */
-
   @media screen and (min-width: 768px) {
     border-radius: ${p => p.theme.radii.mainBorderRadius};
-    position: relative;
-    transform: translateX(0);
-    top: 0;
-    left: 0;
     padding: 40px 80px;
     width: 608px;
   }
@@ -138,19 +135,6 @@ export const TextInput = styled.input`
       }
     }
   }
-
-  /* @supports (-webkit-overflow-scrolling: touch) {
-    &[type='date'] {
-      display: block;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      -webkit-text-fill-color: #666;
-      height: 46px;
-      &::after {
-        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
-      }
-    }
-  } */
 
   transition: transform 250ms ease-in-out;
   &:focus {
