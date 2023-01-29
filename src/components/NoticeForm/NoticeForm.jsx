@@ -87,7 +87,7 @@ export const NoticeForm = ({ closeModal }) => {
       .min(1, 'Price must be a positive number')
       .max(99999, 'Max price can be 99999')
       .positive('Price must be a positive number')
-      .integer(),
+      .integer('Price must be an integer'),
     image: yup.string(),
     comments: yup
       .string()
