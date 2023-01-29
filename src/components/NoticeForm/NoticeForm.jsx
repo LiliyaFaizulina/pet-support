@@ -1,13 +1,12 @@
-import { useFormik } from 'formik';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNotice } from 'redux/notices/noticesOperations';
-import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { GiCat } from 'react-icons/gi';
+import { addNotice } from 'redux/notices/noticesOperations';
 import {
   ModalWrapper,
   Modal,
