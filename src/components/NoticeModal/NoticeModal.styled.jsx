@@ -86,7 +86,8 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 240px;
   border-radius: 0 0 40px 40px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
     width: 288px;
@@ -135,7 +136,8 @@ export const NoticeTitle = styled.h3`
 
 export const NoticeInfoItem = styled.li`
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -205,7 +207,8 @@ export const ContactLink = styled.a`
   margin-bottom: 12px;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -261,7 +264,8 @@ export const ToggleFavoriteBtn = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

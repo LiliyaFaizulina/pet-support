@@ -148,7 +148,8 @@ export const Button = styled.button`
   transition: transform 0.5s;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -199,7 +200,8 @@ export const BackButton = styled.button`
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -242,7 +244,7 @@ export const ErrBox = styled.div`
 `;
 
 export const ButtonModal = styled.button`
-    @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     &:last-child {
       margin-top: 12px;
     }
@@ -266,7 +268,8 @@ export const ButtonModal = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -346,7 +349,7 @@ export const FormRef = styled(Form)`
   -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
   box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-  
+
   @media (min-width: 768px) {
     width: 608px;
     margin: 0 auto;

@@ -88,7 +88,8 @@ export const FormPage = styled.div`
     white-space: nowrap;
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
-    overflow: hidden;`;
+    overflow-x: hidden;
+    overflow-y: hidden;`;
     } else {
       return `
       position: relative;
@@ -190,7 +191,8 @@ export const AcseptButton = styled.button`
   transition: transform 0.5s;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

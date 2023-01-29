@@ -42,7 +42,8 @@ export const TitleWrapper = styled.div`
   align-items: flex-end;
 
   height: 76px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin-bottom: 20px;
 `;
 
@@ -106,7 +107,8 @@ export const ButtonMore = styled.button`
 
   transform: scale(1);
   transition: transform 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -174,7 +176,8 @@ export const Category = styled.p`
   border-radius: 0px 40px 40px 0px;
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   font-weight: 500;
   font-size: 12px;
@@ -201,7 +204,8 @@ export const LikeButton = styled.button`
 
   transform: scale(1);
   transition: transform 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
