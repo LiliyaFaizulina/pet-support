@@ -86,6 +86,10 @@ export const RegisterForm = () => {
     setIsShown(true);
   };
 
+  const hideAllForms = () => {
+    setIsShown(null);
+  };
+
   const onSubmit = values => {
     const { name, email, password, phone, city } = values;
     dispatch(
@@ -96,7 +100,7 @@ export const RegisterForm = () => {
         phone,
         city,
       }),
-      hideForm()
+      hideAllForms()
     );
   };
   const formik = useFormik({
