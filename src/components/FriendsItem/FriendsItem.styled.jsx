@@ -8,11 +8,13 @@ export const SponsorLink = styled.a`
   line-height: 16px;
   color: ${p => p.theme.colors.accent};
   text-align: center;
+  transition: color ${p => p.theme.transition},
+    transform ${p => p.theme.transition};
 
   :hover,
   :focus {
-    color: ${p => p.theme.colors.buttonAccent};
-    text-decoration: underline;
+    color: ${p => p.theme.colors.hoverBtn};
+    transform: scale(1.05);
   }
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
