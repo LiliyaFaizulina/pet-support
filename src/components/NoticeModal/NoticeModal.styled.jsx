@@ -115,6 +115,7 @@ export const Overlay = styled.p`
   font-size: 12px;
   line-height: calc(16 / 12);
   letter-spacing: 0.04em;
+  text-align: center;
 `;
 
 export const NoticeTitle = styled.h3`
@@ -148,6 +149,21 @@ export const NoticeInfoItem = styled.li`
     top: 0px;
     font-weight: 500;
     white-space: nowrap;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+    position: absolute;
+    left: 118px;
+    top: 0px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color ${p => p.theme.transition};
+    :hover,
+    :focus {
+      color: ${p => p.theme.colors.accent};
+    }
   }
   @media screen and (min-width: 768px) {
     font-size: 16px;

@@ -92,10 +92,14 @@ export const NoticeModal = ({ id, closeModal }) => {
                   The sex: <span>{notice.sex}</span>
                 </NoticeInfoItem>
                 <NoticeInfoItem>
-                  Email: <span>{notice.owner.email}</span>
+                  Email:{' '}
+                  <a href={`mailto:${notice.owner.email}`}>
+                    {notice.owner.email}
+                  </a>
                 </NoticeInfoItem>
                 <NoticeInfoItem>
-                  Phone: <span>{notice.owner.phone}</span>
+                  Phone:{' '}
+                  <a href={`tel:${notice.owner.phone}`}>{notice.owner.phone}</a>
                 </NoticeInfoItem>
                 {notice.category === 'sell' && (
                   <NoticeInfoItem>
@@ -106,7 +110,7 @@ export const NoticeModal = ({ id, closeModal }) => {
             </StyledWrapper>
           </FlexContainer>
           <Comment>
-            Comments: <span>{notice.comments}</span>
+            Comments: <span>{notice.comments || 'no comments'}</span>
           </Comment>
           <BtnContainer>
             <ContactLink href={`tel:${notice.owner.phone}`}>
