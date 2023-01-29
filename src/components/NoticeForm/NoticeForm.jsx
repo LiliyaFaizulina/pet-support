@@ -143,7 +143,7 @@ export const NoticeForm = ({ closeModal }) => {
           </FormText>
           <CategoryWrapper>
             <CategoryLabel checkedCategory={values.category === 'lost-found'}>
-              Lost/found
+              lost/found
               <CategoryInput
                 hidden
                 type="radio"
@@ -154,7 +154,7 @@ export const NoticeForm = ({ closeModal }) => {
               />
             </CategoryLabel>
             <CategoryLabel checkedCategory={values.category === 'for-free'}>
-              In good hands
+              in good hands
               <CategoryInput
                 hidden
                 type="radio"
@@ -164,7 +164,7 @@ export const NoticeForm = ({ closeModal }) => {
               />
             </CategoryLabel>
             <CategoryLabel checkedCategory={values.category === 'sell'}>
-              Sell
+              sell
               <CategoryInput
                 hidden
                 type="radio"
