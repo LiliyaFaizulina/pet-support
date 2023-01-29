@@ -13,10 +13,13 @@ export const Overlay = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 160px;
-  padding-bottom: 160px;
   overflow-y: scroll;
-  @media screen and (min-width: 768px) {
-    padding-top: 264px;
-  }
+`;
+
+export const ModalWrapper = styled.div`
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 160px;
 `;

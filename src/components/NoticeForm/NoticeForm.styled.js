@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
-  position: absolute;
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-bottom: 160px;
-`;
-
 export const Modal = styled.div`
   z-index: 10;
   background-color: #ffffff;
@@ -19,7 +11,6 @@ export const Modal = styled.div`
     border-radius: ${p => p.theme.radii.mainBorderRadius};
     padding: 40px 80px;
     width: 608px;
-    margin-top: 290px;
   }
 `;
 
