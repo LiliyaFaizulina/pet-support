@@ -368,4 +368,9 @@ export const FormRef = styled(Form)`
 
 export const StyledLink = styled(Link)`
   color: ${p => p.theme.colors.link};
+  transition: color ${p => p.theme.transition};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
