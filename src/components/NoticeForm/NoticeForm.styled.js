@@ -126,7 +126,7 @@ export const TextInput = styled.input`
   @media (max-width: 420px) {
     &[type='date'] {
       position: relative;
-      height: 46px;
+      height: 44px;
 
       &::after {
         content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
@@ -409,7 +409,7 @@ export const Icon = styled.img`
 
 export const ErrorMessage = styled.p`
   position: absolute;
-  bottom: ${p => (p.Input ? '8px' : '-27px')};
+  bottom: ${p => (p.Input ? '9px' : '-29px')};
   left: 14px;
 
   font-size: 12px;
@@ -419,7 +419,7 @@ export const ErrorMessage = styled.p`
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    bottom: ${p => (p.Input ? '8px' : '-30px')};
+    bottom: ${p => (p.Input ? '9px' : '-32px')};
   }
 `;
 

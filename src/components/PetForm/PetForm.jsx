@@ -32,25 +32,25 @@ export const PetForm = ({ closeModal }) => {
     name: yup
       .string('Please, enter name of the pet')
       .required('Pet name is required')
-      .min(2, 'too short')
-      .max(16, 'too long')
+      .min(2, 'Too short')
+      .max(16, 'Too long')
       .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     birthday: yup
       .date()
       .required()
-      .min('2000-01-01', 'The minimum date of birth can be 2000-01-01')
-      .max(dateToday, 'The maximum date of birth is today'),
+      .min('2000-01-01', 'The min date is 01.01.2000')
+      .max(dateToday, 'The max date of birth is today'),
     breed: yup
       .string('Please, enter breed of the pet')
       .required('Field required')
-      .min(2, 'Breed must consist of at least 2 symbols')
-      .max(16, 'Breed must contain no more than 24 symbols')
+      .min(2, 'Minimum 2 symbols')
+      .max(16, 'Maximum 24 symbols')
       .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters'),
     petAvatar: yup.string(),
     comments: yup
       .string()
-      .min(8, 'Comment must consist of at least 8 symbols')
-      .max(120, 'Comment must contain no more than 120 symbols')
+      .min(8, 'Minimum 8 symbols')
+      .max(120, 'Maximum 120 symbols')
       .required('Field required'),
   });
 
