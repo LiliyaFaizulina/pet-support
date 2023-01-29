@@ -19,6 +19,7 @@ export const Modal = styled.div`
     border-radius: ${p => p.theme.radii.mainBorderRadius};
     padding: 40px 80px;
     width: 608px;
+    margin-top: 290px;
   }
 `;
 
