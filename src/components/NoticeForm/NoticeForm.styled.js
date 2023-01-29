@@ -1,25 +1,14 @@
 import styled from 'styled-components';
 
 export const Modal = styled.div`
-  position: absolute;
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 10;
   background-color: #ffffff;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   width: 280px;
   padding: 40px 20px;
 
-  /* @media screen and (min-width: 420px) {
-    width: 380px;
-  } */
-
   @media screen and (min-width: 768px) {
     border-radius: ${p => p.theme.radii.mainBorderRadius};
-    position: relative;
-    transform: translateX(0);
-    top: 0;
-    left: 0;
     padding: 40px 80px;
     width: 608px;
   }
@@ -139,19 +128,6 @@ export const TextInput = styled.input`
     }
   }
 
-  /* @supports (-webkit-overflow-scrolling: touch) {
-    &[type='date'] {
-      display: block;
-      -webkit-appearance: textfield;
-      -moz-appearance: textfield;
-      -webkit-text-fill-color: #666;
-      height: 46px;
-      &::after {
-        content: ${p => (p.isEmpty ? `attr(placeholder)` : `""`)};
-      }
-    }
-  } */
-
   transition: transform 250ms ease-in-out;
   &:focus {
     transform: scale(1.03);
@@ -193,7 +169,8 @@ export const CategoryLabel = styled.label`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -268,7 +245,8 @@ export const FileInput = styled.input`
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const FileButton = styled.button`
@@ -278,7 +256,8 @@ export const FileButton = styled.button`
   height: 116px;
   background-color: #fdf7f2;
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   padding: 0;
 
   svg {
@@ -335,7 +314,8 @@ export const Button = styled.button`
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

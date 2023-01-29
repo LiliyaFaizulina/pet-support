@@ -25,7 +25,8 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

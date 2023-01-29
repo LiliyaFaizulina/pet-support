@@ -149,7 +149,8 @@ export const Button = styled.button`
   transition: transform 0.5s;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -200,7 +201,8 @@ export const BackButton = styled.button`
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -267,7 +269,8 @@ export const ButtonModal = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

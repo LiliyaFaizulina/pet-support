@@ -3,21 +3,10 @@ import styled from 'styled-components';
 export const Card = styled.div`
   background-color: ${p => p.theme.colors.secondaryBackground};
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
-  width: calc(100% - 40px);
   padding: 60px 20px 40px;
-
-  position: absolute;
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  @media screen and (min-width: 420px) {
-    width: 380px;
-  }
+  width: 280px;
 
   @media screen and (min-width: 768px) {
-    top: 50%;
-    transform: translate(-50%, -50%);
     padding: 32px 20px;
     width: 704px;
   }
@@ -86,7 +75,8 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 240px;
   border-radius: 0 0 40px 40px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
     width: 288px;
@@ -135,7 +125,8 @@ export const NoticeTitle = styled.h3`
 
 export const NoticeInfoItem = styled.li`
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -205,7 +196,8 @@ export const ContactLink = styled.a`
   margin-bottom: 12px;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -261,7 +253,8 @@ export const ToggleFavoriteBtn = styled.button`
   letter-spacing: 0.04em;
   transition: transform 0.5s;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);

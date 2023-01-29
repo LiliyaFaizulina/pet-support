@@ -41,7 +41,8 @@ export const LinkNav = styled(NavLink)`
 
   transform: scale(1);
   transition: transform 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -49,9 +50,9 @@ export const LinkNav = styled(NavLink)`
   }
   :hover:before {
     left: 100%;
-    @media screen and (max-width: 767.98px){
-        visibility: visible;
-      }
+    @media screen and (max-width: 767.98px) {
+      visibility: visible;
+    }
   }
   :before {
     content: '';
@@ -67,9 +68,9 @@ export const LinkNav = styled(NavLink)`
       transparent
     );
     transition: all 650ms;
-    @media screen and (max-width: 767.98px){
-        visibility: hidden;
-      }
+    @media screen and (max-width: 767.98px) {
+      visibility: hidden;
+    }
   }
 
   &.active {
@@ -77,7 +78,6 @@ export const LinkNav = styled(NavLink)`
     color: ${p => p.theme.colors.secondaryBackground};
 
     :before {
-      
       background: linear-gradient(
         120deg,
         transparent,
@@ -85,7 +85,7 @@ export const LinkNav = styled(NavLink)`
         transparent
       );
 
-      @media screen and (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         visibility: hidden;
       }
     }

@@ -8,6 +8,7 @@ import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 import { useEffect } from 'react';
+import { Container } from 'utils/GlobalStyle';
 
 export const BurgerNav = ({ close }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -21,15 +22,17 @@ export const BurgerNav = ({ close }) => {
 
   return (
     <BurgerNavMenu onClick={close}>
-      <LogoMenu>
-        <Logo />
-        <BurgerNavCloseBtn onClick={close} />
-      </LogoMenu>
-      <UserAuthMenu>
-        {isMobile && isAuth && <UserNav />}
-        {isMobile && !isAuth && <AuthNav />}
-      </UserAuthMenu>
-      <Nav />
+      <Container>
+        <LogoMenu>
+          <Logo />
+          <BurgerNavCloseBtn onClick={close} />
+        </LogoMenu>
+        <UserAuthMenu>
+          {isMobile && isAuth && <UserNav />}
+          {isMobile && !isAuth && <AuthNav />}
+        </UserAuthMenu>
+        <Nav />
+      </Container>
     </BurgerNavMenu>
   );
 };
