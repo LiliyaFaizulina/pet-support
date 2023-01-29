@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
 import MaskedInput from 'react-text-mask';
 import mobileBackground from '../../images/mobileAuthBackground.png';
 import tabletBackground from '../../images/tableAuthBackground.png';
@@ -242,7 +243,7 @@ export const ErrBox = styled.div`
 `;
 
 export const ButtonModal = styled.button`
-    @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     &:last-child {
       margin-top: 12px;
     }
@@ -346,7 +347,7 @@ export const FormRef = styled(Form)`
   -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
   box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-  
+
   @media (min-width: 768px) {
     width: 608px;
     margin: 0 auto;
@@ -363,4 +364,8 @@ export const FormRef = styled(Form)`
   :last-child {
     font-size: 12px;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${p => p.theme.colors.link};
 `;

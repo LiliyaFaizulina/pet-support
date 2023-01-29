@@ -2,7 +2,7 @@ import { object, string, ref } from 'yup';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useFormik, Formik } from 'formik';
-import { Link } from 'react-router-dom';
+
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
 import { register } from 'redux/auth/authOperations';
@@ -16,6 +16,7 @@ import {
   BackButton,
   PhoneInput,
   ShowPassword,
+  StyledLink,
 } from './LoginForm.styled';
 
 const phoneNumberMask = [
@@ -260,7 +261,8 @@ export const RegisterForm = () => {
             </BackButton>
           )}
           <div>
-            <span>Already have an account?</span> <Link to="/login">Login</Link>
+            <span>Already have an account?</span>{' '}
+            <StyledLink to="/login">Login</StyledLink>
           </div>
         </Form1>
       </Formik>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
   Form1,
@@ -13,6 +12,7 @@ import {
   ErrBox,
   ForgotPassword,
   ShowPassword,
+  StyledLink,
 } from './LoginForm.styled';
 import { login } from 'redux/auth/authOperations';
 
@@ -76,7 +76,7 @@ export const LoginForm = ({ openModal }) => {
 
             <div>
               <span>Don't have an account?</span>{' '}
-              <Link to="/register">Register</Link>
+              <StyledLink to="/register">Register</StyledLink>
             </div>
           </Form1>
         )}
