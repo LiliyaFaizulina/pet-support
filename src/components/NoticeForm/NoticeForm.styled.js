@@ -22,6 +22,7 @@ export const Modal = styled.div`
     left: 0;
     padding: 40px 80px;
     width: 608px;
+    margin-top: 290px;
   }
 `;
 
