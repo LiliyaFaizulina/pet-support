@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { HiTrash } from "react-icons/hi2";
+import styled from 'styled-components';
+import { HiTrash } from 'react-icons/hi2';
 
 export const PetItem = styled.div`
   &:not(:last-child) {
@@ -54,16 +54,26 @@ export const DeleteBtm = styled.button`
   padding: 0;
   right: 0;
 
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: none;
-  background-color: ${p => p.theme.colors.background};
+  color: ${p => p.theme.colors.inputText};
+  background-color: ${p => p.theme.colors.mainBackground};
   cursor: pointer;
   border-radius: ${p => p.theme.radii.round};
   border: none;
   @media ${p => p.theme.media.tablet} {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
+  }
+
+  transition: color ${p => p.theme.transition};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+  svg {
+    fill: currentColor;
   }
 `;
 

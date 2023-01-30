@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import { getFavoriteNotices } from 'redux/notices/noticesOperations';
+import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 const FavoriteNoticesSubPage = ({
   filterText,

@@ -1,17 +1,16 @@
-import { Wrapper, Title, List, Scroll } from './NewsPage.styled';
-import { SearchField } from 'components/SearchField/SearchField';
-import { NewsCard } from 'components/NewsCard/NewsCard';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNews } from 'redux/news/newsOperations';
 import {
   selectNews,
   selectError,
   selectIsLoading,
 } from 'redux/news/newsSelectors';
-
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { SearchField } from 'components/SearchField/SearchField';
+import { NewsCard } from 'components/NewsCard/NewsCard';
 import Spinner from 'components/Spinner/Spinner';
 import { NoMatchesText } from 'components/NoMatchesText/NoMatchesText';
+import { Wrapper, Title, List, Scroll } from './NewsPage.styled';
 
 const NewsPage = () => {
   const dispatch = useDispatch();

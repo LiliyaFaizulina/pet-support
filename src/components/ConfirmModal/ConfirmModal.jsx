@@ -1,6 +1,7 @@
+import { MdPets } from 'react-icons/md';
 import { Card, BtnContainer } from 'components/NoticeModal/NoticeModal.styled';
 import { Button, Notification } from './ConfirmModal.styled';
-import { MdPets } from 'react-icons/md';
+
 export const ConfirmModal = ({ text, close, handleClick, id }) => {
   return (
     <Card>

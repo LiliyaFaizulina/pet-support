@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { getUser, updateAvatar } from '../../redux/auth/authOperations';
-import UserDataItem from './UserDataItem';
-import devaultIcon from '../../images/default-icon-user.png';
-import { toast } from 'react-toastify';
 import { selectUser, selectIsLoading } from '../../redux/auth/authSelectors';
+import UserDataItem from './UserDataItem';
 import { Loader } from 'components/Loader';
+import devaultIcon from '../../images/default-icon-user.png';
 import {
   UserBlock,
   BoxImg,
@@ -21,7 +22,6 @@ import {
   ImageContainer,
   Label,
 } from './UserDataItem.styled';
-import { useForm } from 'react-hook-form';
 
 const UserDataForm = () => {
   const user = useSelector(selectUser);

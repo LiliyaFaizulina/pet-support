@@ -1,7 +1,7 @@
-import PetsListItem from 'components/PetsListItem';
-import { Loader } from 'components/Loader';
 import { useSelector } from 'react-redux';
 import { selectPets } from 'redux/auth/authSelectors';
+import PetsListItem from 'components/PetsListItem';
+import { Loader } from 'components/Loader';
 import { BoxNotFoundPet } from './PetsList.styled';
 
 const PetsList = ({ isLoading, openDeleteModal }) => {

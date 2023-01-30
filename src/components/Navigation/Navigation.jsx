@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
+import { selectIsAuth } from 'redux/auth/authSelectors';
 import { Nav } from 'components/Nav/Nav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserNav } from 'components/UserNav/UserNav';
-import { useSelector } from 'react-redux';
-import { selectIsAuth } from 'redux/auth/authSelectors';
 import { BurgerNavOpenBtn } from 'components/BurgerNav/BurgerNavOpenBtn';
 import { BurgerNav } from 'components/BurgerNav/BurgerNav';
 

@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import { SiGnuicecat } from 'react-icons/si';
 import { FaDog } from 'react-icons/fa';
 
+const { REACT_APP_API_URL } = process.env;
+
 export const instance = axios.create({
-  baseURL: 'https://pet-support-test2.onrender.com/api',
+  baseURL: REACT_APP_API_URL,
 });
 
 const token = {

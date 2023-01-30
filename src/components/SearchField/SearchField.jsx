@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Input, Form, SearchButton, RemoveButton } from './SearchField.styled';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { MdOutlineCancel } from 'react-icons/md';
+import { Input, Form, SearchButton, RemoveButton } from './SearchField.styled';
 
 export const SearchField = ({ onSubmit, onChange, setFilterText }) => {
   const [isFielld, setIsFielld] = useState();

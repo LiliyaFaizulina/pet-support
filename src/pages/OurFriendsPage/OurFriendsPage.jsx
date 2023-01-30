@@ -8,10 +8,10 @@ import {
   selectIsLoading,
 } from 'redux/friends/friendsSelectors';
 
-import { Container, Section } from 'utils/GlobalStyle';
 import FriendsList from 'components/FriendsList/FriendsList';
 import Spinner from 'components/Spinner/Spinner';
 import { Scroll } from 'pages/NewsPage/NewsPage.styled';
+import { Container, Section } from 'utils/GlobalStyle';
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
