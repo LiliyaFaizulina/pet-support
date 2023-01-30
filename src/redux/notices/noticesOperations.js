@@ -4,6 +4,30 @@ import { toast } from 'react-toastify';
 import { SiGnuicecat } from 'react-icons/si';
 import { FaDog } from 'react-icons/fa';
 
+export const getOwnNotices = createAsyncThunk(
+  'notices/getOwnNotices',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`/notices/own`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getFavoriteNotices = createAsyncThunk(
+  'notices/getFavoriteNotices',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`/notices/favorite`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
   async (category, { rejectWithValue }) => {

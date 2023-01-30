@@ -1,59 +1,37 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { GiCat } from 'react-icons/gi';
 import { toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
-import { GiCat } from 'react-icons/gi';
 
-import {
-  selectError,
-  selectIsLoading,
-  selectNoticesByCategory,
-} from 'redux/notices/noticesSelectors';
-import {
-  deleteNotice,
-  getNoticesByCategory,
-} from 'redux/notices/noticesOperations';
-
+import { selectIsAuth } from 'redux/auth/authSelectors';
 import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
-import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 import { Backdrop } from 'components/Backdrop/Backdrop';
 import { NoticeForm } from 'components/NoticeForm/NoticeForm';
+import { selectError, selectIsLoading } from 'redux/notices/noticesSelectors';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
-import { selectIsAuth } from 'redux/auth/authSelectors';
 
 import Spinner from 'components/Spinner/Spinner';
-import { CustomizedContainer } from './NoticesPage.styled';
 import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
 import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
-const NoticesPage = () => {
-  const [filterText, setFilterText] = useState('');
-  const [openModal, setOpenModal] = useState(false);
-  const [noticeToShow, setNoticeToShow] = useState('');
-  const [noticeToDelete, setNoticeToDelete] = useState('');
-
-  const notices = useSelector(selectNoticesByCategory);
+const NoticesPage = ({
+  setFilterText,
+  openModal,
+  noticeToShow,
+  noticeToDelete,
+  deleteOwnNotice,
+  setOpenModal,
+  closeModal,
+}) => {
   const isAuth = useSelector(selectIsAuth);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const dispatch = useDispatch();
-  const { categoryName } = useParams();
-
-  useEffect(() => {}, [notices]);
-
-  useEffect(() => {
-    dispatch(getNoticesByCategory(categoryName));
-  }, [dispatch, categoryName]);
-
-  const openConfirmModal = id => {
-    setOpenModal(true);
-    setNoticeToDelete(id);
-  };
 
   const onSearchSubmit = e => {
     e.preventDefault();
@@ -64,22 +42,6 @@ const NoticesPage = () => {
     setFilterText(e.currentTarget.query.value);
   };
 
-  const filteredNotices = notices.filter(notice =>
-    notice.title.toLowerCase().includes(filterText?.toLowerCase())
-  );
-
-  const deleteOwnNotice = id => {
-    dispatch(deleteNotice(id));
-    setOpenModal(false);
-    setNoticeToDelete('');
-  };
-
-  const closeModal = () => {
-    setOpenModal(false);
-    setNoticeToShow('');
-    setNoticeToDelete('');
-  };
-
   const openAddNoticeModal = () => {
     if (!isAuth) {
       toast.info('You should be logged in to add new notice', {
@@ -87,11 +49,6 @@ const NoticesPage = () => {
       });
       return;
     }
-    setOpenModal(true);
-  };
-
-  const openNoticeModal = id => {
-    setNoticeToShow(id);
     setOpenModal(true);
   };
 
@@ -108,13 +65,7 @@ const NoticesPage = () => {
       </FlexContainer>
       {error && <ErrorText>Ooops... something Wrong</ErrorText>}
       {isLoading && <Spinner />}
-      {!isLoading && (
-        <NoticesCategoriesList
-          notices={filterText ? filteredNotices : notices}
-          deleteOwnNotice={openConfirmModal}
-          openNoticeModal={openNoticeModal}
-        />
-      )}
+      {!isLoading && <Outlet />}
       <Scroll smooth color="#F59256" />
       {openModal && (
         <AnimatePresence>

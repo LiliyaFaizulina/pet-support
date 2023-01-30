@@ -38,6 +38,7 @@ export const NoticeCategoryItem = ({
   price,
   category,
   owner,
+  favorite,
   deleteOwnNotice,
   openNoticeModal,
 }) => {
@@ -158,7 +159,7 @@ export const NoticeCategoryItem = ({
 
       <Category>{сategoryName}</Category>
       <LikeButton type="button" aria-label="Like icon" onClick={toggleFavorite}>
-        {favoriteNotices.includes(id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
+        {favorite ? <IoIosHeart /> : <IoIosHeartEmpty />}
       </LikeButton>
     </Item>
   );
