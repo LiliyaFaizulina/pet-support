@@ -15,10 +15,8 @@ import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
-import { selectIsAuth } from 'redux/auth/authSelectors';
 
 import Spinner from 'components/Spinner/Spinner';
-import { CustomizedContainer } from './NoticesPage.styled';
 import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
 import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
