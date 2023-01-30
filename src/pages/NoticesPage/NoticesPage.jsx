@@ -5,19 +5,18 @@ import { toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
 
 import { selectIsAuth } from 'redux/auth/authSelectors';
+import { selectError, selectIsLoading } from 'redux/notices/noticesSelectors';
 import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 import { Backdrop } from 'components/Backdrop/Backdrop';
 import { NoticeForm } from 'components/NoticeForm/NoticeForm';
-import { selectError, selectIsLoading } from 'redux/notices/noticesSelectors';
 import { NoticeModal } from 'components/NoticeModal/NoticeModal';
 import { FlexContainer } from 'components/AddNoticeButton/AddNoticeButton.styled';
-import { CustomizedContainer } from './NoticesPage.styled';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
-
 import Spinner from 'components/Spinner/Spinner';
 import { ErrorText } from 'components/NoMatchesText/NoMatchesText.styled';
+import { CustomizedContainer } from './NoticesPage.styled';
 import { Scroll } from 'pages/NewsPage/NewsPage.styled';
 
 const NoticesPage = ({

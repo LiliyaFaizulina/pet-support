@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { selectIsLoading } from 'redux/notices/noticesSelectors';
-import { List } from './NoticesCategoriesList.styled';
+import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Spinner from 'components/Spinner/Spinner';
 import { NoMatchesText } from 'components/NoMatchesText/NoMatchesText';
+import { List } from './NoticesCategoriesList.styled';
 
 export const NoticesCategoriesList = ({
   notices,

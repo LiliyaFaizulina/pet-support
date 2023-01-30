@@ -1,7 +1,8 @@
-import { useFormik } from 'formik';
 import { useState } from 'react';
-import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import { TfiClose, TfiPlus } from 'react-icons/tfi';
 import { addPet } from 'redux/auth/authOperations';
@@ -15,7 +16,6 @@ import {
   ButtonWrapper,
   FileLable,
 } from './PetForm.styled';
-import { useDropzone } from 'react-dropzone';
 
 export const PetForm = ({ closeModal }) => {
   const dispatch = useDispatch();

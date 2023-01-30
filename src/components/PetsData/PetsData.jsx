@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-// import { useGetUserQuery } from 'redux/userApi';
-import AddPetBtn from 'components/AddPetBtn';
 import { selectIsLoading } from '../../redux/auth/authSelectors';
+import AddPetBtn from 'components/AddPetBtn';
+import PetsList from '../PetsList/PetsList';
 import {
   TitlePet,
   BoxBtn,
@@ -9,7 +9,6 @@ import {
   BoxPet,
   TitleBtn,
 } from './PetsData.styled';
-import PetsList from '../PetsList/PetsList';
 
 const PetsData = ({ openModal, openDeleteModal }) => {
   const isLoading = useSelector(selectIsLoading);

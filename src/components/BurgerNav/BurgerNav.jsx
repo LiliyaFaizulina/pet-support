@@ -1,5 +1,7 @@
-import { useMedia } from 'react-use';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
+
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
@@ -7,7 +9,6 @@ import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
-import { useEffect } from 'react';
 import { Container } from 'utils/GlobalStyle';
 
 export const BurgerNav = ({ close }) => {

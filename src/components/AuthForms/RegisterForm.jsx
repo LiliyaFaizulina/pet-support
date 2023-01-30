@@ -1,14 +1,13 @@
-import { object, string, ref } from 'yup';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik, Formik } from 'formik';
-import { useSelector } from 'react-redux';
-import { selectIsLoading } from '../../redux/auth/authSelectors';
-import Spinner from 'components/Spinner/Spinner';
-
+import { object, string, ref } from 'yup';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
+import { selectIsLoading } from '../../redux/auth/authSelectors';
 import { register } from 'redux/auth/authOperations';
+import Spinner from 'components/Spinner/Spinner';
+
 import {
   Form1,
   FormContainer,

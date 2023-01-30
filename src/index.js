@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { App } from 'components/App';
+import { ToastContainer } from 'react-toastify';
 import { store } from 'redux/store';
+import { App } from 'components/App';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from './utils';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 

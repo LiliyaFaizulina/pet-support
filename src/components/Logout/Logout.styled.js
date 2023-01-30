@@ -8,7 +8,6 @@ export const LogOut = styled.button`
   display: inline-flex;
   align-items: center;
   margin-left: auto;
-  /* margin-bottom: 8px; */
 
   border: none;
   background-color: transparent;

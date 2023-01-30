@@ -79,7 +79,6 @@ const UserDataItem = ({
         disabled={!active}
         onChange={onInputeChange}
         name={name}
-        // type={name === 'birthday' ? 'date' : type}
         type={type}
         pattern={pattern}
         value={inputeValue}

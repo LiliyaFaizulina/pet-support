@@ -1,18 +1,16 @@
-import Logout from '../../components/Logout/Logout';
-import PetsData from '../../components/PetsData/PetsData';
-
-import { UserPageContainer, BoxUser } from './UserPage.styled';
-
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/authOperations';
 import { deletePet } from 'redux/auth/authOperations';
+import Logout from '../../components/Logout/Logout';
+import PetsData from '../../components/PetsData/PetsData';
 import { UserData } from 'components/UserData/UserData';
 import { Backdrop } from 'components/Backdrop/Backdrop';
 import { PetForm } from 'components/PetForm/PetForm';
 import { ConfirmModal } from 'components/ConfirmModal/ConfirmModal';
 import Refresh from 'components/Refresh/Refresh';
 import { RefreshPassForm } from 'components/AuthForms/RefreshPassForm';
+import { UserPageContainer, BoxUser } from './UserPage.styled';
 
 const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

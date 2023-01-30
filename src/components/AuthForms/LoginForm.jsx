@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { object, string } from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { useSelector } from 'react-redux';
-import { selectIsLoading } from '../../redux/auth/authSelectors';
-import Spinner from 'components/Spinner/Spinner';
+import { object, string } from 'yup';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
+
+import { selectIsLoading } from '../../redux/auth/authSelectors';
+import { login } from 'redux/auth/authOperations';
+import Spinner from 'components/Spinner/Spinner';
 import {
   Form1,
   FormContainer,
@@ -17,7 +18,6 @@ import {
   ShowPassword,
   StyledLink,
 } from './LoginForm.styled';
-import { login } from 'redux/auth/authOperations';
 
 const SignupSchema = object().shape({
   password: string()

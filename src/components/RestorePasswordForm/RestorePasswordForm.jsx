@@ -1,10 +1,10 @@
-import * as yup from 'yup';
-import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { MdPets } from 'react-icons/md';
 import { restorePassword } from 'redux/auth/authOperations';
 import { ErrBox } from 'components/AuthForms/LoginForm.styled';
 import { Input, Form, StyledButton } from './RestorePassword.styled';
-import { MdPets } from 'react-icons/md';
 
 export const RestorePasswordForm = ({ closeModal }) => {
   const dispatch = useDispatch();
