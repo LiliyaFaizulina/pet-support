@@ -25,7 +25,6 @@ export const selectNotices = createSelector(
 export const selectOwnNotices = createSelector(
   [selectFavoritesId, selectUsersNotices],
   (favoritesIds, ownNotices) => {
-    console.log(ownNotices);
     if (!favoritesIds.length) {
       return ownNotices;
     }
