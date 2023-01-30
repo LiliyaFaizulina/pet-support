@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Overlay } from './Backdrop.styled';
+import { Overlay, ModalWrapper } from './Backdrop.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -33,7 +33,7 @@ export function Backdrop({ closeModal, children }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {children}
+      <ModalWrapper>{children}</ModalWrapper>
     </Overlay>,
     modalRoot
   );

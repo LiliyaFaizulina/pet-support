@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
 import MaskedInput from 'react-text-mask';
 import mobileBackground from '../../images/mobileAuthBackground.png';
 import tabletBackground from '../../images/tableAuthBackground.png';
@@ -133,6 +134,12 @@ export const ForgotPassword = styled.button`
   border: none;
   text-decoration: underline;
   color: ${p => p.theme.colors.link};
+
+  transition: color ${p => p.theme.transition};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const Button = styled.button`
@@ -365,5 +372,14 @@ export const FormRef = styled(Form)`
   }
   :last-child {
     font-size: 12px;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${p => p.theme.colors.link};
+  transition: color ${p => p.theme.transition};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
   }
 `;
